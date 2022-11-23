@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travelthree.daily.mapper.EmployeeMapper">
+
+    <resultMap id="BaseResultMap" type="com.travelthree.daily.domain.Employee">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="role" column="role" jdbcType="TINYINT"/>
+            <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+            <result property="departmentId" column="department_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,username,password,
+        name,role,telephone,
+        department_id
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from employee
+        where  id = #{id,jdbcType=VARCHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from employee
+        where  id = #{id,jdbcType=VARCHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.travelthree.daily.domain.Employee" useGeneratedKeys="true">
+        insert into employee
+        ( id,username,password
+        ,name,role,telephone
+        ,department_id)
+        values (#{id,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR}
+        ,#{name,jdbcType=VARCHAR},#{role,jdbcType=TINYINT},#{telephone,jdbcType=VARCHAR}
+        ,#{departmentId,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.travelthree.daily.domain.Employee" useGeneratedKeys="true">
+        insert into employee
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="username != null">username,</if>
+                <if test="password != null">password,</if>
+                <if test="name != null">name,</if>
+                <if test="role != null">role,</if>
+                <if test="telephone != null">telephone,</if>
+                <if test="departmentId != null">department_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=VARCHAR},</if>
+                <if test="username != null">#{username,jdbcType=VARCHAR},</if>
+                <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+                <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+                <if test="role != null">#{role,jdbcType=TINYINT},</if>
+                <if test="telephone != null">#{telephone,jdbcType=VARCHAR},</if>
+                <if test="departmentId != null">#{departmentId,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.travelthree.daily.domain.Employee">
+        update employee
+        <set>
+                <if test="username != null">
+                    username = #{username,jdbcType=VARCHAR},
+                </if>
+                <if test="password != null">
+                    password = #{password,jdbcType=VARCHAR},
+                </if>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="role != null">
+                    role = #{role,jdbcType=TINYINT},
+                </if>
+                <if test="telephone != null">
+                    telephone = #{telephone,jdbcType=VARCHAR},
+                </if>
+                <if test="departmentId != null">
+                    department_id = #{departmentId,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.travelthree.daily.domain.Employee">
+        update employee
+        set 
+            username =  #{username,jdbcType=VARCHAR},
+            password =  #{password,jdbcType=VARCHAR},
+            name =  #{name,jdbcType=VARCHAR},
+            role =  #{role,jdbcType=TINYINT},
+            telephone =  #{telephone,jdbcType=VARCHAR},
+            department_id =  #{departmentId,jdbcType=VARCHAR}
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+    <select id="selectOneByUsername" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from employee
+        where
+        username = #{username,jdbcType=VARCHAR}
+    </select>
+</mapper>

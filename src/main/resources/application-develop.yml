@@ -1,0 +1,53 @@
+# 开发环境专用配置文件
+
+#  服务器启动的端口号（可以改为主机上任意可用端口）
+server:
+  port: 8080
+
+spring:
+
+  #    项目的名称
+  application:
+    name: daily
+
+  #MYSQL数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3307/daily?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+
+  #  配置Json序列化
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      indent_output: false
+      fail_on_empty_beans: false
+    defaultPropertyInclusion: NON_NULL
+    deserialization:
+      fail_on_unknown_properties: false
+    parser:
+      allow_unquoted_control_chars: true
+      allow_single_quotes: true
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+
+#  mapper对应的xml文件存放路径
+mybatis:
+  mapper-locations: mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 把日志级别设置为DEBUG,可以在控制台打印出SQL语句,方便调试（仅用于开发环境！）
+logging:
+  level:
+    com.travelthree.daily.mapper: DEBUG
+
+
+#  配置分页插件
+pagehelper:
+  helperDialect: mysql

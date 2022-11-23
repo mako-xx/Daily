@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travelthree.daily.mapper.LeaveMapper">
+
+    <resultMap id="BaseResultMap" type="com.travelthree.daily.domain.Leave">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="employeeId" column="employee_id" jdbcType="VARCHAR"/>
+            <result property="startdate" column="startDate" jdbcType="TIMESTAMP"/>
+            <result property="enddate" column="endDate" jdbcType="TIMESTAMP"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="type" column="type" jdbcType="TINYINT"/>
+            <result property="reason" column="reason" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,employee_id,startDate,
+        endDate,status,type,
+        reason
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from `leave`
+        where  id = #{id,jdbcType=VARCHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from `leave`
+        where  id = #{id,jdbcType=VARCHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.travelthree.daily.domain.Leave" useGeneratedKeys="true">
+        insert into `leave`
+        ( id,employee_id,startDate
+        ,endDate,status,type
+        ,reason)
+        values (#{id,jdbcType=VARCHAR},#{employeeId,jdbcType=VARCHAR},#{startdate,jdbcType=TIMESTAMP}
+        ,#{enddate,jdbcType=TIMESTAMP},#{status,jdbcType=TINYINT},#{type,jdbcType=TINYINT}
+        ,#{reason,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.travelthree.daily.domain.Leave" useGeneratedKeys="true">
+        insert into `leave`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="employeeId != null">employee_id,</if>
+                <if test="startdate != null">startDate,</if>
+                <if test="enddate != null">endDate,</if>
+                <if test="status != null">status,</if>
+                <if test="type != null">type,</if>
+                <if test="reason != null">reason,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=VARCHAR},</if>
+                <if test="employeeId != null">#{employeeId,jdbcType=VARCHAR},</if>
+                <if test="startdate != null">#{startdate,jdbcType=TIMESTAMP},</if>
+                <if test="enddate != null">#{enddate,jdbcType=TIMESTAMP},</if>
+                <if test="status != null">#{status,jdbcType=TINYINT},</if>
+                <if test="type != null">#{type,jdbcType=TINYINT},</if>
+                <if test="reason != null">#{reason,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.travelthree.daily.domain.Leave">
+        update `leave`
+        <set>
+                <if test="employeeId != null">
+                    employee_id = #{employeeId,jdbcType=VARCHAR},
+                </if>
+                <if test="startdate != null">
+                    startDate = #{startdate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="enddate != null">
+                    endDate = #{enddate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="status != null">
+                    status = #{status,jdbcType=TINYINT},
+                </if>
+                <if test="type != null">
+                    type = #{type,jdbcType=TINYINT},
+                </if>
+                <if test="reason != null">
+                    reason = #{reason,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.travelthree.daily.domain.Leave">
+        update `leave`
+        set 
+            employee_id =  #{employeeId,jdbcType=VARCHAR},
+            startDate =  #{startdate,jdbcType=TIMESTAMP},
+            endDate =  #{enddate,jdbcType=TIMESTAMP},
+            status =  #{status,jdbcType=TINYINT},
+            type =  #{type,jdbcType=TINYINT},
+            reason =  #{reason,jdbcType=VARCHAR}
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+</mapper>

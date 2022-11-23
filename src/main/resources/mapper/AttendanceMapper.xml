@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travelthree.daily.mapper.AttendanceMapper">
+
+    <resultMap id="BaseResultMap" type="com.travelthree.daily.domain.Attendance">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="date" column="date" jdbcType="TIMESTAMP"/>
+            <result property="employeeId" column="employee_id" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,date,employee_id,
+        status
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from attendance
+        where  id = #{id,jdbcType=VARCHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from attendance
+        where  id = #{id,jdbcType=VARCHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.travelthree.daily.domain.Attendance" useGeneratedKeys="true">
+        insert into attendance
+        ( id,date,employee_id
+        ,status)
+        values (#{id,jdbcType=VARCHAR},#{date,jdbcType=TIMESTAMP},#{employeeId,jdbcType=VARCHAR}
+        ,#{status,jdbcType=TINYINT})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.travelthree.daily.domain.Attendance" useGeneratedKeys="true">
+        insert into attendance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="date != null">date,</if>
+                <if test="employeeId != null">employee_id,</if>
+                <if test="status != null">status,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=VARCHAR},</if>
+                <if test="date != null">#{date,jdbcType=TIMESTAMP},</if>
+                <if test="employeeId != null">#{employeeId,jdbcType=VARCHAR},</if>
+                <if test="status != null">#{status,jdbcType=TINYINT},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.travelthree.daily.domain.Attendance">
+        update attendance
+        <set>
+                <if test="date != null">
+                    date = #{date,jdbcType=TIMESTAMP},
+                </if>
+                <if test="employeeId != null">
+                    employee_id = #{employeeId,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    status = #{status,jdbcType=TINYINT},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.travelthree.daily.domain.Attendance">
+        update attendance
+        set 
+            date =  #{date,jdbcType=TIMESTAMP},
+            employee_id =  #{employeeId,jdbcType=VARCHAR},
+            status =  #{status,jdbcType=TINYINT}
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+</mapper>
