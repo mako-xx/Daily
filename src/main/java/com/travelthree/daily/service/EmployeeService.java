@@ -22,4 +22,6 @@ public interface EmployeeService {
      * @return 用户id
      */
     EmployeeDTO login(String username, String password);
+
+    EmployeeDTO getEmployeeById(String uid);
 }
