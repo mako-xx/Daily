@@ -27,6 +27,9 @@ public class TaleUtil {
      * 从Cookie中获取Uid
      * */
     public static String getUidFromCookie(HttpServletRequest request) {
+        if (request.getCookies() == null || request.getCookies().length == 0) {
+            return null;
+        }
         for (Cookie cookie : request.getCookies()) {
             if (cookie.getName().equals(WebConstant.REMEMBER_COOKIE_KEY)) {
                 return cookie.getValue();
