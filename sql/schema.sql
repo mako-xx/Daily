@@ -14,7 +14,7 @@ CREATE TABLE department(
  *
  * 角色：普通员工，管理员
  */
-CREATE TABLE employee(
+CREATE TABLE employee (
                          id VARCHAR(36) NOT NULL comment '员工id',
                          `username` VARCHAR(64) not null unique comment '用户名',
                          `password` VARCHAR(255) not null comment '密码',
@@ -34,7 +34,7 @@ CREATE TABLE employee(
  */
 CREATE TABLE attendance(
                            id VARCHAR(36) NOT NULL comment '考勤id',
-                           `date` DATETIME NOT NULL comment '考勤日期',
+                           `date` DATE NOT NULL comment '考勤日期',
                            employee_id VARCHAR(36) NOT NULL comment '员工id',
                            `status` TINYINT NOT NULL comment '考勤状态：出勤(0)，缺勤(1)，请假(2)',
                            PRIMARY KEY (id),
@@ -50,8 +50,8 @@ CREATE TABLE attendance(
 CREATE TABLE `leave`(
                       id VARCHAR(36) NOT NULL comment 's假条id',
                       employee_id VARCHAR(36) NOT NULL comment '员工id',
-                      startDate DATETIME NOT NULL comment '请假起始时间',
-                      endDate DATETIME NOT NULL comment '请假结束时间',
+                      startDate DATE NOT NULL comment '请假起始时间',
+                      endDate DATE NOT NULL comment '请假结束时间',
                       `status` TINYINT NOT NULL comment '请假审核状态：等待审核(0)，审核不通过(1)，审核通过(2)',
                       type TINYINT NOT NULL comment '请假类型：病假(0)，事假(1)，婚假(2)，丧假(3)，产假(4)，其他(5)',
                       reason VARCHAR(255) NOT NULL comment '请假理由',
