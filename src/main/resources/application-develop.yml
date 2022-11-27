@@ -31,10 +31,9 @@ spring:
       allow_single_quotes: true
 
   mvc:
-    throw-exception-if-no-handler-found: true
-  web:
-    resources:
-      add-mappings: false
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
 
 #  mapper对应的xml文件存放路径
 mybatis:
