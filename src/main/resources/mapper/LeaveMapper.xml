@@ -7,17 +7,18 @@
     <resultMap id="BaseResultMap" type="com.travelthree.daily.domain.Leave">
             <id property="id" column="id" jdbcType="VARCHAR"/>
             <result property="employeeId" column="employee_id" jdbcType="VARCHAR"/>
-            <result property="startdate" column="startDate" jdbcType="TIMESTAMP"/>
-            <result property="enddate" column="endDate" jdbcType="TIMESTAMP"/>
+            <result property="startdate" column="startDate" jdbcType="DATE"/>
+            <result property="enddate" column="endDate" jdbcType="DATE"/>
             <result property="status" column="status" jdbcType="TINYINT"/>
-            <result property="type" column="type" jdbcType="TINYINT"/>
+            <result property="typeId" column="type_id" jdbcType="TINYINT"/>
             <result property="reason" column="reason" jdbcType="VARCHAR"/>
+            <result property="auditorid" column="auditorId" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,employee_id,startDate,
-        endDate,status,type,
-        reason
+        endDate,status,type_id,
+        reason,auditorId
     </sql>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -34,11 +35,11 @@
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.travelthree.daily.domain.Leave" useGeneratedKeys="true">
         insert into `leave`
         ( id,employee_id,startDate
-        ,endDate,status,type
-        ,reason)
-        values (#{id,jdbcType=VARCHAR},#{employeeId,jdbcType=VARCHAR},#{startdate,jdbcType=TIMESTAMP}
-        ,#{enddate,jdbcType=TIMESTAMP},#{status,jdbcType=TINYINT},#{type,jdbcType=TINYINT}
-        ,#{reason,jdbcType=VARCHAR})
+        ,endDate,status,type_id
+        ,reason,auditorId)
+        values (#{id,jdbcType=VARCHAR},#{employeeId,jdbcType=VARCHAR},#{startdate,jdbcType=DATE}
+        ,#{enddate,jdbcType=DATE},#{status,jdbcType=TINYINT},#{typeId,jdbcType=TINYINT}
+        ,#{reason,jdbcType=VARCHAR},#{auditorid,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.travelthree.daily.domain.Leave" useGeneratedKeys="true">
         insert into `leave`
@@ -48,17 +49,19 @@
                 <if test="startdate != null">startDate,</if>
                 <if test="enddate != null">endDate,</if>
                 <if test="status != null">status,</if>
-                <if test="type != null">type,</if>
+                <if test="typeId != null">type_id,</if>
                 <if test="reason != null">reason,</if>
+                <if test="auditorid != null">auditorId,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
                 <if test="id != null">#{id,jdbcType=VARCHAR},</if>
                 <if test="employeeId != null">#{employeeId,jdbcType=VARCHAR},</if>
-                <if test="startdate != null">#{startdate,jdbcType=TIMESTAMP},</if>
-                <if test="enddate != null">#{enddate,jdbcType=TIMESTAMP},</if>
+                <if test="startdate != null">#{startdate,jdbcType=DATE},</if>
+                <if test="enddate != null">#{enddate,jdbcType=DATE},</if>
                 <if test="status != null">#{status,jdbcType=TINYINT},</if>
-                <if test="type != null">#{type,jdbcType=TINYINT},</if>
+                <if test="typeId != null">#{typeId,jdbcType=TINYINT},</if>
                 <if test="reason != null">#{reason,jdbcType=VARCHAR},</if>
+                <if test="auditorid != null">#{auditorid,jdbcType=VARCHAR},</if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.travelthree.daily.domain.Leave">
@@ -68,19 +71,22 @@
                     employee_id = #{employeeId,jdbcType=VARCHAR},
                 </if>
                 <if test="startdate != null">
-                    startDate = #{startdate,jdbcType=TIMESTAMP},
+                    startDate = #{startdate,jdbcType=DATE},
                 </if>
                 <if test="enddate != null">
-                    endDate = #{enddate,jdbcType=TIMESTAMP},
+                    endDate = #{enddate,jdbcType=DATE},
                 </if>
                 <if test="status != null">
                     status = #{status,jdbcType=TINYINT},
                 </if>
-                <if test="type != null">
-                    type = #{type,jdbcType=TINYINT},
+                <if test="typeId != null">
+                    type_id = #{typeId,jdbcType=TINYINT},
                 </if>
                 <if test="reason != null">
                     reason = #{reason,jdbcType=VARCHAR},
+                </if>
+                <if test="auditorid != null">
+                    auditorId = #{auditorid,jdbcType=VARCHAR},
                 </if>
         </set>
         where   id = #{id,jdbcType=VARCHAR} 
@@ -89,11 +95,12 @@
         update `leave`
         set 
             employee_id =  #{employeeId,jdbcType=VARCHAR},
-            startDate =  #{startdate,jdbcType=TIMESTAMP},
-            endDate =  #{enddate,jdbcType=TIMESTAMP},
+            startDate =  #{startdate,jdbcType=DATE},
+            endDate =  #{enddate,jdbcType=DATE},
             status =  #{status,jdbcType=TINYINT},
-            type =  #{type,jdbcType=TINYINT},
-            reason =  #{reason,jdbcType=VARCHAR}
+            type_id =  #{typeId,jdbcType=TINYINT},
+            reason =  #{reason,jdbcType=VARCHAR},
+            auditorId =  #{auditorid,jdbcType=VARCHAR}
         where   id = #{id,jdbcType=VARCHAR} 
     </update>
 </mapper>
