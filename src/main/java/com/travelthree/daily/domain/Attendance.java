@@ -1,8 +1,9 @@
 package com.travelthree.daily.domain;
 
-import java.io.Serializable;
-import java.util.Date;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * 
@@ -18,7 +19,7 @@ public class Attendance implements Serializable {
     /**
      * 考勤日期
      */
-    private Date date;
+    private LocalDate date;
 
     /**
      * 员工id

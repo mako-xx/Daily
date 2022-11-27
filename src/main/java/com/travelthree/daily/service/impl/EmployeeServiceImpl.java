@@ -55,6 +55,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         return employeeDTO;
     }
+
+    @Override
+    public EmployeeDTO getEmployeeById(String uid) {
+        Employee employee = employeeMapper.selectByPrimaryKey(uid);
+        if (employee == null) {
+            return null;
+        }
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        BeanUtils.copyProperties(employee, employeeDTO);
+        employeeDTO.setRole(RoleEnum.getRoleFromOrdinal(employee.getRole()));
+        return employeeDTO;
+    }
 }
 
 

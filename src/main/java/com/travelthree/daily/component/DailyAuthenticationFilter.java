@@ -1,10 +1,12 @@
 package com.travelthree.daily.component;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.travelthree.daily.constant.ResultCodeEnum;
 import com.travelthree.daily.constant.WebConstant;
+import com.travelthree.daily.dto.AdminUserDetails;
 import com.travelthree.daily.dto.EmployeeDTO;
-import com.travelthree.daily.exception.BusinessException;
+import com.travelthree.daily.service.EmployeeService;
+import com.travelthree.daily.utils.TaleUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -33,27 +35,37 @@ public class DailyAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private EmployeeService employeeService;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 从会话中获取用户信息
-        EmployeeDTO user = (EmployeeDTO) request.getSession().getAttribute(WebConstant.LOGIN_SESSION_KEY);
-        // 如果携带了会话信息
+        EmployeeDTO user = TaleUtil.getCurrentLoginUser(request);
+        String uid = TaleUtil.getUidFromCookie(request);
+        // 如果携带了会话信息，直接放行
         if (user != null) {
             try {
                 // 还没有进行认证，就先进行认证
                 if (SecurityContextHolder.getContext().getAuthentication() == null && StrUtil.isNotBlank(user.getUsername())) {
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
-                    // TODO: 这段逻辑有点怪，需要看下session处理
-                    // 会话中的用户是伪造的，抛出异常
-                    if (!userDetails.getPassword().equals(user.getPassword())) {
-                        throw new BusinessException(ResultCodeEnum.LOGIN_FAILED);
+                    AdminUserDetails userDetails = (AdminUserDetails) userDetailsService.loadUserByUsername(user.getUsername());
+                    // 会话中的用户不存在于数据库，认证失败
+                    if (userDetails.getPassword().equals(user.getPassword())) {
+                        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                        request.getSession().setAttribute(WebConstant.LOGIN_SESSION_KEY, userDetails.getEmployee());
                     }
-                    UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                 }
             } catch (Exception e) {
-                log.warn("认证失败");
                 throw new BadCredentialsException(e.getMessage());
+            }
+        } else if (StrUtil.isNotBlank(uid)) {
+            EmployeeDTO employeeDTO = employeeService.getEmployeeById(uid);
+            if (ObjectUtil.isNotNull(employeeDTO)) {
+                UserDetails userDetails = new AdminUserDetails(employeeDTO);
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                request.getSession().setAttribute(WebConstant.LOGIN_SESSION_KEY, employeeDTO);
             }
         }
         filterChain.doFilter(request, response);

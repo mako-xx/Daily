@@ -25,6 +25,10 @@ public class AdminUserDetails implements UserDetails {
         authorityList = Collections.singletonList(new SimpleGrantedAuthority(employee.getRole().name()));
     }
 
+    public EmployeeDTO getEmployee() {
+        return employee;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorityList;

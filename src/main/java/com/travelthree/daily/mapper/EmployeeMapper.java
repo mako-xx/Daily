@@ -12,13 +12,13 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface EmployeeMapper {
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Employee record);
 
     int insertSelective(Employee record);
 
-    Employee selectByPrimaryKey(Long id);
+    Employee selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Employee record);
 
