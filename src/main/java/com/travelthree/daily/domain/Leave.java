@@ -1,9 +1,8 @@
 package com.travelthree.daily.domain;
 
-import lombok.Data;
-
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
+import lombok.Data;
 
 /**
  * 
@@ -12,7 +11,7 @@ import java.time.LocalDate;
 @Data
 public class Leave implements Serializable {
     /**
-     * s假条id
+     * 假条id
      */
     private String id;
 
@@ -24,12 +23,12 @@ public class Leave implements Serializable {
     /**
      * 请假起始时间
      */
-    private LocalDate startdate;
+    private Date startdate;
 
     /**
      * 请假结束时间
      */
-    private LocalDate enddate;
+    private Date enddate;
 
     /**
      * 请假审核状态：等待审核(0)，审核不通过(1)，审核通过(2)
@@ -39,12 +38,17 @@ public class Leave implements Serializable {
     /**
      * 请假类型：病假(0)，事假(1)，婚假(2)，丧假(3)，产假(4)，其他(5)
      */
-    private Integer type;
+    private Integer typeId;
 
     /**
      * 请假理由
      */
     private String reason;
+
+    /**
+     * 审核人id
+     */
+    private String auditorid;
 
     private static final long serialVersionUID = 1L;
 
@@ -65,8 +69,9 @@ public class Leave implements Serializable {
             && (this.getStartdate() == null ? other.getStartdate() == null : this.getStartdate().equals(other.getStartdate()))
             && (this.getEnddate() == null ? other.getEnddate() == null : this.getEnddate().equals(other.getEnddate()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
-            && (this.getReason() == null ? other.getReason() == null : this.getReason().equals(other.getReason()));
+            && (this.getTypeId() == null ? other.getTypeId() == null : this.getTypeId().equals(other.getTypeId()))
+            && (this.getReason() == null ? other.getReason() == null : this.getReason().equals(other.getReason()))
+            && (this.getAuditorid() == null ? other.getAuditorid() == null : this.getAuditorid().equals(other.getAuditorid()));
     }
 
     @Override
@@ -78,8 +83,9 @@ public class Leave implements Serializable {
         result = prime * result + ((getStartdate() == null) ? 0 : getStartdate().hashCode());
         result = prime * result + ((getEnddate() == null) ? 0 : getEnddate().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
-        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getTypeId() == null) ? 0 : getTypeId().hashCode());
         result = prime * result + ((getReason() == null) ? 0 : getReason().hashCode());
+        result = prime * result + ((getAuditorid() == null) ? 0 : getAuditorid().hashCode());
         return result;
     }
 
@@ -94,8 +100,9 @@ public class Leave implements Serializable {
         sb.append(", startdate=").append(startdate);
         sb.append(", enddate=").append(enddate);
         sb.append(", status=").append(status);
-        sb.append(", type=").append(type);
+        sb.append(", typeId=").append(typeId);
         sb.append(", reason=").append(reason);
+        sb.append(", auditorid=").append(auditorid);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
