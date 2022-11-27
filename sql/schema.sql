@@ -4,7 +4,7 @@
  */
 CREATE TABLE department(
                            id VARCHAR(36) NOT NULL comment '部门id',
-                           name VARCHAR(255) NOT NULL comment '部门名称',
+                           `name` VARCHAR(255) NOT NULL comment '部门名称',
                            superior_id VARCHAR(255) comment '上级部门id',
                            PRIMARY KEY (id)
 );
@@ -16,8 +16,8 @@ CREATE TABLE department(
  */
 CREATE TABLE employee (
                          id VARCHAR(36) NOT NULL comment '员工id',
-                         `username` VARCHAR(64) not null unique comment '用户名',
-                         `password` VARCHAR(255) not null comment '密码',
+                         `username` VARCHAR(64) NOT NULL UNIQUE comment '用户名',
+                         `password` VARCHAR(255) NOT NULL comment '密码',
                          `name` VARCHAR(255) NOT NULL comment '员工姓名',
                          `role` TINYINT NOT NULL comment '角色：普通员工(0)，管理员(1)',
                          telephone VARCHAR(255) comment '联系方式',
@@ -42,21 +42,35 @@ CREATE TABLE attendance(
 );
 
 /*
- * 假条：假条id 员工id 请假开始时间 结束时间 假条审核状态 请假类型 假条内容
+ * 假条：假条id 员工id 请假开始时间 结束时间 假条审核状态 请假类型 假条内容 审核人id
  *
  * 假条审核状态：等待审核，审核不通过，审核通过
- * 假条类型：病假，事假，婚假，丧假，产假，其他
+ * 请假类型：病假，事假，婚假，丧假，产假，其他
+ * 假条由管理员审核
  */
 CREATE TABLE `leave`(
-                      id VARCHAR(36) NOT NULL comment 's假条id',
+                      id VARCHAR(36) NOT NULL comment '假条id',
                       employee_id VARCHAR(36) NOT NULL comment '员工id',
                       startDate DATE NOT NULL comment '请假起始时间',
                       endDate DATE NOT NULL comment '请假结束时间',
                       `status` TINYINT NOT NULL comment '请假审核状态：等待审核(0)，审核不通过(1)，审核通过(2)',
-                      type TINYINT NOT NULL comment '请假类型：病假(0)，事假(1)，婚假(2)，丧假(3)，产假(4)，其他(5)',
+                      type_id TINYINT NOT NULL comment '请假类型：病假(0)，事假(1)，婚假(2)，丧假(3)，产假(4)，其他(5)',
                       reason VARCHAR(255) NOT NULL comment '请假理由',
+                      auditorId VARCHAR(36) NOT NULL comment '审核人id',
                       PRIMARY KEY (id),
-                      FOREIGN KEY (employee_id) REFERENCES employee(id)
+                      FOREIGN KEY (employee_id) REFERENCES employee(id),
+                      FOREIGN KEY (type_id) REFERENCES leave_type(id)
+);
+
+/*
+ * 请假类型：请假类型id 请假类型名称
+ * 
+ * 类型：病假，事假，婚假，丧假，产假，其他
+ */
+CREATE TABLE leave_type(
+                         id TINYINT NOT NULL AUTO_INCREMENT comment '请假类型id',
+                         `name` VARCHAR(64) NOT NULL comment '请假类型名称',
+                         PRIMARY KEY(id)
 );
 
 # 插入测试部门
