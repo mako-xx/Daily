@@ -2,9 +2,11 @@ package com.travelthree.daily.utils;
 
 import com.travelthree.daily.constant.WebConstant;
 import com.travelthree.daily.dto.EmployeeDTO;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author 陈宣辰
@@ -36,5 +38,17 @@ public class TaleUtil {
             }
         }
         return null;
+    }
+
+    /**
+     * 清除用户登录认证
+     * */
+    public static void logout(HttpServletRequest request, HttpServletResponse response) {
+        request.getSession().removeAttribute(WebConstant.LOGIN_SESSION_KEY);
+        SecurityContextHolder.getContext().setAuthentication(null);
+        Cookie cookie = new Cookie(WebConstant.REMEMBER_COOKIE_KEY, "");
+        cookie.setMaxAge(0);
+        cookie.setPath("/api");
+        response.addCookie(cookie);
     }
 }

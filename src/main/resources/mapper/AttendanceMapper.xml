@@ -16,14 +16,14 @@
         status
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from attendance
         where  id = #{id,jdbcType=VARCHAR} 
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from attendance
         where  id = #{id,jdbcType=VARCHAR} 
     </delete>
@@ -71,5 +71,38 @@
             employee_id =  #{employeeId,jdbcType=VARCHAR},
             status =  #{status,jdbcType=TINYINT}
         where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+    <update id="updateRecentStatusByTime">
+        update attendance
+        set
+            `date` = curdate(),
+            `status` = #{status}
+        where id in (
+            select id from (
+                select id
+                from attendance
+                where employee_id = #{id}
+                order by `date` desc
+                limit 1
+            ) as ai
+        );
+    </update>
+    <insert id="insertBatch">
+        insert into attendance(id,date,employee_id,
+        status)
+        values
+        <foreach collection="attendanceCollection" item="item" separator=",">
+            (#{item.id,jdbcType=VARCHAR},#{item.date},#{item.employeeId,jdbcType=VARCHAR},
+            #{item.status,jdbcType=NUMERIC})
+        </foreach>
+    </insert>
+    <update id="updateSelectiveByIdAndTime">
+        update attendance
+        <set>
+            <if test="date != null">date=#{date},</if>
+            <if test="employeeId != null">employee_id=#{employeeId,jdbcType=VARCHAR},</if>
+            <if test="status != null">status=#{status,jdbcType=NUMERIC},</if>
+        </set>
+        where employee_id = #{employeeId} and date = #{date}
     </update>
 </mapper>

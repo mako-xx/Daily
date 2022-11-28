@@ -21,13 +21,17 @@ source schema.sql
                 |—— config 应用配置
                 |—— constant 应用所需常量
                 |—— controller 控制器
+                |—— cron 定时任务
                 |—— domain 数据库实体
                 |—— dto 数据传输对象
                 |—— exception 自定义异常类
                 |—— mapper 数据库访问层
                 |—— service 服务层
+                |—— utils 工具类
                 |—— vo 视图对象
         |—— resources
-            |—— template 模板
             |—— static 静态文件
+        |—— webapp
+            |—— WEB-INF
+                |—— views jsp视图
 ```

@@ -7,4 +7,13 @@ package com.travelthree.daily.service;
 */
 public interface AttendanceService {
 
+    /**
+     * 员工参与每日考勤
+     * */
+    void attend(String uid);
+
+    /**
+     * 开始每日考勤
+     * */
+    void addAttend();
 }

@@ -10,4 +10,8 @@ public class WebConstant {
     public static final String LOGIN_SESSION_KEY = "user_session";
     // cookie中登录用户id对应的键
     public static final String REMEMBER_COOKIE_KEY = "user_cookie";
+    // 考勤开始时间
+    public static final String ATTENDANCE_START_TIME = "08:00:00";
+    // 考勤结束时间
+    public static final String ATTENDANCE_END_TIME = "23:59:59";
 }

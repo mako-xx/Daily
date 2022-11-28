@@ -11,13 +11,13 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface LeaveTypeMapper {
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(LeaveType record);
 
     int insertSelective(LeaveType record);
 
-    LeaveType selectByPrimaryKey(Long id);
+    LeaveType selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(LeaveType record);
 
