@@ -11,13 +11,13 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface AttendanceMapper {
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Attendance record);
 
     int insertSelective(Attendance record);
 
-    Attendance selectByPrimaryKey(Long id);
+    Attendance selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Attendance record);
 
