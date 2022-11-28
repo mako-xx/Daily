@@ -96,4 +96,13 @@
             #{item.status,jdbcType=NUMERIC})
         </foreach>
     </insert>
+    <update id="updateSelectiveByIdAndTime">
+        update attendance
+        <set>
+            <if test="date != null">date=#{date},</if>
+            <if test="employeeId != null">employee_id=#{employeeId,jdbcType=VARCHAR},</if>
+            <if test="status != null">status=#{status,jdbcType=NUMERIC},</if>
+        </set>
+        where employee_id = #{employeeId} and date = #{date}
+    </update>
 </mapper>

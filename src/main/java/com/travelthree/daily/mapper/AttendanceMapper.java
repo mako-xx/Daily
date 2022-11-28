@@ -30,4 +30,6 @@ public interface AttendanceMapper {
     void updateRecentStatusByTime(@Param("id") String id, @Param("status") Integer status);
 
     int insertBatch(@Param("attendanceCollection") Collection<Attendance> attendanceCollection);
+
+    int updateSelectiveByIdAndTime(Attendance attendance);
 }
