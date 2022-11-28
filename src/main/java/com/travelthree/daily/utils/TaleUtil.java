@@ -46,6 +46,9 @@ public class TaleUtil {
     public static void logout(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().removeAttribute(WebConstant.LOGIN_SESSION_KEY);
         SecurityContextHolder.getContext().setAuthentication(null);
-        response.addCookie(new Cookie(WebConstant.REMEMBER_COOKIE_KEY, ""));
+        Cookie cookie = new Cookie(WebConstant.REMEMBER_COOKIE_KEY, "");
+        cookie.setMaxAge(0);
+        cookie.setPath("/api");
+        response.addCookie(cookie);
     }
 }

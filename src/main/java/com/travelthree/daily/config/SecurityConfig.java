@@ -47,13 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS)//跨域请求会先进行一次options请求
                 .permitAll()
-                .anyRequest()//测试时全部运行访问
-                .permitAll();
+//                .anyRequest()//测试时全部运行访问
+//                .permitAll();
                 // TODO: 添加鉴权
-//                .antMatchers("/api/login")
-//                .permitAll()
-//                .anyRequest()// 除上面外的所有请求全部需要鉴权认证
-//                .authenticated();
+                .antMatchers("/api/login")
+                .permitAll()
+                .anyRequest()// 除上面外的所有请求全部需要鉴权认证
+                .authenticated();
         // 添加 filter
         httpSecurity.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
         //添加自定义未授权和未登录结果返回
