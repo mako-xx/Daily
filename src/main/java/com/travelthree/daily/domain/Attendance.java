@@ -1,6 +1,9 @@
 package com.travelthree.daily.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -10,6 +13,9 @@ import java.time.LocalDate;
  * @TableName attendance
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Attendance implements Serializable {
     /**
      * 考勤id
