@@ -1,6 +1,7 @@
 package com.travelthree.daily.service;
 
 import com.travelthree.daily.dto.EmployeeDTO;
+import com.travelthree.daily.dto.RegisterParam;
 
 /**
 * @author faust
@@ -24,4 +25,9 @@ public interface EmployeeService {
     EmployeeDTO login(String username, String password);
 
     EmployeeDTO getEmployeeById(String uid);
+
+    /** 用户注册
+     * @param registerParam 注册参数
+     * */
+    String register(RegisterParam registerParam);
 }

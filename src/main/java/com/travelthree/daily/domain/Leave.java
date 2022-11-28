@@ -36,7 +36,7 @@ public class Leave implements Serializable {
     private Integer status;
 
     /**
-     * 请假类型：病假(0)，事假(1)，婚假(2)，丧假(3)，产假(4)，其他(5)
+     * 请假类型
      */
     private Integer typeId;
 

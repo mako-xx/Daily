@@ -23,6 +23,9 @@ public class AuthUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         EmployeeDTO employee = employeeService.getEmployeeByUsername(username);
+        if (employee == null) {
+            return null;
+        }
         return new AdminUserDetails(employee);
     }
 }

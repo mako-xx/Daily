@@ -49,6 +49,9 @@ public class DailyAuthenticationFilter extends OncePerRequestFilter {
                 // 还没有进行认证，就先进行认证
                 if (SecurityContextHolder.getContext().getAuthentication() == null && StrUtil.isNotBlank(user.getUsername())) {
                     AdminUserDetails userDetails = (AdminUserDetails) userDetailsService.loadUserByUsername(user.getUsername());
+                    if (userDetails == null) {
+                        throw new BadCredentialsException("用户名或密码错误");
+                    }
                     // 会话中的用户不存在于数据库，认证失败
                     if (userDetails.getPassword().equals(user.getPassword())) {
                         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
