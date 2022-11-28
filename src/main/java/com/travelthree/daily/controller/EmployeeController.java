@@ -6,6 +6,7 @@ import com.travelthree.daily.domain.Employee;
 import com.travelthree.daily.dto.ChangePwdParam;
 import com.travelthree.daily.dto.EmployeeDTO;
 import com.travelthree.daily.dto.UpdateEmployeeParam;
+import com.travelthree.daily.service.AttendanceService;
 import com.travelthree.daily.service.EmployeeService;
 import com.travelthree.daily.utils.TaleUtil;
 import com.travelthree.daily.vo.CommonResult;
@@ -13,10 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +32,9 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private AttendanceService attendanceService;
 
     @PutMapping("/update")
     @ResponseBody
@@ -60,6 +61,12 @@ public class EmployeeController {
         }
         employeeService.changePassword(currentLoginUser.getId(), param);
         TaleUtil.logout(request, response);
+        return CommonResult.success();
+    }
+
+    @PostMapping("/api/employee/attend")
+    public CommonResult attend(HttpServletRequest request) {
+        attendanceService.attend(TaleUtil.getCurrentLoginUser(request).getId());
         return CommonResult.success();
     }
 }

@@ -72,4 +72,19 @@
             status =  #{status,jdbcType=TINYINT}
         where   id = #{id,jdbcType=VARCHAR} 
     </update>
+    <update id="updateRecentStatusByTime">
+        update attendance
+        set
+            `date` = curdate(),
+            `status` = #{status}
+        where id in (
+            select id from (
+                select id
+                from attendance
+                where employee_id = #{id}
+                order by `date` desc
+                limit 1
+            ) as ai
+        );
+    </update>
 </mapper>

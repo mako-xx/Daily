@@ -23,4 +23,6 @@ public interface AttendanceMapper {
 
     int updateByPrimaryKey(Attendance record);
 
+    /** 更新最新一次的考勤记录 */
+    void updateRecentStatusByTime(String uid, Integer status);
 }
