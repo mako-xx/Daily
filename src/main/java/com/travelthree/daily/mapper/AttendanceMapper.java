@@ -2,6 +2,8 @@ package com.travelthree.daily.mapper;
 
 import com.travelthree.daily.domain.Attendance;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 /**
 * @author faust
 * @description 针对表【attendance】的数据库操作Mapper
@@ -24,5 +26,5 @@ public interface AttendanceMapper {
     int updateByPrimaryKey(Attendance record);
 
     /** 更新最新一次的考勤记录 */
-    void updateRecentStatusByTime(String uid, Integer status);
+    void updateRecentStatusByTime(@Param("id") String id, @Param("status") Integer status);
 }

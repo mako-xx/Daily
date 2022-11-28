@@ -1,7 +1,5 @@
 package com.travelthree.daily.controller;
 
-import cn.hutool.core.util.StrUtil;
-import com.travelthree.daily.constant.WebConstant;
 import com.travelthree.daily.domain.Employee;
 import com.travelthree.daily.dto.ChangePwdParam;
 import com.travelthree.daily.dto.EmployeeDTO;
@@ -12,11 +10,9 @@ import com.travelthree.daily.utils.TaleUtil;
 import com.travelthree.daily.vo.CommonResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -64,7 +60,8 @@ public class EmployeeController {
         return CommonResult.success();
     }
 
-    @PostMapping("/api/employee/attend")
+    @PostMapping("/attend")
+    @ResponseBody
     public CommonResult attend(HttpServletRequest request) {
         attendanceService.attend(TaleUtil.getCurrentLoginUser(request).getId());
         return CommonResult.success();
