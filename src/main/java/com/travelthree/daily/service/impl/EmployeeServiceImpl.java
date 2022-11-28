@@ -2,13 +2,12 @@ package com.travelthree.daily.service.impl;
 
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.travelthree.daily.constant.ResultCodeEnum;
 import com.travelthree.daily.constant.RoleEnum;
 import com.travelthree.daily.domain.Department;
 import com.travelthree.daily.domain.Employee;
-import com.travelthree.daily.dto.AdminUserDetails;
-import com.travelthree.daily.dto.EmployeeDTO;
-import com.travelthree.daily.dto.RegisterParam;
+import com.travelthree.daily.dto.*;
 import com.travelthree.daily.exception.BusinessException;
 import com.travelthree.daily.mapper.DepartmentMapper;
 import com.travelthree.daily.mapper.EmployeeMapper;
@@ -93,6 +92,23 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setRole(registerParam.getRole().ordinal());
         employeeMapper.insert(employee);
         return id;
+    }
+
+    @Override
+    public void update(Employee employee) {
+        employeeMapper.updateByPrimaryKeySelective(employee);
+    }
+
+    @Override
+    public void changePassword(String id, ChangePwdParam param) {
+        EmployeeDTO em = getEmployeeById(id);
+        if (!passwordEncoder.matches(param.getOldPassword(), em.getPassword())) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "旧密码错误");
+        }
+        Employee employee = new Employee();
+        employee.setPassword(passwordEncoder.encode(param.getNewPassword()));
+        employee.setId(id);
+        employeeMapper.updateByPrimaryKeySelective(employee);
     }
 }
 
