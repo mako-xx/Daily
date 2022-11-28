@@ -1,5 +1,7 @@
 package com.travelthree.daily.constant;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @author 陈宣辰
  * @date 2022-11-23 17:41:02
@@ -7,10 +9,13 @@ package com.travelthree.daily.constant;
  */
 public enum LeaveCheckStatus {
     /** 等待审核 */
+    @JsonProperty("WAITING")
     WAITING,
     /** 拒绝 */
+    @JsonProperty("REFUSE")
     REFUSE,
     /** 通过 */
+    @JsonProperty("APPROVE")
     APPROVE;
 
     public static LeaveCheckStatus getRoleFromOrdinal(int ordinal) {
