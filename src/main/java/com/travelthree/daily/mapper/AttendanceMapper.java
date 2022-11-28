@@ -1,4 +1,5 @@
 package com.travelthree.daily.mapper;
+import java.util.Collection;
 
 import com.travelthree.daily.domain.Attendance;
 import org.apache.ibatis.annotations.Mapper;
@@ -27,4 +28,6 @@ public interface AttendanceMapper {
 
     /** 更新最新一次的考勤记录 */
     void updateRecentStatusByTime(@Param("id") String id, @Param("status") Integer status);
+
+    int insertBatch(@Param("attendanceCollection") Collection<Attendance> attendanceCollection);
 }

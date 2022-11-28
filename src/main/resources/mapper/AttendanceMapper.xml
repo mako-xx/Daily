@@ -87,4 +87,13 @@
             ) as ai
         );
     </update>
+    <insert id="insertBatch">
+        insert into attendance(id,date,employee_id,
+        status)
+        values
+        <foreach collection="attendanceCollection" item="item" separator=",">
+            (#{item.id,jdbcType=VARCHAR},#{item.date},#{item.employeeId,jdbcType=VARCHAR},
+            #{item.status,jdbcType=NUMERIC})
+        </foreach>
+    </insert>
 </mapper>

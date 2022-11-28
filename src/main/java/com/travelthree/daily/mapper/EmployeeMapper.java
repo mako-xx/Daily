@@ -1,4 +1,5 @@
 package com.travelthree.daily.mapper;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.travelthree.daily.domain.Employee;
@@ -25,4 +26,6 @@ public interface EmployeeMapper {
     int updateByPrimaryKey(Employee record);
 
     Employee selectOneByUsername(@Param("username") String username);
+
+    List<Employee> selectAllByRole(@Param("role") Integer role);
 }
