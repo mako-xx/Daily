@@ -4,6 +4,7 @@ import com.travelthree.daily.constant.WebConstant;
 import com.travelthree.daily.dto.EmployeeDTO;
 import com.travelthree.daily.dto.LoginParam;
 import com.travelthree.daily.service.EmployeeService;
+import com.travelthree.daily.utils.TaleUtil;
 import com.travelthree.daily.vo.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ public class BaseController {
     @PostMapping("/login")
     @ResponseBody
     public CommonResult login(@RequestBody @Valid LoginParam param, HttpServletRequest request, HttpServletResponse response) {
+        TaleUtil.logout(request, response);
         EmployeeDTO employeeDTO = employeeService.login(param.getUsername(), param.getPassword());
         request.getSession().setAttribute(WebConstant.LOGIN_SESSION_KEY, employeeDTO);
         if (param.getRemember()) {
