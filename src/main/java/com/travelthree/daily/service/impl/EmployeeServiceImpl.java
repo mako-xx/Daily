@@ -101,6 +101,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         BeanUtils.copyProperties(registerParam, employee);
         employee.setId(id);
+        employee.setPassword(passwordEncoder.encode(registerParam.getPassword()));
         employee.setRole(registerParam.getRole().ordinal());
         employeeMapper.insert(employee);
         Attendance attendance = Attendance.builder()
@@ -115,6 +116,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void update(Employee employee) {
+        Department dex = departmentMapper.selectByPrimaryKey(employee.getDepartmentId());
+        if (ObjectUtil.isNull(dex)) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "该部门不存在");
+        }
         employeeMapper.updateByPrimaryKeySelective(employee);
     }
 
