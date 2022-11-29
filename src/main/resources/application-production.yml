@@ -41,10 +41,6 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-# 把日志级别设置为DEBUG,可以在控制台打印出SQL语句,方便调试（仅用于开发环境！）
-logging:
-  level:
-    com.travelthree.daily.mapper: DEBUG
 
 
 #  配置分页插件
