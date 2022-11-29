@@ -101,6 +101,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         BeanUtils.copyProperties(registerParam, employee);
         employee.setId(id);
+        employee.setPassword(passwordEncoder.encode(registerParam.getPassword()));
         employee.setRole(registerParam.getRole().ordinal());
         employeeMapper.insert(employee);
         Attendance attendance = Attendance.builder()
