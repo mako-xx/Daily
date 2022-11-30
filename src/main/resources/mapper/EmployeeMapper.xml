@@ -111,10 +111,10 @@
         role = #{role,jdbcType=NUMERIC}
     </select>
 
-    <select id="queryEmployeeByPage" resultType="com.travelthree.daily.domain.Employee" >
-        select
-        <include refid="Base_Column_List"/>
-        from employee
-        where role = 0
+    <select id="queryEmployeeByPage" resultMap="BaseResultMap">
+        select *
+        from  employee inner join department on employee.department_id=department.id
+        and
+        employee.role = 0
     </select>
 </mapper>
