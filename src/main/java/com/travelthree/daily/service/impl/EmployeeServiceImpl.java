@@ -2,6 +2,7 @@ package com.travelthree.daily.service.impl;
 
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.ObjectUtil;
+import com.github.pagehelper.PageHelper;
 import com.travelthree.daily.constant.AttendanceStatus;
 import com.travelthree.daily.constant.ResultCodeEnum;
 import com.travelthree.daily.constant.RoleEnum;
@@ -26,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
 * @author faust
@@ -133,6 +135,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPassword(passwordEncoder.encode(param.getNewPassword()));
         employee.setId(id);
         employeeMapper.updateByPrimaryKeySelective(employee);
+    }
+
+    @Override
+    public List<Employee> queryEmployeeByPage(Integer pageNum,Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        return employeeMapper.queryEmployeeByPage();
     }
 }
 

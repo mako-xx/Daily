@@ -6,6 +6,8 @@ import com.travelthree.daily.dto.EmployeeDTO;
 import com.travelthree.daily.dto.RegisterParam;
 import com.travelthree.daily.dto.UpdateEmployeeParam;
 
+import java.util.List;
+
 /**
 * @author faust
 * @description 针对表【employee】的数据库操作Service
@@ -43,4 +45,6 @@ public interface EmployeeService {
      * 修改密码
      * */
     void changePassword(String id, ChangePwdParam param);
+
+    List<Employee> queryEmployeeByPage(Integer pageNum,Integer pageSize);
 }
