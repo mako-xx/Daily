@@ -4,11 +4,14 @@ import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.constant.RoleEnum;
 import com.travelthree.daily.domain.Department;
 import com.travelthree.daily.domain.Employee;
+import com.travelthree.daily.dto.EmployeeDTO;
 import com.travelthree.daily.dto.PageParam;
 import com.travelthree.daily.dto.RegisterParam;
+import com.travelthree.daily.dto.UpdateEmployeeParam;
 import com.travelthree.daily.service.DepartmentService;
 import com.travelthree.daily.service.EmployeeService;
 
+import com.travelthree.daily.vo.CommonResult;
 import com.travelthree.daily.vo.EmployeeVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.Validation;
 import java.util.*;
 
 @Controller
@@ -63,5 +65,26 @@ public class AdminController {
         //将集合赋回pageInfo
         pageInfo.setList(employeeVos);
         return pageInfo;
+    }
+
+    @PutMapping("/employee/{id}")
+    @ResponseBody
+    public CommonResult updateInfo(@Valid @RequestBody UpdateEmployeeParam updateEmployeeParam, @PathVariable String id) {
+        EmployeeDTO employeeDTO = employeeService.getEmployeeById(id);
+        if (employeeDTO == null) {
+            return CommonResult.failure("该用户id不存在");
+        }
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(updateEmployeeParam, employee);
+        employee.setId(id);
+        employeeService.update(employee);
+        return CommonResult.success();
+    }
+
+    @DeleteMapping("/employee/{id}")
+    @ResponseBody
+    public CommonResult deleteInfo(@PathVariable String id) {
+        employeeService.deleteInfo(id);
+        return CommonResult.success();
     }
 }

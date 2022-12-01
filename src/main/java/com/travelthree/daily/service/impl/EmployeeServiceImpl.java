@@ -143,6 +143,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         pageInfo.setPageSize(pageParam.getPageSize());
         return pageInfo;
     }
+
+    @Override
+    public void deleteInfo(String id) {
+        Employee employee = employeeMapper.selectByPrimaryKey(id);
+        if (employee == null) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "该用户id不存在");
+        }
+        employeeMapper.deleteByPrimaryKey(id);
+    }
 }
 
 
