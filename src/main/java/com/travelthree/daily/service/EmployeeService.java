@@ -1,10 +1,8 @@
 package com.travelthree.daily.service;
 
+import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.domain.Employee;
-import com.travelthree.daily.dto.ChangePwdParam;
-import com.travelthree.daily.dto.EmployeeDTO;
-import com.travelthree.daily.dto.RegisterParam;
-import com.travelthree.daily.dto.UpdateEmployeeParam;
+import com.travelthree.daily.dto.*;
 
 import java.util.List;
 
@@ -46,5 +44,5 @@ public interface EmployeeService {
      * */
     void changePassword(String id, ChangePwdParam param);
 
-    List<Employee> queryEmployeeByPage(Integer pageNum,Integer pageSize);
+    PageInfo queryEmployeeByPage(PageParam pageParam);
 }
