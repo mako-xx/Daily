@@ -2,16 +2,15 @@ package com.travelthree.daily.service.impl;
 
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.ObjectUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.constant.AttendanceStatus;
 import com.travelthree.daily.constant.ResultCodeEnum;
 import com.travelthree.daily.constant.RoleEnum;
 import com.travelthree.daily.domain.Attendance;
 import com.travelthree.daily.domain.Department;
 import com.travelthree.daily.domain.Employee;
-import com.travelthree.daily.dto.AdminUserDetails;
-import com.travelthree.daily.dto.ChangePwdParam;
-import com.travelthree.daily.dto.EmployeeDTO;
-import com.travelthree.daily.dto.RegisterParam;
+import com.travelthree.daily.dto.*;
 import com.travelthree.daily.exception.BusinessException;
 import com.travelthree.daily.mapper.AttendanceMapper;
 import com.travelthree.daily.mapper.DepartmentMapper;
@@ -26,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
 * @author faust
@@ -133,6 +133,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPassword(passwordEncoder.encode(param.getNewPassword()));
         employee.setId(id);
         employeeMapper.updateByPrimaryKeySelective(employee);
+    }
+
+    @Override
+    public PageInfo queryEmployeeByPage(PageParam pageParam){
+        PageHelper.startPage(pageParam.getPage(), pageParam.getPageSize());
+        List<Employee> employees = employeeMapper.queryEmployeeByPage();
+        PageInfo pageInfo = new PageInfo(employees);
+        pageInfo.setPageSize(pageParam.getPageSize());
+        return pageInfo;
     }
 }
 
