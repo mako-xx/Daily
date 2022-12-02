@@ -44,5 +44,16 @@ public interface EmployeeService {
      * */
     void changePassword(String id, ChangePwdParam param);
 
+    /**
+     * 分页返回员工列表
+     * @param pageParam
+     * @return
+     */
     PageInfo queryEmployeeByPage(PageParam pageParam);
+
+    /**
+     * 根据id删除用户
+     * @param id
+     */
+    void deleteInfo(String id);
 }
