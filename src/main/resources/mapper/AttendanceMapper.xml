@@ -16,11 +16,25 @@
         status
     </sql>
 
+    <sql id="Attendance_Base_Column_List">
+        attendance.id,date,employee_id,
+        status
+    </sql>
+
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from attendance
         where  id = #{id,jdbcType=VARCHAR} 
+    </select>
+
+    <select id="selectByDate"  resultMap="BaseResultMap">
+        select
+        <include refid="Attendance_Base_Column_List" />
+        from attendance inner join employee on attendance.employee_id = employee.id
+        <if test="startDate != null and endDate != null">
+            and attendance.date between #{startDate} and #{endDate}
+        </if>
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

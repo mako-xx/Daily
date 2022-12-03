@@ -2,17 +2,17 @@ package com.travelthree.daily.controller.admin;
 
 import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.constant.RoleEnum;
+import com.travelthree.daily.domain.Attendance;
 import com.travelthree.daily.domain.Department;
 import com.travelthree.daily.domain.Employee;
 import com.travelthree.daily.domain.LeaveType;
-import com.travelthree.daily.dto.EmployeeDTO;
-import com.travelthree.daily.dto.PageParam;
-import com.travelthree.daily.dto.RegisterParam;
-import com.travelthree.daily.dto.UpdateEmployeeParam;
+import com.travelthree.daily.dto.*;
+import com.travelthree.daily.service.AttendanceService;
 import com.travelthree.daily.service.DepartmentService;
 import com.travelthree.daily.service.EmployeeService;
 
 import com.travelthree.daily.service.LeaveTypeService;
+import com.travelthree.daily.vo.AttendanceVo;
 import com.travelthree.daily.vo.CommonResult;
 import com.travelthree.daily.vo.EmployeeVo;
 import org.springframework.beans.BeanUtils;
@@ -35,6 +35,9 @@ public class AdminController {
 
     @Autowired
     private LeaveTypeService leaveTypeService;
+
+    @Autowired
+    private AttendanceService attendanceService;
 
     @PostMapping("/register")
     @ResponseBody
@@ -133,5 +136,40 @@ public class AdminController {
     public CommonResult deleteInfoD(@PathVariable String id) {
         departmentService.deleteInfo(id);
         return CommonResult.success();
+    }
+
+    @GetMapping("/attendance")
+    @ResponseBody
+    public PageInfo getAttendance(@Valid AttendanceParam attendanceParam, PageParam pageParam) {
+        PageInfo pageInfo = attendanceService.queryAttendanceByDate(attendanceParam, pageParam);
+        if(pageParam.getPage() != null) {
+            pageInfo.setPageNum(pageParam.getPage());
+        }
+        if(pageParam.getPageSize() != null) {
+            pageInfo.setPageSize(pageParam.getPageSize());
+        }
+        //取出pageInfo里面的List<Employee>
+        List<Attendance> attendances = pageInfo.getList();
+        //初始化接口要求的视图对象集合
+        List<AttendanceVo> attendanceVos= new LinkedList<>();
+        //菜逼的for循环赋值环节
+        for(int tmp = 0; tmp < attendances.size(); tmp++) {
+            //每次都创建新的视图对象
+            AttendanceVo attendanceVo = new AttendanceVo();
+            //拷贝属性
+            BeanUtils.copyProperties(attendances.get(tmp), attendanceVo);
+            //变更Status和LocalDate的类型后拷贝
+            attendanceVo.setStatus(attendances.get(tmp).getStatus().toString());
+            attendanceVo.setDate(attendances.get(tmp).getDate().toString());
+            //通过Attendance的员工ID调用员工服务类查询员工名称并赋值
+            String employeeId = attendances.get(tmp).getEmployeeId();
+            EmployeeDTO employeeDTO = employeeService.getEmployeeById(employeeId);
+            attendanceVo.setEmployeeName(employeeDTO.getName());
+            //在集合中添加
+            attendanceVos.add(attendanceVo);
+        }
+        //将集合赋回pageInfo
+        pageInfo.setList(attendanceVos);
+        return pageInfo;
     }
 }
