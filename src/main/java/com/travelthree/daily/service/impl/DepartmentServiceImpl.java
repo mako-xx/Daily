@@ -81,11 +81,12 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         //删除部门前先检查该部门是否有员工，有的话就不能删除
         List<Employee> employeeList = employeeMapper.selectAllByDepartmentId(id);
-        if (ObjectUtil.isNotNull(employeeList)) {
+        if (ObjectUtil.isNotNull(employeeList.get(0))) {
             throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "当前部门还有员工");
         }
         departmentMapper.deleteByPrimaryKey(id);
     }
+
 }
 
 
