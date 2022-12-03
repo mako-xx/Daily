@@ -2,9 +2,13 @@ package com.travelthree.daily.service.impl;
 
 import cn.hutool.core.lang.UUID;
 import com.travelthree.daily.constant.*;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.domain.Attendance;
 import com.travelthree.daily.domain.Employee;
 import com.travelthree.daily.domain.Leave;
+import com.travelthree.daily.dto.AttendanceParam;
+import com.travelthree.daily.dto.PageParam;
 import com.travelthree.daily.exception.BusinessException;
 import com.travelthree.daily.mapper.AttendanceMapper;
 import com.travelthree.daily.mapper.EmployeeMapper;
@@ -71,6 +75,18 @@ public class AttendanceServiceImpl implements AttendanceService {
         LocalDateTime startTime = LocalDateTime.of(LocalDate.now(), LocalTime.parse(start));
         LocalDateTime endTime = LocalDateTime.of(LocalDate.now(), LocalTime.parse(end));
         return now.isAfter(startTime) && now.isBefore(endTime);
+    }
+
+    @Override
+    public PageInfo queryAttendanceByDate(AttendanceParam attendanceParam, PageParam pageParam) {
+        PageHelper.startPage(pageParam.getPage(), pageParam.getPageSize());
+        if (attendanceParam.getStartDate().isAfter(attendanceParam.getEndDate())) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "开始日期应该晚于截止日期");
+        }
+        List<Attendance> attendances = attendanceMapper.selectByDate(attendanceParam);
+        PageInfo pageInfo = new PageInfo(attendances);
+        pageInfo.setPageSize(pageParam.getPageSize());
+        return pageInfo;
     }
 }
 

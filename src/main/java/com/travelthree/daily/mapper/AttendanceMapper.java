@@ -1,7 +1,10 @@
 package com.travelthree.daily.mapper;
 import java.util.Collection;
+import java.util.List;
 
 import com.travelthree.daily.domain.Attendance;
+import com.travelthree.daily.dto.AttendanceParam;
+import com.travelthree.daily.vo.AttendanceVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,6 +24,8 @@ public interface AttendanceMapper {
     int insertSelective(Attendance record);
 
     Attendance selectByPrimaryKey(String id);
+
+    List<Attendance> selectByDate(AttendanceParam attendanceParam);
 
     int updateByPrimaryKeySelective(Attendance record);
 
