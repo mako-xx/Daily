@@ -13,6 +13,7 @@ import com.travelthree.daily.service.*;
 import com.travelthree.daily.vo.AttendanceVo;
 import com.travelthree.daily.vo.CommonResult;
 import com.travelthree.daily.vo.EmployeeVo;
+import com.travelthree.daily.vo.LeaveRequestVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -181,9 +182,13 @@ public class AdminController {
         if(ObjectUtil.isNull(leave)) {
             throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "该请假id不存在");
         }
-        if(param.getStatus().equals(LeaveCheckStatus.APPROVE.toString())) {
+        if(param.getStatus().toString().equals(LeaveCheckStatus.APPROVE.toString())) {
+            //判定是否需要修改
+            if(leave.getStatus() == LeaveCheckStatus.APPROVE.ordinal()) {
+                throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "无需更改的结果");
+            }
             //更改请假状态为通过
-            leave.setStatus(2);
+            leave.setStatus(LeaveCheckStatus.APPROVE.ordinal());
             leaveService.updateLeaveStatus(leave);
             return CommonResult.success();
 //            //找到请假员工id
@@ -193,9 +198,13 @@ public class AdminController {
 //            //更改员工考勤为请假
 //            attendance.setStatus(2);
         }
-        if(param.getStatus().equals(LeaveCheckStatus.REFUSE.toString())) {
+        if(param.getStatus().toString().equals(LeaveCheckStatus.REFUSE.toString())) {
+            //判定是否需要修改
+            if(leave.getStatus() == LeaveCheckStatus.REFUSE.ordinal()) {
+                throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "无需更改的结果");
+            }
             //更改请假状态为不通过
-            leave.setStatus(1);
+            leave.setStatus(LeaveCheckStatus.REFUSE.ordinal());
             leaveService.updateLeaveStatus(leave);
             return CommonResult.success();
         }
@@ -203,4 +212,59 @@ public class AdminController {
             throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "请输入有效的审核结果");
         }
     }
+
+    @GetMapping("/leave")
+    @ResponseBody
+    public PageInfo getLeaveRequest(@Valid PageParam pageParam, LeaveCheckStatus leaveType) {
+            //status随便赋个初值否则idea会报错
+            Integer status = -1;
+            if(leaveType.equals(LeaveCheckStatus.APPROVE.toString())) {
+                status = LeaveCheckStatus.APPROVE.ordinal();
+            }
+            if(leaveType.equals(LeaveCheckStatus.WAITING.toString())) {
+                status = LeaveCheckStatus.WAITING.ordinal();
+                System.out.println(status);
+            }
+            if(leaveType.equals(LeaveCheckStatus.REFUSE.toString())) {
+                status = LeaveCheckStatus.REFUSE.ordinal();
+            }
+            PageInfo pageInfo = leaveService.queryLeave(pageParam, status);
+            if(pageParam.getPage() != null) {
+                pageInfo.setPageNum(pageParam.getPage());
+            }
+            if(pageParam.getPageSize() != null) {
+                pageInfo.setPageSize(pageParam.getPageSize());
+            }
+            //取出pageInfo里面的List<Leave>
+            List<Leave> leaves = pageInfo.getList();
+            //初始化接口要求的视图对象集合
+            List<LeaveRequestVo> leaveRequestVos= new LinkedList<>();
+            //菜逼的for循环赋值环节
+            for(int tmp = 0; tmp < leaves.size(); tmp++) {
+                //每次都创建新的视图对象
+                LeaveRequestVo leaveRequestVo = new LeaveRequestVo();
+                //拷贝属性
+                BeanUtils.copyProperties(leaves.get(tmp), leaveRequestVo);
+                //变更日期类型后拷贝
+                leaveRequestVo.setStartDate(leaves.get(tmp).getStartdate().toString());
+                leaveRequestVo.setEndDate(leaves.get(tmp).getEnddate().toString());
+                //通过leave的员工ID调用员工服务类查询员工名称并赋值
+                String employeeId = leaves.get(tmp).getEmployeeId();
+                EmployeeDTO employeeDTO = employeeService.getEmployeeById(employeeId);
+                leaveRequestVo.setName(employeeDTO.getName());
+                //将typeId转换为type后赋值
+                leaveRequestVo.setType(
+                        com.travelthree.daily.constant.LeaveType.getRoleFromOrdinal(
+                                leaves.get(tmp).getTypeId()
+                        ).toString()
+                );
+                //将status装换后赋值
+                leaveRequestVo.setStatus(leaveType.toString());
+                //在集合中添加
+                leaveRequestVos.add(leaveRequestVo);
+            }
+            //将集合赋回pageInfo
+            pageInfo.setList(leaveRequestVos);
+            return pageInfo;
+        }
 }

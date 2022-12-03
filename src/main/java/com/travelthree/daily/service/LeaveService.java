@@ -1,6 +1,10 @@
 package com.travelthree.daily.service;
 
+import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.domain.Leave;
+import com.travelthree.daily.dto.PageParam;
+
+import java.util.List;
 
 /**
 * @author faust
@@ -12,4 +16,6 @@ public interface LeaveService {
     Leave getById(String id);
 
     void updateLeaveStatus(Leave leave);
+
+    PageInfo queryLeave(PageParam pageParam, Integer status);
 }
