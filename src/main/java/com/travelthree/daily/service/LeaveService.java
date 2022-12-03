@@ -1,5 +1,7 @@
 package com.travelthree.daily.service;
 
+import com.travelthree.daily.domain.Leave;
+
 /**
 * @author faust
 * @description 针对表【leave】的数据库操作Service
@@ -7,4 +9,7 @@ package com.travelthree.daily.service;
 */
 public interface LeaveService {
 
+    Leave getById(String id);
+
+    void updateLeaveStatus(Leave leave);
 }

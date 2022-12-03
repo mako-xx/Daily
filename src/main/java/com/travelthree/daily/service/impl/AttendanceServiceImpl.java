@@ -1,6 +1,7 @@
 package com.travelthree.daily.service.impl;
 
 import cn.hutool.core.lang.UUID;
+import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.constant.AttendanceStatus;
@@ -90,6 +91,15 @@ public class AttendanceServiceImpl implements AttendanceService {
         PageInfo pageInfo = new PageInfo(attendances);
         pageInfo.setPageSize(pageParam.getPageSize());
         return pageInfo;
+    }
+
+    @Override
+    public Attendance getByEmployeeId(String employeeId) {
+        Attendance attendance =  attendanceMapper.selectByEmployeeId(employeeId);
+        if(ObjectUtil.isNull(attendance)) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "该员工无考勤");
+        }
+        return attendance;
     }
 }
 

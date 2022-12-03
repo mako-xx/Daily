@@ -28,6 +28,13 @@
         where  id = #{id,jdbcType=VARCHAR} 
     </select>
 
+    <select id="selectByEmployeeId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from attendance
+        where  employee_id = #{employeeId,jdbcType=VARCHAR}
+    </select>
+
     <select id="selectByDate"  resultMap="BaseResultMap">
         select
         <include refid="Attendance_Base_Column_List" />

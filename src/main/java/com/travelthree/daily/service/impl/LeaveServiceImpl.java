@@ -1,6 +1,9 @@
 package com.travelthree.daily.service.impl;
 
+import com.travelthree.daily.domain.Leave;
+import com.travelthree.daily.mapper.LeaveMapper;
 import com.travelthree.daily.service.LeaveService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,6 +13,19 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class LeaveServiceImpl implements LeaveService {
+
+    @Autowired
+    private LeaveMapper leaveMapper;
+
+    @Override
+    public Leave getById(String id) {
+        return leaveMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void updateLeaveStatus(Leave leave) {
+        leaveMapper.updateByPrimaryKeySelective(leave);
+    }
 
 }
 

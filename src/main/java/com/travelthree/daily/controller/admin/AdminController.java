@@ -1,17 +1,15 @@
 package com.travelthree.daily.controller.admin;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageInfo;
+import com.travelthree.daily.constant.LeaveCheckStatus;
+import com.travelthree.daily.constant.ResultCodeEnum;
 import com.travelthree.daily.constant.RoleEnum;
-import com.travelthree.daily.domain.Attendance;
-import com.travelthree.daily.domain.Department;
-import com.travelthree.daily.domain.Employee;
-import com.travelthree.daily.domain.LeaveType;
+import com.travelthree.daily.domain.*;
 import com.travelthree.daily.dto.*;
-import com.travelthree.daily.service.AttendanceService;
-import com.travelthree.daily.service.DepartmentService;
-import com.travelthree.daily.service.EmployeeService;
+import com.travelthree.daily.exception.BusinessException;
+import com.travelthree.daily.service.*;
 
-import com.travelthree.daily.service.LeaveTypeService;
 import com.travelthree.daily.vo.AttendanceVo;
 import com.travelthree.daily.vo.CommonResult;
 import com.travelthree.daily.vo.EmployeeVo;
@@ -38,6 +36,9 @@ public class AdminController {
 
     @Autowired
     private AttendanceService attendanceService;
+
+    @Autowired
+    private LeaveService leaveService;
 
     @PostMapping("/register")
     @ResponseBody
@@ -171,5 +172,35 @@ public class AdminController {
         //将集合赋回pageInfo
         pageInfo.setList(attendanceVos);
         return pageInfo;
+    }
+
+    @PutMapping("/leave/check/{id}")
+    @ResponseBody
+    public CommonResult checkLeave(@Valid @RequestBody LeaveStatusParam param, @PathVariable String id) {
+        Leave leave = leaveService.getById(id);
+        if(ObjectUtil.isNull(leave)) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "该请假id不存在");
+        }
+        if(param.getStatus().equals(LeaveCheckStatus.APPROVE.toString())) {
+            //更改请假状态为通过
+            leave.setStatus(2);
+            leaveService.updateLeaveStatus(leave);
+            return CommonResult.success();
+//            //找到请假员工id
+//            String employeeID = leave.getEmployeeId();
+//            //找到请假员工的出勤信息
+//            Attendance attendance = attendanceService.getByEmployeeId(employeeID);
+//            //更改员工考勤为请假
+//            attendance.setStatus(2);
+        }
+        if(param.getStatus().equals(LeaveCheckStatus.REFUSE.toString())) {
+            //更改请假状态为不通过
+            leave.setStatus(1);
+            leaveService.updateLeaveStatus(leave);
+            return CommonResult.success();
+        }
+        else {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "请输入有效的审核结果");
+        }
     }
 }
