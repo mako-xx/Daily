@@ -111,6 +111,14 @@
         role = #{role,jdbcType=NUMERIC}
     </select>
 
+    <select id="selectAllByDepartmentId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from employee
+        where
+        department_id =  #{department_id,jdbcType=VARCHAR}
+    </select>
+
     <select id="queryEmployeeByPage" resultMap="BaseResultMap">
         select *
         from  employee inner join department on employee.department_id=department.id

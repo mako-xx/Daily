@@ -1,6 +1,7 @@
 package com.travelthree.daily.service;
 
 import com.travelthree.daily.domain.Department;
+import com.travelthree.daily.domain.LeaveType;
 
 /**
 * @author faust
@@ -14,4 +15,10 @@ public interface DepartmentService {
      * @return
      */
     Department selectByPrimaryKey(String id);
+
+    void addDepartment(Department department);
+
+    void updateDepartment(Department department, String id);
+
+    void deleteInfo(String id);
 }

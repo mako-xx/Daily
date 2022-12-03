@@ -109,8 +109,29 @@ public class AdminController {
 
     @DeleteMapping("/leave-status/{id}")
     @ResponseBody
-    public CommonResult deleteInfo(@PathVariable Integer id) {
+    public CommonResult deleteInfoLt(@PathVariable Integer id) {
         leaveTypeService.deleteInfo(id);
+        return CommonResult.success();
+    }
+
+    @PostMapping("/department")
+    @ResponseBody
+    public CommonResult addInfoD(@Valid @RequestBody Department department) {
+        departmentService.addDepartment(department);
+        return CommonResult.success();
+    }
+
+    @PutMapping("/department/{id}")
+    @ResponseBody
+    public CommonResult updateDType(@Valid @RequestBody Department department, @PathVariable String id) {
+        departmentService.updateDepartment(department, id);
+        return CommonResult.success();
+    }
+
+    @DeleteMapping("/department/{id}")
+    @ResponseBody
+    public CommonResult deleteInfoD(@PathVariable String id) {
+        departmentService.deleteInfo(id);
         return CommonResult.success();
     }
 }
