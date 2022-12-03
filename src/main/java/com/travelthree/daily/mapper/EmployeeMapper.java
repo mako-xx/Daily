@@ -28,4 +28,8 @@ public interface EmployeeMapper {
     Employee selectOneByUsername(@Param("username") String username);
 
     List<Employee> selectAllByRole(@Param("role") Integer role);
+
+    List<Employee> selectAllByDepartmentId(@Param("department_id") String id);
+
+    List<Employee> queryEmployeeByPage();
 }

@@ -1,10 +1,10 @@
 package com.travelthree.daily.service;
 
+import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.domain.Employee;
-import com.travelthree.daily.dto.ChangePwdParam;
-import com.travelthree.daily.dto.EmployeeDTO;
-import com.travelthree.daily.dto.RegisterParam;
-import com.travelthree.daily.dto.UpdateEmployeeParam;
+import com.travelthree.daily.dto.*;
+
+import java.util.List;
 
 /**
 * @author faust
@@ -43,4 +43,17 @@ public interface EmployeeService {
      * 修改密码
      * */
     void changePassword(String id, ChangePwdParam param);
+
+    /**
+     * 分页返回员工列表
+     * @param pageParam
+     * @return
+     */
+    PageInfo queryEmployeeByPage(PageParam pageParam);
+
+    /**
+     * 根据id删除用户
+     * @param id
+     */
+    void deleteInfo(String id);
 }

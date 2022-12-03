@@ -1,6 +1,9 @@
 package com.travelthree.daily.service.impl;
 
+import cn.hutool.core.util.ObjectUtil;
+import com.travelthree.daily.constant.ResultCodeEnum;
 import com.travelthree.daily.domain.LeaveType;
+import com.travelthree.daily.exception.BusinessException;
 import com.travelthree.daily.mapper.LeaveTypeMapper;
 import com.travelthree.daily.service.LeaveTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,36 @@ public class LeaveTypeServiceImpl implements LeaveTypeService {
     public List<LeaveType> getAllLeaveTypes() {
 
         return leaveTypeMapper.selectAll();
+    }
+
+    @Override
+    public void addLeaveType(String name) {
+        LeaveType lt = leaveTypeMapper.selectByName(name);
+        if (ObjectUtil.isNotNull(lt)) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "当前请假类型已存在");
+        }
+        LeaveType leaveType = new LeaveType();
+        leaveType.setName(name);
+        leaveTypeMapper.insertSelective(leaveType);
+    }
+
+    @Override
+    public void updateLeaveType(LeaveType leaveType, Integer id) {
+        LeaveType lt = leaveTypeMapper.selectByPrimaryKey(id);
+        if (ObjectUtil.isNull(lt)) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "当前请假类型id不存在");
+        }
+        lt.setName(leaveType.getName());
+        leaveTypeMapper.updateByPrimaryKey(lt);
+    }
+
+    @Override
+    public void deleteInfo(Integer id) {
+        LeaveType lt = leaveTypeMapper.selectByPrimaryKey(id);
+        if (ObjectUtil.isNull(lt)) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "当前请假类型id不存在");
+        }
+        leaveTypeMapper.deleteByPrimaryKey(id);
     }
 }
 

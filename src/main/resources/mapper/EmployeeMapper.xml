@@ -24,12 +24,12 @@
         select
         <include refid="Base_Column_List" />
         from employee
-        where  id = #{id,jdbcType=VARCHAR} 
+        where  id = #{id,jdbcType=VARCHAR}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from employee
-        where  id = #{id,jdbcType=VARCHAR} 
+        where  id = #{id,jdbcType=VARCHAR}
     </delete>
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.travelthree.daily.domain.Employee" useGeneratedKeys="true">
         insert into employee
@@ -83,18 +83,18 @@
                     department_id = #{departmentId,jdbcType=VARCHAR},
                 </if>
         </set>
-        where   id = #{id,jdbcType=VARCHAR} 
+        where   id = #{id,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.travelthree.daily.domain.Employee">
         update employee
-        set 
+        set
             username =  #{username,jdbcType=VARCHAR},
             password =  #{password,jdbcType=VARCHAR},
             name =  #{name,jdbcType=VARCHAR},
             role =  #{role,jdbcType=TINYINT},
             telephone =  #{telephone,jdbcType=VARCHAR},
             department_id =  #{departmentId,jdbcType=VARCHAR}
-        where   id = #{id,jdbcType=VARCHAR} 
+        where   id = #{id,jdbcType=VARCHAR}
     </update>
     <select id="selectOneByUsername" resultMap="BaseResultMap">
         select
@@ -109,5 +109,20 @@
         from employee
         where
         role = #{role,jdbcType=NUMERIC}
+    </select>
+
+    <select id="selectAllByDepartmentId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from employee
+        where
+        department_id =  #{department_id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryEmployeeByPage" resultMap="BaseResultMap">
+        select *
+        from  employee inner join department on employee.department_id=department.id
+        and
+        employee.role = 0
     </select>
 </mapper>

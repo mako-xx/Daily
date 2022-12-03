@@ -10,6 +10,11 @@ import java.util.List;
 * @createDate 2022-11-27 16:45:35
 */
 public interface LeaveTypeService {
+    void addLeaveType(String name);
+
+    void updateLeaveType(LeaveType leaveType, Integer id);
+
+    void deleteInfo(Integer id);
 
     /**
      * 获取所有请假类型
