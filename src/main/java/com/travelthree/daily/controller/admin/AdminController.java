@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.constant.RoleEnum;
 import com.travelthree.daily.domain.Department;
 import com.travelthree.daily.domain.Employee;
+import com.travelthree.daily.domain.LeaveType;
 import com.travelthree.daily.dto.EmployeeDTO;
 import com.travelthree.daily.dto.PageParam;
 import com.travelthree.daily.dto.RegisterParam;
@@ -11,6 +12,7 @@ import com.travelthree.daily.dto.UpdateEmployeeParam;
 import com.travelthree.daily.service.DepartmentService;
 import com.travelthree.daily.service.EmployeeService;
 
+import com.travelthree.daily.service.LeaveTypeService;
 import com.travelthree.daily.vo.CommonResult;
 import com.travelthree.daily.vo.EmployeeVo;
 import org.springframework.beans.BeanUtils;
@@ -30,6 +32,9 @@ public class AdminController {
 
     @Autowired
     private DepartmentService departmentService;
+
+    @Autowired
+    private LeaveTypeService leaveTypeService;
 
     @PostMapping("/register")
     @ResponseBody
@@ -85,6 +90,27 @@ public class AdminController {
     @ResponseBody
     public CommonResult deleteInfo(@PathVariable String id) {
         employeeService.deleteInfo(id);
+        return CommonResult.success();
+    }
+
+    @PostMapping("/leave-status")
+    @ResponseBody
+    public CommonResult addLeaveType(@Valid @RequestBody LeaveType leaveType) {
+        leaveTypeService.addLeaveType(leaveType.getName());
+        return CommonResult.success();
+    }
+
+    @PutMapping("/leave-status/{id}")
+    @ResponseBody
+    public CommonResult updateLType(@Valid @RequestBody LeaveType leaveType, @PathVariable Integer id) {
+        leaveTypeService.updateLeaveType(leaveType, id);
+        return CommonResult.success();
+    }
+
+    @DeleteMapping("/leave-status/{id}")
+    @ResponseBody
+    public CommonResult deleteInfo(@PathVariable Integer id) {
+        leaveTypeService.deleteInfo(id);
         return CommonResult.success();
     }
 }
