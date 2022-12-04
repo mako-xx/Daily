@@ -17,13 +17,12 @@ import java.util.List;
  * @createDate 2022/12/2
  */
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/leave-status")
 public class LeaveTypeController {
 
     @Autowired
     private LeaveTypeService leaveTypeService;
 
-    @GetMapping("/leave-status")
     @ResponseBody
     public CommonResult getLeaveTypeList() {
 
