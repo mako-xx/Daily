@@ -32,4 +32,6 @@ public interface LeaveMapper {
     int updateByPrimaryKey(Leave record);
 
     Set<Leave> selectAllByDate(@Param("time") LocalDate time);
+
+    Set<Leave> selectAllByStatusAndDate(@Param("status") Integer status, @Param("time") LocalDate time);
 }

@@ -118,4 +118,13 @@
             auditorId =  #{auditorid,jdbcType=VARCHAR}
         where   id = #{id,jdbcType=VARCHAR} 
     </update>
+    <select id="selectAllByStatusAndDate" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `leave`
+        where
+        status = #{status,jdbcType=NUMERIC}
+        and startDate &lt;= #{time}
+        and endDate &gt;= #{time}
+    </select>
 </mapper>
