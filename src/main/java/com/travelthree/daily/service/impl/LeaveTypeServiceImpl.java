@@ -62,6 +62,11 @@ public class LeaveTypeServiceImpl implements LeaveTypeService {
         }
         leaveTypeMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public LeaveType selectById(Integer id) {
+        return leaveTypeMapper.selectByPrimaryKey(id);
+    }
 }
 
 

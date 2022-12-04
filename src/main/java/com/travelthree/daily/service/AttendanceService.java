@@ -1,7 +1,9 @@
 package com.travelthree.daily.service;
 
 import com.github.pagehelper.PageInfo;
+import com.travelthree.daily.domain.Attendance;
 import com.travelthree.daily.dto.AttendanceParam;
+import com.travelthree.daily.dto.EmployeeDTO;
 import com.travelthree.daily.dto.PageParam;
 
 /**
@@ -27,4 +29,6 @@ public interface AttendanceService {
      * @return
      */
     PageInfo queryAttendanceByDate(AttendanceParam attendanceParam, PageParam pageParam);
+
+    Attendance getByEmployeeId(String id);
 }
