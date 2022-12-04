@@ -2,20 +2,13 @@ package com.travelthree.daily.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.travelthree.daily.domain.Employee;
 import com.travelthree.daily.domain.Leave;
 import com.travelthree.daily.dto.PageParam;
 import com.travelthree.daily.mapper.LeaveMapper;
 import cn.hutool.core.lang.UUID;
-import cn.hutool.core.util.ObjectUtil;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.constant.ResultCodeEnum;
-import com.travelthree.daily.domain.Leave;
 import com.travelthree.daily.dto.AskForLeaveParam;
-import com.travelthree.daily.dto.PageParam;
 import com.travelthree.daily.exception.BusinessException;
-import com.travelthree.daily.mapper.LeaveMapper;
 import com.travelthree.daily.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,13 +52,6 @@ public class LeaveServiceImpl implements LeaveService {
 
         return leaveMapper.selectAllByEmployeeId(employeeId);
     }
-
-//    @Override
-//    public PageInfo<Leave> getLeaveHistory(String employeeId, PageParam pageParam) {
-//
-//        return PageHelper.startPage(pageParam.getPage(), pageParam.getPageSize())
-//                .doSelectPageInfo(()->leaveMapper.selectAllByEmployeeId(employeeId));
-//    }
 
     @Override
     public void addLeave(AskForLeaveParam param, String employeeId) {

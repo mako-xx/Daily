@@ -81,7 +81,6 @@ public class EmployeeController {
         EmployeeDTO currentLoginUser = TaleUtil.getCurrentLoginUser(request);
         String userId = currentLoginUser.getId();
         leaveService.addLeave(param, userId);
-        TaleUtil.logout(request, response);
         return CommonResult.success();
     }
 
@@ -98,7 +97,7 @@ public class EmployeeController {
                                 leave.getStartdate().toString(),
                                 leave.getEnddate().toString(),
                                 leave.getStatus().toString(),
-                                leaveTypeService.toString(),
+                                leaveTypeService.selectById(leave.getTypeId()).getName(),
                                 leave.getReason(),
                                 leave.getEmployeeId(),
                                 currentLoginUser.getName()
