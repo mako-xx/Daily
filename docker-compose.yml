@@ -1,0 +1,24 @@
+version: '3'
+services:
+  daily-app:
+    build:
+      context: .
+    networks:
+      - daily-network
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_URL: daily-db
+      MYSQL_DATABASE: daily
+    ports:
+      - "8080:8080"
+  daily-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - ./sql/:/docker-entrypoint-initdb.d/
+    networks:
+      - daily-network
+
+networks:
+  daily-network:
