@@ -22,4 +22,7 @@ public interface LeaveTypeService {
      * @return 请假类型列表
      */
     List<LeaveType> getAllLeaveTypes();
+
+    LeaveType selectById(Integer id);
+
 }

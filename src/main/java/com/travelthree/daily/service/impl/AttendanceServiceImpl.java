@@ -1,12 +1,10 @@
 package com.travelthree.daily.service.impl;
 
 import cn.hutool.core.lang.UUID;
+import cn.hutool.core.util.ObjectUtil;
+import com.travelthree.daily.constant.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.travelthree.daily.constant.AttendanceStatus;
-import com.travelthree.daily.constant.ResultCodeEnum;
-import com.travelthree.daily.constant.RoleEnum;
-import com.travelthree.daily.constant.WebConstant;
 import com.travelthree.daily.domain.Attendance;
 import com.travelthree.daily.domain.Employee;
 import com.travelthree.daily.domain.Leave;
@@ -62,7 +60,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     public void addAttend() {
         List<Employee> employees = employeeMapper.selectAllByRole(RoleEnum.STAFF.ordinal());
         // 所有请假的初始化为请假状态，没请假的初始化为缺勤状态
-        Set<String> leaves = leaveMapper.selectAllByDate(LocalDate.now()).stream()
+        Set<String> leaves = leaveMapper.selectAllByStatusAndDate(LeaveCheckStatus.APPROVE.ordinal(), LocalDate.now()).stream()
                 .map(Leave::getEmployeeId).collect(Collectors.toSet());
         List<Attendance> attendances = employees.stream()
                 .map(e -> Attendance.builder()
@@ -90,6 +88,15 @@ public class AttendanceServiceImpl implements AttendanceService {
         PageInfo pageInfo = new PageInfo(attendances);
         pageInfo.setPageSize(pageParam.getPageSize());
         return pageInfo;
+    }
+
+    @Override
+    public Attendance getByEmployeeId(String employeeId) {
+        Attendance attendance =  attendanceMapper.selectByEmployeeId(employeeId);
+        if(ObjectUtil.isNull(attendance)) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "该员工无考勤");
+        }
+        return attendance;
     }
 }
 
