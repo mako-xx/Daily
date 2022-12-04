@@ -25,6 +25,8 @@ public interface LeaveMapper {
 
     Leave selectByPrimaryKey(String id);
 
+    List<Leave> queryLeave(Integer status);
+
     int updateByPrimaryKeySelective(Leave record);
 
     int updateByPrimaryKey(Leave record);
