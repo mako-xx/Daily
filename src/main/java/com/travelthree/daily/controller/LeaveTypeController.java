@@ -23,6 +23,7 @@ public class LeaveTypeController {
     @Autowired
     private LeaveTypeService leaveTypeService;
 
+    @GetMapping
     @ResponseBody
     public CommonResult getLeaveTypeList() {
 
