@@ -30,4 +30,6 @@ public interface LeaveMapper {
     int updateByPrimaryKey(Leave record);
 
     Set<Leave> selectAllByDate(@Param("time") LocalDate time);
+
+    List<Leave> selectAllByEmployeeId(String employeeId);
 }
