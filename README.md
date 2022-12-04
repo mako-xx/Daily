@@ -35,3 +35,8 @@ source schema.sql
             |—— WEB-INF
                 |—— views jsp视图
 ```
+
+部署应用：
+```bash
+docker-compose up -d
+```

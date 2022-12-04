@@ -1,7 +1,9 @@
-
+CREATE DATABASE IF NOT EXISTS daily;
+USE daily;
 /*
  * 部门：部门id 部门名称 上级部门id
  */
+DROP TABLE IF EXISTS department;
 CREATE TABLE department(
                            id VARCHAR(36) NOT NULL comment '部门id',
                            `name` VARCHAR(255) NOT NULL comment '部门名称',
@@ -14,6 +16,7 @@ CREATE TABLE department(
  *
  * 角色：普通员工，管理员
  */
+DROP TABLE IF EXISTS employee;
 CREATE TABLE employee (
                          id VARCHAR(36) NOT NULL comment '员工id',
                          `username` VARCHAR(64) NOT NULL UNIQUE comment '用户名',
@@ -32,6 +35,7 @@ CREATE TABLE employee (
  * 员工在某一天的考勤记录
  * 考勤状态：出勤，缺勤，请假
  */
+DROP TABLE IF EXISTS attendance;
 CREATE TABLE attendance(
                            id VARCHAR(36) NOT NULL comment '考勤id',
                            `date` DATE NOT NULL comment '考勤日期',
@@ -46,6 +50,7 @@ CREATE TABLE attendance(
  * 
  * 类型：病假，事假，婚假，丧假，产假，其他
  */
+DROP TABLE IF EXISTS leave_type;
 CREATE TABLE leave_type(
                          id TINYINT NOT NULL AUTO_INCREMENT comment '请假类型id',
                          `name` VARCHAR(64) NOT NULL comment '请假类型名称',
@@ -59,6 +64,7 @@ CREATE TABLE leave_type(
  * 请假类型：病假，事假，婚假，丧假，产假，其他
  * 假条由管理员审核
  */
+DROP TABLE IF EXISTS `leave`;
 CREATE TABLE `leave`(
                         id VARCHAR(36) NOT NULL comment '假条id',
                         employee_id VARCHAR(36) NOT NULL comment '员工id',
