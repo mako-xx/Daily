@@ -73,7 +73,7 @@ CREATE TABLE `leave`(
                         `status` TINYINT NOT NULL comment '请假审核状态：等待审核(0)，审核不通过(1)，审核通过(2)',
                         type_id TINYINT NOT NULL comment '请假类型：病假(0)，事假(1)，婚假(2)，丧假(3)，产假(4)，其他(5)',
                         reason VARCHAR(255) NOT NULL comment '请假理由',
-                        auditorId VARCHAR(36) NOT NULL comment '审核人id',
+                        auditorId VARCHAR(36) comment '审核人id',
                         PRIMARY KEY (id),
                         FOREIGN KEY (employee_id) REFERENCES employee(id),
                         FOREIGN KEY (type_id) REFERENCES leave_type(id)

@@ -6,6 +6,9 @@ import com.travelthree.daily.dto.PageParam;
 
 import java.util.List;
 
+import com.travelthree.daily.domain.Leave;
+import com.travelthree.daily.dto.AskForLeaveParam;
+
 /**
 * @author faust
 * @description 针对表【leave】的数据库操作Service
@@ -18,4 +21,12 @@ public interface LeaveService {
     void updateLeaveStatus(Leave leave);
 
     PageInfo queryLeave(PageParam pageParam, Integer status);
+    /**
+     * add a employee's leave
+     *
+     * @param param employee's id and leave slip
+     */
+    void addLeave(AskForLeaveParam param, String employeeId);
+
+
 }
