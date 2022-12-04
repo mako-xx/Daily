@@ -1,25 +1,15 @@
 package com.travelthree.daily.service.impl;
 
-import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.ObjectUtil;
-import com.travelthree.daily.constant.AttendanceStatus;
 import com.travelthree.daily.constant.ResultCodeEnum;
-import com.travelthree.daily.domain.Attendance;
-import com.travelthree.daily.domain.Department;
-import com.travelthree.daily.domain.Employee;
 import com.travelthree.daily.domain.LeaveType;
 import com.travelthree.daily.exception.BusinessException;
-import com.travelthree.daily.mapper.AttendanceMapper;
-import com.travelthree.daily.mapper.DepartmentMapper;
-import com.travelthree.daily.mapper.EmployeeMapper;
 import com.travelthree.daily.mapper.LeaveTypeMapper;
 import com.travelthree.daily.service.LeaveTypeService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.List;
 
 /**
 * @author faust
@@ -30,19 +20,18 @@ import java.time.LocalDate;
 public class LeaveTypeServiceImpl implements LeaveTypeService {
 
     @Autowired
-    private EmployeeMapper employeeMapper;
+    LeaveTypeMapper leaveTypeMapper;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    /**
+     * 获取所有请假类型
+     *
+     * @return 请假类型列表
+     */
+    @Override
+    public List<LeaveType> getAllLeaveTypes() {
 
-    @Autowired
-    private DepartmentMapper departmentMapper;
-
-    @Autowired
-    private AttendanceMapper attendanceMapper;
-
-    @Autowired
-    private LeaveTypeMapper leaveTypeMapper;
+        return leaveTypeMapper.selectAll();
+    }
 
     @Override
     public void addLeaveType(String name) {

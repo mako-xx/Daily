@@ -2,6 +2,10 @@ package com.travelthree.daily.mapper;
 
 import com.travelthree.daily.domain.LeaveType;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.Collection;
+import java.util.List;
+
 /**
 * @author faust
 * @description 针对表【leave_type】的数据库操作Mapper
@@ -20,6 +24,8 @@ public interface LeaveTypeMapper {
     LeaveType selectByPrimaryKey(Integer id);
 
     LeaveType selectByName(String name);
+
+    List<LeaveType> selectAll();
 
     int updateByPrimaryKeySelective(LeaveType record);
 

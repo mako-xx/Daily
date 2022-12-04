@@ -27,6 +27,12 @@
         where  name = #{id,jdbcType=VARCHAR}
     </select>
 
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from leave_type
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from leave_type
         where  id = #{id,jdbcType=TINYINT} 
