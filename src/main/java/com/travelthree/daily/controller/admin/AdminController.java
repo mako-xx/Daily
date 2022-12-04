@@ -216,19 +216,7 @@ public class AdminController {
     @GetMapping("/leave")
     @ResponseBody
     public PageInfo getLeaveRequest(@Valid PageParam pageParam, LeaveCheckStatus leaveType) {
-            //status随便赋个初值否则idea会报错
-            Integer status = -1;
-            if(leaveType.equals(LeaveCheckStatus.APPROVE.toString())) {
-                status = LeaveCheckStatus.APPROVE.ordinal();
-            }
-            if(leaveType.equals(LeaveCheckStatus.WAITING.toString())) {
-                status = LeaveCheckStatus.WAITING.ordinal();
-                System.out.println(status);
-            }
-            if(leaveType.equals(LeaveCheckStatus.REFUSE.toString())) {
-                status = LeaveCheckStatus.REFUSE.ordinal();
-            }
-            PageInfo pageInfo = leaveService.queryLeave(pageParam, status);
+            PageInfo pageInfo = leaveService.queryLeave(pageParam, leaveType.ordinal());
             if(pageParam.getPage() != null) {
                 pageInfo.setPageNum(pageParam.getPage());
             }
@@ -245,19 +233,15 @@ public class AdminController {
                 LeaveRequestVo leaveRequestVo = new LeaveRequestVo();
                 //拷贝属性
                 BeanUtils.copyProperties(leaves.get(tmp), leaveRequestVo);
-                //变更日期类型后拷贝
-                leaveRequestVo.setStartDate(leaves.get(tmp).getStartdate().toString());
-                leaveRequestVo.setEndDate(leaves.get(tmp).getEnddate().toString());
+//                //变更日期类型后拷贝
+//                leaveRequestVo.setStartDate(leaves.get(tmp).getStartdate().toString());
+//                leaveRequestVo.setEndDate(leaves.get(tmp).getEnddate().toString());
                 //通过leave的员工ID调用员工服务类查询员工名称并赋值
                 String employeeId = leaves.get(tmp).getEmployeeId();
                 EmployeeDTO employeeDTO = employeeService.getEmployeeById(employeeId);
                 leaveRequestVo.setName(employeeDTO.getName());
                 //将typeId转换为type后赋值
-                leaveRequestVo.setType(
-                        com.travelthree.daily.constant.LeaveType.getRoleFromOrdinal(
-                                leaves.get(tmp).getTypeId()
-                        ).toString()
-                );
+                leaveRequestVo.setType(leaveTypeService.selectById(leaves.get(tmp).getTypeId()).getName());
                 //将status装换后赋值
                 leaveRequestVo.setStatus(leaveType.toString());
                 //在集合中添加

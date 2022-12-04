@@ -14,4 +14,6 @@ public interface LeaveTypeService {
 
     void deleteInfo(Integer id);
 
+    LeaveType selectById(Integer id);
+
 }
