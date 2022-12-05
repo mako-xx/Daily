@@ -2,11 +2,22 @@
 
 网上考勤系统
 
-使用方式：
+部署地址：123.249.5.227:8080
 
-启动MYSQL，进入MYSQL的控制台，输入
+部署方式：
+
+修改application-production中的数据库配置
 ```bash
-source schema.sql
+# 将项目打成jar包
+mvn package 
+# 启动项目
+java -jar target/daily-0.0.1-SNAPSHOT.jar --spring.profiles.active=production
+```
+执行sql文件夹下的建表语句
+
+docker部署应用：
+```bash
+docker-compose up -d
 ```
 
 项目结构：
@@ -34,9 +45,4 @@ source schema.sql
         |—— webapp
             |—— WEB-INF
                 |—— views jsp视图
-```
-
-部署应用：
-```bash
-docker-compose up -d
 ```
