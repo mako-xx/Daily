@@ -1,6 +1,7 @@
 package com.travelthree.daily.controller.admin;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.constant.LeaveCheckStatus;
 import com.travelthree.daily.constant.ResultCodeEnum;
@@ -10,18 +11,18 @@ import com.travelthree.daily.dto.*;
 import com.travelthree.daily.exception.BusinessException;
 import com.travelthree.daily.service.*;
 
-import com.travelthree.daily.vo.AttendanceVo;
-import com.travelthree.daily.vo.CommonResult;
-import com.travelthree.daily.vo.EmployeeVo;
-import com.travelthree.daily.vo.LeaveRequestVo;
+import com.travelthree.daily.utils.PageTransformUtil;
+import com.travelthree.daily.vo.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.*;
 
+@Validated
 @Controller
 @RequestMapping("/api/admin")
 public class AdminController {
@@ -245,5 +246,27 @@ public class AdminController {
             //将集合赋回pageInfo
             pageInfo.setList(leaveRequestVos);
             return pageInfo;
-        }
+    }
+
+    @GetMapping("/leave-status")
+    @ResponseBody
+    public PageInfo<LeaveTypeVo> getLeaveTypes(@Valid PageParam pageParam) {
+
+        return PageTransformUtil.toViewPage(pageParam,
+                () -> leaveTypeService.getAllLeaveTypes(),
+                leaveType -> new LeaveTypeVo(leaveType.getId().toString(), leaveType.getName()));
+    }
+
+    @GetMapping("/department")
+    @ResponseBody
+    public PageInfo<DepartmentVo> getDepartments(@Valid PageParam pageParam) {
+
+        return PageTransformUtil.toViewPage(pageParam,
+                () -> departmentService.selectAllDepartments(),
+                department -> new DepartmentVo(
+                        department.getId(),
+                        department.getName(),
+                        departmentService.getSuperiorName(department)
+                ));
+    }
 }

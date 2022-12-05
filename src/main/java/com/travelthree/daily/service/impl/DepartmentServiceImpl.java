@@ -27,6 +27,8 @@ import java.util.List;
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
+    public static final String NO_SUPERIOR = "";
+
     @Autowired
     private EmployeeMapper employeeMapper;
 
@@ -85,6 +87,22 @@ public class DepartmentServiceImpl implements DepartmentService {
             throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "当前部门还有员工");
         }
         departmentMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Department> selectAllDepartments() {
+
+        return departmentMapper.selectAll();
+    }
+
+    @Override
+    public String getSuperiorName(Department department) {
+
+        Department superior = departmentMapper.selectByPrimaryKey(department.getSuperiorId());
+        if (superior == null) {
+            return NO_SUPERIOR;
+        }
+        return superior.getName();
     }
 
 }

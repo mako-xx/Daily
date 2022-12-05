@@ -16,6 +16,7 @@ import com.travelthree.daily.vo.SelfAttendanceVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +31,7 @@ import java.time.format.DateTimeFormatter;
  * @date 2022-11-23 16:57:37
  * @description
  */
+@Validated
 @Controller
 @RequestMapping("/api/employee")
 public class EmployeeController {
