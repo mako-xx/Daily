@@ -14,11 +14,12 @@ import java.time.LocalDate;
 @Data
 public class AskForLeaveParam {
 
-    @NotNull
+    @NotBlank
     private String startDate;
-    @NotNull
+    @NotBlank
     private String endDate;
-    private int type;
+    @NotNull
+    private Integer type;
     @NotBlank
     private String reason;
 }

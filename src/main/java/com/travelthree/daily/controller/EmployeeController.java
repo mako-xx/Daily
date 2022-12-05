@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.text.DateFormat;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -86,21 +87,25 @@ public class EmployeeController {
 
     @GetMapping("/leave")
     @ResponseBody
-    public PageInfo<LeaveVo> getLeaveHistory(@Valid AskForLeaveParam param, @Valid PageParam pageParam, HttpServletRequest request) {
+    public PageInfo<LeaveVo> getLeaveHistory(@Valid PageParam pageParam, HttpServletRequest request) {
 
         EmployeeDTO currentLoginUser = TaleUtil.getCurrentLoginUser(request);
 
-        return PageHelper.startPage(pageParam.getPage(), pageParam.getPageSize())
-                .doSelectPageInfo(() -> leaveService.getAllLeavesByEmployeeId(currentLoginUser.getId())
-                        .stream().map(leave -> new LeaveVo(
-                                leave.getId(),
-                                leave.getStartdate().toString(),
-                                leave.getEnddate().toString(),
-                                leave.getStatus().toString(),
-                                leaveTypeService.selectById(leave.getTypeId()).getName(),
-                                leave.getReason(),
-                                leave.getEmployeeId(),
-                                currentLoginUser.getName()
-                        )).toList());
+        PageHelper.startPage(pageParam.getPage(), pageParam.getPageSize());
+        PageInfo<Leave> leavePageInfo = leaveService.getPageLeaveHistory(currentLoginUser.getId());
+
+        PageInfo<LeaveVo> leaveVoPageInfo = new PageInfo<>();
+        BeanUtils.copyProperties(leavePageInfo, leaveVoPageInfo);
+        leaveVoPageInfo.setList(leavePageInfo.getList()
+                .stream().map(leave -> new LeaveVo(
+                        leave.getId(),
+                        DateFormat.getDateInstance().format(leave.getStartdate()),
+                        DateFormat.getDateInstance().format(leave.getEnddate()),
+                        leave.getStatus().toString(),
+                        leaveTypeService.selectById(leave.getTypeId()).getName(),
+                        leave.getReason(),
+                        leave.getEmployeeId(),
+                        currentLoginUser.getName())).toList());
+        return leaveVoPageInfo;
     }
 }

@@ -48,9 +48,15 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public List<Leave> getAllLeavesByEmployeeId(String employeeId) {
+    public PageInfo<Leave> getPageLeaveHistory(String employeeId) {
 
-        return leaveMapper.selectAllByEmployeeId(employeeId);
+        List<Leave> leaveList = leaveMapper.selectAllByEmployeeId(employeeId);
+        PageInfo<Leave> pageInfo = new PageInfo<>(leaveList);
+
+        System.out.println(pageInfo.getPageSize());
+        System.out.println(pageInfo.isIsFirstPage());
+        System.out.println(pageInfo.isIsLastPage());
+        return pageInfo;
     }
 
     @Override
@@ -58,6 +64,9 @@ public class LeaveServiceImpl implements LeaveService {
 
         Date start = Date.valueOf(param.getStartDate());
         Date end = Date.valueOf(param.getEndDate());
+        if (start.after(end)) {
+            throw new BusinessException(ResultCodeEnum.FORBIDDEN_OP, "起始时间不得晚于结束时间");
+        }
 
         List<Leave> leaveList = leaveMapper.selectAllByEmployeeId(employeeId);
         if (leaveList.stream().anyMatch(leave ->

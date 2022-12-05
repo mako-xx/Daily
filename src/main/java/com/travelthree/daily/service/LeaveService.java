@@ -24,22 +24,14 @@ public interface LeaveService {
     void updateLeaveStatus(Leave leave);
 
     PageInfo queryLeave(PageParam pageParam, Integer status);
+
     /**
      * get the employee's all leaves
      *
      * @param employeeId the id of the employee
-     * @return leave list
+     * @return pageInfo of leaves
      */
-    List<Leave> getAllLeavesByEmployeeId(String employeeId);
-
-//    /**
-//     * get the employee's all leaves
-//     *
-//     * @param employeeId the id of the employee
-//     * @param pageParam page related info
-//     * @return pageInfo of leaves
-//     */
-//    PageInfo<Leave> getLeaveHistory(String employeeId, PageParam pageParam);
+    PageInfo<Leave> getPageLeaveHistory(String employeeId);
 
     /**
      * add a employee's leave
