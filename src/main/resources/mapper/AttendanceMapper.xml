@@ -28,7 +28,7 @@
         where  id = #{id,jdbcType=VARCHAR} 
     </select>
 
-    <select id="selectByEmployeeId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="selectAllByEmployeeId" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from attendance

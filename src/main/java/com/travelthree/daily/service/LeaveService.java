@@ -25,6 +25,8 @@ public interface LeaveService {
 
     PageInfo queryLeave(PageParam pageParam, Integer status);
 
+    List<Leave> getLeavesByEmployeeId(String employeeId);
+
     /**
      * get the employee's all leaves
      *
