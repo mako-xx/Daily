@@ -42,6 +42,12 @@
         status = #{status,jdbcType=TINYINT}
     </select>
 
+    <select id="selectAllByEmployeeId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from `leave`
+        where employee_id = #{employeeId,jdbcType=VARCHAR}
+    </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from `leave`

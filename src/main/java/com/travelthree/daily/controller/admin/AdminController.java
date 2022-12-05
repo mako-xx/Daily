@@ -142,14 +142,9 @@ public class AdminController {
 
     @GetMapping("/attendance")
     @ResponseBody
-    public PageInfo getAttendance(@Valid AttendanceParam attendanceParam, PageParam pageParam) {
+    public PageInfo getAttendance(@Valid AttendanceParam attendanceParam,@Valid PageParam pageParam) {
         PageInfo pageInfo = attendanceService.queryAttendanceByDate(attendanceParam, pageParam);
-        if(pageParam.getPage() != null) {
-            pageInfo.setPageNum(pageParam.getPage());
-        }
-        if(pageParam.getPageSize() != null) {
-            pageInfo.setPageSize(pageParam.getPageSize());
-        }
+
         //取出pageInfo里面的List<Employee>
         List<Attendance> attendances = pageInfo.getList();
         //初始化接口要求的视图对象集合

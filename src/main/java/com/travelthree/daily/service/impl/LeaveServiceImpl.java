@@ -2,15 +2,20 @@ package com.travelthree.daily.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.travelthree.daily.domain.Employee;
 import com.travelthree.daily.domain.Leave;
 import com.travelthree.daily.dto.PageParam;
 import com.travelthree.daily.mapper.LeaveMapper;
+import cn.hutool.core.lang.UUID;
+import com.travelthree.daily.constant.ResultCodeEnum;
+import com.travelthree.daily.dto.AskForLeaveParam;
+import com.travelthree.daily.exception.BusinessException;
 import com.travelthree.daily.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import java.sql.Date;
 
 /**
 * @author faust
@@ -42,6 +47,50 @@ public class LeaveServiceImpl implements LeaveService {
         return pageInfo;
     }
 
+    @Override
+    public PageInfo<Leave> getPageLeaveHistory(String employeeId) {
+
+        List<Leave> leaveList = leaveMapper.selectAllByEmployeeId(employeeId);
+        PageInfo<Leave> pageInfo = new PageInfo<>(leaveList);
+
+        System.out.println(pageInfo.getPageSize());
+        System.out.println(pageInfo.isIsFirstPage());
+        System.out.println(pageInfo.isIsLastPage());
+        return pageInfo;
+    }
+
+    @Override
+    public void addLeave(AskForLeaveParam param, String employeeId) {
+
+        Date start = Date.valueOf(param.getStartDate());
+        Date end = Date.valueOf(param.getEndDate());
+        if (start.after(end)) {
+            throw new BusinessException(ResultCodeEnum.FORBIDDEN_OP, "起始时间不得晚于结束时间");
+        }
+
+        List<Leave> leaveList = leaveMapper.selectAllByEmployeeId(employeeId);
+        if (leaveList.stream().anyMatch(leave ->
+                (start.before(leave.getStartdate())
+                        && end.after(leave.getStartdate()))
+                || (start.before(leave.getEnddate())
+                        && end.after(leave.getEnddate()))
+
+        )) {
+            throw new BusinessException(ResultCodeEnum.FORBIDDEN_OP, "当前时段内用户已有请假");
+        }
+
+        Leave newLeave = new Leave();
+        newLeave.setId(UUID.fastUUID().toString());
+        newLeave.setEmployeeId(employeeId);
+        newLeave.setStartdate(start);
+        newLeave.setEnddate(end);
+        newLeave.setStatus(0);
+        newLeave.setTypeId(param.getType());
+        newLeave.setReason(param.getReason());
+        newLeave.setAuditorid("");
+
+        leaveMapper.insert(newLeave);
+    }
 }
 
 
