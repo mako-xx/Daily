@@ -3,7 +3,6 @@ package com.travelthree.daily.service;
 import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.domain.Attendance;
 import com.travelthree.daily.dto.AttendanceParam;
-import com.travelthree.daily.dto.EmployeeDTO;
 import com.travelthree.daily.dto.PageParam;
 
 import java.util.List;
@@ -32,7 +31,6 @@ public interface AttendanceService {
      */
     PageInfo queryAttendanceByDate(AttendanceParam attendanceParam, PageParam pageParam);
 
-    List<Attendance> getByEmployeeId(String id);
+    List<Attendance> getAttendancesByEmployeeId(String id);
 
-//    PageInfo<Attendance> getPageAttendanceByEmployeeId(String employeeId);
 }

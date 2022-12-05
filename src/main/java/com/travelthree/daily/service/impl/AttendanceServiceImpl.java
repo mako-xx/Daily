@@ -92,16 +92,9 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public List<Attendance> getByEmployeeId(String employeeId) {
+    public List<Attendance> getAttendancesByEmployeeId(String employeeId) {
 
-        List<Attendance> l = attendanceMapper.selectAllByEmployeeId(employeeId);
-        System.out.println("=============================");
-        for (var e: l) {
-            System.out.println(e.getId());
-            System.out.println(e.getDate());
-        }
-        System.out.println("=============================");
-        return l;
+        return attendanceMapper.selectAllByEmployeeId(employeeId);
     }
 
 //    @Override

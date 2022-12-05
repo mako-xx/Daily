@@ -1,11 +1,8 @@
 package com.travelthree.daily.controller;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.travelthree.daily.domain.Attendance;
+import com.travelthree.daily.config.converter.LocalDateConverter;
 import com.travelthree.daily.domain.Employee;
-import com.travelthree.daily.domain.Leave;
 import com.travelthree.daily.dto.*;
 import com.travelthree.daily.service.AttendanceService;
 import com.travelthree.daily.service.EmployeeService;
@@ -13,11 +10,9 @@ import com.travelthree.daily.service.LeaveService;
 import com.travelthree.daily.service.LeaveTypeService;
 import com.travelthree.daily.utils.PageTransformUtil;
 import com.travelthree.daily.utils.TaleUtil;
-import com.travelthree.daily.vo.AttendanceVo;
 import com.travelthree.daily.vo.CommonResult;
 import com.travelthree.daily.vo.LeaveVo;
 import com.travelthree.daily.vo.SelfAttendanceVo;
-import lombok.extern.flogger.Flogger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.text.DateFormat;
-import java.util.List;
-import java.util.stream.Stream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author 陈宣辰
@@ -108,23 +103,6 @@ public class EmployeeController {
                         leave.getEmployeeId(),
                         currentLoginUser.getName()
                 ));
-
-//        PageHelper.startPage(pageParam.getPage(), pageParam.getPageSize());
-//        PageInfo<Leave> leavePageInfo = leaveService.getPageLeaveHistory(currentLoginUser.getId());
-//
-//        PageInfo<LeaveVo> leaveVoPageInfo = new PageInfo<>();
-//        BeanUtils.copyProperties(leavePageInfo, leaveVoPageInfo);
-//        leaveVoPageInfo.setList(leavePageInfo.getList()
-//                .stream().map(leave -> new LeaveVo(
-//                        leave.getId(),
-//                        DateFormat.getDateInstance().format(leave.getStartdate()),
-//                        DateFormat.getDateInstance().format(leave.getEnddate()),
-//                        leave.getStatus().toString(),
-//                        leaveTypeService.selectById(leave.getTypeId()).getName(),
-//                        leave.getReason(),
-//                        leave.getEmployeeId(),
-//                        currentLoginUser.getName())).toList());
-//        return leaveVoPageInfo;
     }
 
     @GetMapping("/attendance")
@@ -134,10 +112,10 @@ public class EmployeeController {
         EmployeeDTO currentLoginUser = TaleUtil.getCurrentLoginUser(request);
 
         return PageTransformUtil.toViewPage(pageParam,
-                () -> attendanceService.getByEmployeeId(currentLoginUser.getId()),
+                () -> attendanceService.getAttendancesByEmployeeId(currentLoginUser.getId()),
                 attendance -> new SelfAttendanceVo(
                         attendance.getId(),
-                        DateFormat.getDateInstance().format(attendance.getDate()),
+                        attendance.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
                         attendance.getStatus().toString()));
     }
 }
