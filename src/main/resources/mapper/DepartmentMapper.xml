@@ -28,6 +28,12 @@
         where  name = #{name,jdbcType=VARCHAR}
     </select>
 
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from department
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from department
         where  id = #{id,jdbcType=VARCHAR} 

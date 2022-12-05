@@ -3,6 +3,8 @@ package com.travelthree.daily.service;
 import com.travelthree.daily.domain.Department;
 import com.travelthree.daily.domain.LeaveType;
 
+import java.util.List;
+
 /**
 * @author faust
 * @description 针对表【department】的数据库操作Service
@@ -21,4 +23,8 @@ public interface DepartmentService {
     void updateDepartment(Department department, String id);
 
     void deleteInfo(String id);
+
+    List<Department> selectAllDepartments();
+
+    String getSuperiorName(Department department);
 }
