@@ -16,6 +16,7 @@ import com.travelthree.daily.mapper.EmployeeMapper;
 import com.travelthree.daily.mapper.LeaveMapper;
 import com.travelthree.daily.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -91,13 +92,24 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public Attendance getByEmployeeId(String employeeId) {
-        Attendance attendance =  attendanceMapper.selectByEmployeeId(employeeId);
-        if(ObjectUtil.isNull(attendance)) {
-            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "该员工无考勤");
+    public List<Attendance> getByEmployeeId(String employeeId) {
+
+        List<Attendance> l = attendanceMapper.selectAllByEmployeeId(employeeId);
+        System.out.println("=============================");
+        for (var e: l) {
+            System.out.println(e.getId());
+            System.out.println(e.getDate());
         }
-        return attendance;
+        System.out.println("=============================");
+        return l;
     }
+
+//    @Override
+//    public PageInfo<Attendance> getPageAttendanceByEmployeeId(String employeeId) {
+//
+//        List<Attendance> attendanceList = attendanceMapper.selectByEmployeeId(employeeId);
+//        return new PageInfo<>(attendanceList);
+//    }
 }
 
 

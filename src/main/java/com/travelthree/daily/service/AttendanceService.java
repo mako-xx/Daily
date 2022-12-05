@@ -6,6 +6,8 @@ import com.travelthree.daily.dto.AttendanceParam;
 import com.travelthree.daily.dto.EmployeeDTO;
 import com.travelthree.daily.dto.PageParam;
 
+import java.util.List;
+
 /**
 * @author faust
 * @description 针对表【attendance】的数据库操作Service
@@ -30,5 +32,7 @@ public interface AttendanceService {
      */
     PageInfo queryAttendanceByDate(AttendanceParam attendanceParam, PageParam pageParam);
 
-    Attendance getByEmployeeId(String id);
+    List<Attendance> getByEmployeeId(String id);
+
+//    PageInfo<Attendance> getPageAttendanceByEmployeeId(String employeeId);
 }

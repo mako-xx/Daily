@@ -47,16 +47,16 @@ public class LeaveServiceImpl implements LeaveService {
         return pageInfo;
     }
 
+    public List<Leave> getLeavesByEmployeeId(String employeeId) {
+
+        return leaveMapper.selectAllByEmployeeId(employeeId);
+    }
+
     @Override
     public PageInfo<Leave> getPageLeaveHistory(String employeeId) {
 
         List<Leave> leaveList = leaveMapper.selectAllByEmployeeId(employeeId);
-        PageInfo<Leave> pageInfo = new PageInfo<>(leaveList);
-
-        System.out.println(pageInfo.getPageSize());
-        System.out.println(pageInfo.isIsFirstPage());
-        System.out.println(pageInfo.isIsLastPage());
-        return pageInfo;
+        return new PageInfo<>(leaveList);
     }
 
     @Override
