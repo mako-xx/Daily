@@ -3,6 +3,7 @@ package com.travelthree.daily.dto;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author 陈宣辰
@@ -16,5 +17,6 @@ public class LoginParam {
     private String username;
     @NotBlank(message = "密码不可为空")
     private String password;
+    @NotNull(message = "记住密码选项不可为空")
     private Boolean remember;
 }

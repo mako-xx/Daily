@@ -46,3 +46,10 @@ mybatis:
 #  配置分页插件
 pagehelper:
   helperDialect: mysql
+
+# 暴露所有监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
