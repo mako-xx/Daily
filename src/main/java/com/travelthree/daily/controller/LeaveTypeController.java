@@ -3,6 +3,7 @@ package com.travelthree.daily.controller;
 import com.travelthree.daily.domain.LeaveType;
 import com.travelthree.daily.service.LeaveTypeService;
 import com.travelthree.daily.vo.CommonResult;
+import com.travelthree.daily.vo.LeaveTypeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,11 @@ public class LeaveTypeController {
     @ResponseBody
     public CommonResult getLeaveTypeList() {
 
-        List<LeaveType> data = leaveTypeService.getAllLeaveTypes();
+        List<LeaveTypeVo> data = leaveTypeService.getAllLeaveTypes()
+                .stream().map(leaveType -> new LeaveTypeVo(
+                        leaveType.getId().toString(),
+                        leaveType.getName()
+                )).toList();
         return CommonResult.success(data);
     }
 

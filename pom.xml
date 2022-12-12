@@ -19,7 +19,7 @@
         <web.version>2.7.5</web.version>
         <validation.version>2.7.5</validation.version>
         <mybatis.version>2.2.2</mybatis.version>
-        <pagehelper.version>5.3.2</pagehelper.version>
+        <pagehelper.version>1.4.6</pagehelper.version>
         <mysql.version>8.0.31</mysql.version>
         <jstl.version>1.2</jstl.version>
         <jasper.version>9.0.68</jasper.version>
@@ -52,9 +52,15 @@
         </dependency>
 
         <!-- 分页插件 -->
+<!--        <dependency>-->
+<!--            <groupId>com.github.pagehelper</groupId>-->
+<!--            <artifactId>pagehelper</artifactId>-->
+<!--            <version>5.3.2</version>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${pagehelper.version}</version>
         </dependency>
 

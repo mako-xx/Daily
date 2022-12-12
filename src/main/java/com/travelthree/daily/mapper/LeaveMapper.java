@@ -34,4 +34,6 @@ public interface LeaveMapper {
     Set<Leave> selectAllByDate(@Param("time") LocalDate time);
 
     Set<Leave> selectAllByStatusAndDate(@Param("status") Integer status, @Param("time") LocalDate time);
+
+    List<Leave> selectAllByEmployeeId(String employeeId);
 }
