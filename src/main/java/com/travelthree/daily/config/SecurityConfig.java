@@ -49,10 +49,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
 //                .anyRequest()//测试时全部运行访问
 //                .permitAll();
+                .antMatchers("/api/**") //所有/api接口需要验证
+                .authenticated()
                 .antMatchers("/api/login", "/actuator/**")
                 .permitAll()
-                .anyRequest()// 除上面外的所有请求全部需要鉴权认证
-                .authenticated();
+                .anyRequest()
+                .permitAll();
         // 添加 filter
         httpSecurity.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
         //添加自定义未授权和未登录结果返回
