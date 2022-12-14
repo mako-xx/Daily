@@ -59,6 +59,10 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Transactional
     @Override
     public void addAttend() {
+        List<Attendance> ex = attendanceMapper.selectByDate(LocalDate.now(), LocalDate.now());
+        if (ex != null) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "今日考勤已经开启");
+        }
         List<Employee> employees = employeeMapper.selectAllByRole(RoleEnum.STAFF.ordinal());
         // 所有请假的初始化为请假状态，没请假的初始化为缺勤状态
         Set<String> leaves = leaveMapper.selectAllByStatusAndDate(LeaveCheckStatus.APPROVE.ordinal(), LocalDate.now()).stream()
@@ -85,7 +89,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         if (attendanceParam.getStartDate().isAfter(attendanceParam.getEndDate())) {
             throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "开始日期应该晚于截止日期");
         }
-        List<Attendance> attendances = attendanceMapper.selectByDate(attendanceParam);
+        List<Attendance> attendances = attendanceMapper.selectByDate(attendanceParam.getStartDate(), attendanceParam.getEndDate());
         PageInfo pageInfo = new PageInfo(attendances);
         pageInfo.setPageSize(pageParam.getPageSize());
         return pageInfo;

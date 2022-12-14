@@ -1,16 +1,15 @@
 package com.travelthree.daily.controller.admin;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.constant.LeaveCheckStatus;
 import com.travelthree.daily.constant.ResultCodeEnum;
 import com.travelthree.daily.constant.RoleEnum;
+import com.travelthree.daily.cron.AttendanceSchedule;
 import com.travelthree.daily.domain.*;
 import com.travelthree.daily.dto.*;
 import com.travelthree.daily.exception.BusinessException;
 import com.travelthree.daily.service.*;
-
 import com.travelthree.daily.utils.PageTransformUtil;
 import com.travelthree.daily.vo.*;
 import org.springframework.beans.BeanUtils;
@@ -20,7 +19,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 @Validated
 @Controller
@@ -41,6 +41,9 @@ public class AdminController {
 
     @Autowired
     private LeaveService leaveService;
+
+    @Autowired
+    private AttendanceSchedule attendanceSchedule;
 
     @PostMapping("/register")
     @ResponseBody
@@ -268,5 +271,20 @@ public class AdminController {
                         department.getName(),
                         departmentService.getSuperiorName(department)
                 ));
+    }
+
+    @PutMapping("/attendance/auto")
+    @ResponseBody
+    public void updateAutoAttendanceStatus(@RequestBody Boolean enable) {
+        if (enable) {
+            attendanceSchedule.enable();
+        } else {
+            attendanceSchedule.disable();
+        }
+    }
+
+    @PostMapping("/attendance")
+    public void createAttendance() {
+        attendanceService.addAttend();
     }
 }
