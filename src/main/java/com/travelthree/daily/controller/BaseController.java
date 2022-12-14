@@ -38,4 +38,12 @@ public class BaseController {
         }
         return CommonResult.success();
     }
+
+    @PostMapping("/logout")
+    @ResponseBody
+    public CommonResult logout(HttpServletRequest request, HttpServletResponse response) {
+
+        TaleUtil.logout(request, response);
+        return CommonResult.success();
+    }
 }
