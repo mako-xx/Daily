@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -117,46 +118,55 @@
                                 <div class="card-body">
                                     <div class="scrollable" style="height: 280px;">
                                         <div class="list1-group row">
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
+                                            <!-- jstl -->
+                                            <jsp:useBean id="map" class="java.util.HashMap" scope="request" />
+                                            <c:set target="${map}" property="#" value="部门1" />
+                                            <c:forEach var="item" items="${map}">
+                                                <a href="${item.key}"
+                                                   class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
+                                                        class="fa fa-bars" aria-hidden="true"
+                                                        style="float:left; margin-top:10px;"></i>${item.value}</a>
+                                            </c:forEach>
+<%--                                            <a href="#"--%>
+<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
+<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
+<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
+<%--                                            <a href="#"--%>
+<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
+<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
+<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
+<%--                                            <a href="#"--%>
+<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
+<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
+<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
+<%--                                            <a href="#"--%>
+<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
+<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
+<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
+<%--                                            <a href="#"--%>
+<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
+<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
+<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
+<%--                                            <a href="#"--%>
+<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
+<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
+<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
+<%--                                            <a href="#"--%>
+<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
+<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
+<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
+<%--                                            <a href="#"--%>
+<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
+<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
+<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
+<%--                                            <a href="#"--%>
+<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
+<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
+<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
+<%--                                            <a href="#"--%>
+<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
+<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
+<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
 
                                         </div>
                                     </div>
