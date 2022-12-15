@@ -9,7 +9,6 @@
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/css-hamburgers/hamburgers.min.css" rel="stylesheet" type="text/css">
     <link href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    </select>
     <link rel="stylesheet" href="/pages/employee/checkin/checkin.css">
 </head>
 
@@ -19,14 +18,14 @@
 
             <!-- 左侧 -->
             <div class="col-md-3 col-sm-12 col-xs-12 text-center sidebar"
-            style="height:600px; display:flex; flex-direction: column;  margin-top: 50px;">
+            style="height:596px; display:flex; flex-direction: column;  margin-top: 50px;">
                 <div class="card-left row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <i class="fa fa-dot-circle-o fa-2x icon" aria-hidden="true"></i>
                         <p>员工</p>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 row">
-                        <img src="./image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
+                        <img src="/image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
                         <p class="col-md-12 col-sm-12 col-xs-12 name">Mako</p>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
@@ -108,7 +107,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-5 col-sm-5 col-xs-5">
-                                    <img src="./image/head.jpg" class="head">
+                                    <img src="/image/head.jpg" class="head">
                                 </div>
                                 <div class="col-md-7 col-sm-7 col-xs-7">
                                     <div class="name">Mako</div>
@@ -132,19 +131,19 @@
                                     <label>选择部门</label>
                                     <div class="card-lists row">
                                         <div class="card col-md-3 clickable">
-                                            <img src="./image/department1.png" class="card-img img-circle" alt="部门1">
+                                            <img src="/image/department1.png" class="card-img img-circle" alt="部门1">
                                             <p>部门1</p>
                                         </div>
                                         <div class="card col-md-3 clickable">
-                                            <img src="./image/department2.png" class="card-img img-circle" alt="部门2">
+                                            <img src="/image/department2.png" class="card-img img-circle" alt="部门2">
                                             <p>部门2</p>
                                         </div>
                                         <div class="card col-md-3 clickable">
-                                            <img src="./image/department3.png" class="card-img img-circle" alt="部门3">
+                                            <img src="/image/department3.png" class="card-img img-circle" alt="部门3">
                                             <p>部门3</p>
                                         </div>
                                         <div class="card col-md-3 clickable">
-                                            <img src="./image/department4.png" class="card-img img-circle" alt="部门4">
+                                            <img src="/image/department4.png" class="card-img img-circle" alt="部门4">
                                             <p>部门4</p>
                                         </div>
                                     </div>
@@ -157,7 +156,7 @@
 
             <!-- 右侧 -->
             <div class="col-md-9 col-sm-12 col-xs-12 text-center content"
-            style="height:600px; display:flex;flex-direction: column; margin-top: 50px;">
+            style="height:596px; display:flex;flex-direction: column; margin-top: 50px;">
                 <div class="card-right">
                     <div class="clickable">
                         <i class="fa fa-ellipsis-h fa-2x" id="toggle-sidebar"></i>
