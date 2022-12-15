@@ -45,9 +45,9 @@
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#"><i
-                                        class="fa fa-fw fa-sitemap my-list-group-icon"></i>请假审批</a></li>
+                                        class="fa fa-fw fa-sitemap my-list-group-icon"></i>请假类型</a></li>
                                     <li><a href="#"><i
-                                        class="fa fa-fw fa-check my-list-group-icon"></i>请假类型</a></li>
+                                        class="fa fa-fw fa-check my-list-group-icon"></i>请假审批</a></li>
                                 </ul>
                             </li>
                         </ul>

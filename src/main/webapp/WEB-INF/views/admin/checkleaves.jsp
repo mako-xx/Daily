@@ -1,15 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>leavetypes</title>
+    <title>checkleaves</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Bootstrap -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/select2/select2.min.css" rel="stylesheet" type="text/css">
     <link href="/css-hamburgers/hamburgers.min.css" rel="stylesheet" type="text/css">
     <link href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/pages/admin/leavetypes/leavetypes.css">
+    </select>
+    <link rel="stylesheet" href="/pages/admin/checkleaves/checkleaves.css">
 </head>
 
 <body>
@@ -112,59 +115,45 @@
                         <div class="col-md-5 col-sm-5 col-xs-5">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">请假类型</h4>
+                                    <h4 class="card-title">请假申请</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div class="scrollable" style="height: 280px;">
+                                    <div class="scrollable" style="height: 330px;">
                                         <div class="list1-group row">
                                             <a href="#"
                                                 class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
+                                                    class="fa fa-book" aria-hidden="true"
+                                                    style="float:left; margin-top:10px;"></i>请假申请1</a>
                                             <a href="#"
                                                 class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
+                                                    class="fa fa-book" aria-hidden="true"
+                                                    style="float:left; margin-top:10px;"></i>请假申请1</a>
                                             <a href="#"
                                                 class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
+                                                    class="fa fa-book" aria-hidden="true"
+                                                    style="float:left; margin-top:10px;"></i>请假申请1</a>
                                             <a href="#"
                                                 class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
+                                                    class="fa fa-book" aria-hidden="true"
+                                                    style="float:left; margin-top:10px;"></i>请假申请1</a>
                                             <a href="#"
                                                 class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
+                                                    class="fa fa-book" aria-hidden="true"
+                                                    style="float:left; margin-top:10px;"></i>请假申请1</a>
                                             <a href="#"
                                                 class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
+                                                    class="fa fa-book" aria-hidden="true"
+                                                    style="float:left; margin-top:10px;"></i>请假申请1</a>
                                             <a href="#"
                                                 class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
+                                                    class="fa fa-book" aria-hidden="true"
+                                                    style="float:left; margin-top:10px;"></i>请假申请1</a>
                                             <a href="#"
                                                 class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-                                            <a href="#"
-                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
-                                                    class="fa fa-bars" aria-hidden="true"
-                                                    style="float:left; margin-top:10px;"></i>部门1</a>
-
+                                                    class="fa fa-book" aria-hidden="true"
+                                                    style="float:left; margin-top:10px;"></i>请假申请1</a>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="add-apply">
-                                    <a href="#" data-toggle="tooltip" data-placement="right" title="添加员工">
-                                        <div class="fa fa-plus" aria-hidden="true"></div>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -173,47 +162,85 @@
                         <div class="col-md-7 col-sm-7 col-xs-7">
                             <div class="card">
                                 <div class="card-header row">
-                                    <h4 class="card-title col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">类型信息</h4>
-                                    <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-                                        <div class="delete">
-                                            <a href="#" data-toggle="tooltip" data-placement="right" title="删除此员工">
-                                                <i class="fa fa-trash fa-lg delete-icon"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <h4 class="card-title col-md-12 col-sm-12 col-xs-12">请假信息</h4>
                                 </div>
                                 <div class="scrollable" style="height: 280px;">
                                     <!-- 姓名 -->
                                     <div class="form-group row">
-                                        <!-- 修改部门信息 -->
-                                        <div class="department-edit" style="display:none;">
-                                            <label for="name"
-                                                class="col-md-3 col-sm-3 col-xs-3 col-form-label">名称</label>
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" class="form-control" id="name" placeholder="请输入请假类型">
-                                            </div>
-                                        </div>
+                                        <!-- 查看请假信息 -->
+                                        <div class="leave-show row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <label for="name"
+                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">编号</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-control" id="name"></div>
+                                                </div>
 
-                                        <!-- 查看部门信息 -->
-                                        <div class="department-show">
-                                            <label for="name"
-                                                class="col-md-6 col-sm-6 col-xs-6 col-form-label">名称</label>
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="name"></div>
+                                                <label for="phone"
+                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">姓名</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-control" id="phone"></div>
+                                                </div>
+
+                                                <label for="department"
+                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">工号</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-control" id="department"></div>
+                                                </div>
+
+                                                <label for="department"
+                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">理由</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-control" id="department"></div>
+                                                </div>
                                             </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <label for="name"
+                                                    class="col-md-5 col-sm-5 col-xs-5 col-form-label"">开始时间</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-control" id="name"></div>
+                                                </div>
+
+                                                <label for="phone"
+                                                    class="col-md-5 col-sm-5 col-xs-5 col-form-label">结束时间</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-control" id="phone"></div>
+                                                </div>
+
+                                                <label for="department"
+                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">类型</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-control" id="department"></div>
+                                                </div>
+
+                                                <label for="department"
+                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">状态</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-control" id="department"></div>
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                     </div>
                                 </div>
-                                <div id="save-apply" style="display:none;">
-                                    <a href="#" data-toggle="tooltip" data-placement="right" title="保存修改">
-                                        <div class="fa fa fa-floppy-o" aria-hidden="true"></div>
-                                    </a>
-                                </div>
-                                <div id="edit-apply">
-                                    <a href="#" data-toggle="tooltip" data-placement="right" title="修改信息">
-                                        <div class="fa fa fa-pencil" aria-hidden="true"></div>
-                                    </a>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-3"></div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <div id="leave-approve">
+                                            <a href="#" data-toggle="tooltip" data-placement="right" title="保存修改">
+                                                <div class="fa fa fa-check" aria-hidden="true"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <div id="leave-refuse">
+                                            <a href="#" data-toggle="tooltip" data-placement="right" title="修改信息">
+                                                <div class="fa fa fa-times" aria-hidden="true"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3"></div>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +252,7 @@
     </div>
     <!-- jquery -->
     <script src="/jquery/jquery-3.2.1.min.js"></script>
-    <script src="/pages/admin/leavetypes/leavetypes.js"></script>
+    <script src="/pages/admin/checkleaves/checkleaves.js"></script>
     <!-- Bootstrap -->
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/bootstrap/js/popper.js"></script>
