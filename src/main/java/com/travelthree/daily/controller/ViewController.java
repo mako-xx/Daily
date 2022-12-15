@@ -41,4 +41,12 @@ public class ViewController {
     public String test6() {
         return "admin/leavetypes";
     }
+
+    @GetMapping("/test7")
+    public String test7() {
+        return "admin/checkins";
+    }
+
+    @GetMapping("/test8")
+    public String test8() { return "admin/checkleaves";}
 }

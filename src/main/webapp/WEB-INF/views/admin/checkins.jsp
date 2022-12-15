@@ -26,7 +26,7 @@
                     <p>员工</p>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 row">
-                    <img src="./image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
+                    <img src="/image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
                     <p class="col-md-12 col-sm-12 col-xs-12 name">Mako</p>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
@@ -48,8 +48,8 @@
                                     class="fa fa-fw fa-book my-list-group-icon"></i>请 假
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#"><i class="fa fa-fw fa-sitemap my-list-group-icon"></i>请假审批</a></li>
-                                <li><a href="#"><i class="fa fa-fw fa-check my-list-group-icon"></i>请假类型</a></li>
+                                <li><a href="#"><i class="fa fa-fw fa-sitemap my-list-group-icon"></i>请假类型</a></li>
+                                <li><a href="#"><i class="fa fa-fw fa-check my-list-group-icon"></i>请假审批</a></li>
                             </ul>
                         </li>
                     </ul>
