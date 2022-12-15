@@ -14,6 +14,7 @@ import com.travelthree.daily.utils.PageTransformUtil;
 import com.travelthree.daily.vo.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ import java.util.List;
 @Validated
 @Controller
 @RequestMapping("/api/admin")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
 
     @Autowired
@@ -56,21 +58,19 @@ public class AdminController {
     public PageInfo queryEmployee(@Valid PageParam pageParam) {
         PageInfo pageInfo = employeeService.queryEmployeeByPage(pageParam);
         pageInfo.setPageSize(pageParam.getPageSize());
-        //接下来将查询来的部门id转化为部门名称，联表查询彻底失败，我是菜逼
         //取出pageInfo里面的List<Employee>
         List<Employee> employees1 = pageInfo.getList();
         //初始化接口要求的视图对象集合
         List<EmployeeVo> employeeVos = new LinkedList<>();
-        //菜逼的for循环赋值环节
-        for(int tmp = 0; tmp < employees1.size(); tmp++) {
+        for (Employee employee : employees1) {
             //每次都创建新的视图对象
             EmployeeVo employeeVo = new EmployeeVo();
             //拷贝属性
-            BeanUtils.copyProperties(employees1.get(tmp), employeeVo);
+            BeanUtils.copyProperties(employee, employeeVo);
             //变更role的类型后拷贝
-            employeeVo.setRole(RoleEnum.getRoleFromOrdinal(employees1.get(tmp).getRole()));
+            employeeVo.setRole(RoleEnum.getRoleFromOrdinal(employee.getRole()));
             //通过employee的部门ID调用部门服务类查询部门名称并赋值
-            String tmpDepartmentId = employees1.get(tmp).getDepartmentId();
+            String tmpDepartmentId = employee.getDepartmentId();
             Department department = departmentService.selectByPrimaryKey(tmpDepartmentId);
             employeeVo.setDepartment(department.getName());
             //在集合中添加
@@ -153,17 +153,16 @@ public class AdminController {
         List<Attendance> attendances = pageInfo.getList();
         //初始化接口要求的视图对象集合
         List<AttendanceVo> attendanceVos= new LinkedList<>();
-        //菜逼的for循环赋值环节
-        for(int tmp = 0; tmp < attendances.size(); tmp++) {
+        for (Attendance attendance : attendances) {
             //每次都创建新的视图对象
             AttendanceVo attendanceVo = new AttendanceVo();
             //拷贝属性
-            BeanUtils.copyProperties(attendances.get(tmp), attendanceVo);
+            BeanUtils.copyProperties(attendance, attendanceVo);
             //变更Status和LocalDate的类型后拷贝
-            attendanceVo.setStatus(attendances.get(tmp).getStatus().toString());
-            attendanceVo.setDate(attendances.get(tmp).getDate().toString());
+            attendanceVo.setStatus(attendance.getStatus().toString());
+            attendanceVo.setDate(attendance.getDate().toString());
             //通过Attendance的员工ID调用员工服务类查询员工名称并赋值
-            String employeeId = attendances.get(tmp).getEmployeeId();
+            String employeeId = attendance.getEmployeeId();
             EmployeeDTO employeeDTO = employeeService.getEmployeeById(employeeId);
             attendanceVo.setEmployeeName(employeeDTO.getName());
             //在集合中添加
@@ -190,12 +189,6 @@ public class AdminController {
             leave.setStatus(LeaveCheckStatus.APPROVE.ordinal());
             leaveService.updateLeaveStatus(leave);
             return CommonResult.success();
-//            //找到请假员工id
-//            String employeeID = leave.getEmployeeId();
-//            //找到请假员工的出勤信息
-//            Attendance attendance = attendanceService.getByEmployeeId(employeeID);
-//            //更改员工考勤为请假
-//            attendance.setStatus(2);
         }
         if(param.getStatus().toString().equals(LeaveCheckStatus.REFUSE.toString())) {
             //判定是否需要修改
@@ -226,21 +219,17 @@ public class AdminController {
             List<Leave> leaves = pageInfo.getList();
             //初始化接口要求的视图对象集合
             List<LeaveRequestVo> leaveRequestVos= new LinkedList<>();
-            //菜逼的for循环赋值环节
-            for(int tmp = 0; tmp < leaves.size(); tmp++) {
+            for (Leave leaf : leaves) {
                 //每次都创建新的视图对象
                 LeaveRequestVo leaveRequestVo = new LeaveRequestVo();
                 //拷贝属性
-                BeanUtils.copyProperties(leaves.get(tmp), leaveRequestVo);
-//                //变更日期类型后拷贝
-//                leaveRequestVo.setStartDate(leaves.get(tmp).getStartdate().toString());
-//                leaveRequestVo.setEndDate(leaves.get(tmp).getEnddate().toString());
+                BeanUtils.copyProperties(leaf, leaveRequestVo);
                 //通过leave的员工ID调用员工服务类查询员工名称并赋值
-                String employeeId = leaves.get(tmp).getEmployeeId();
+                String employeeId = leaf.getEmployeeId();
                 EmployeeDTO employeeDTO = employeeService.getEmployeeById(employeeId);
                 leaveRequestVo.setName(employeeDTO.getName());
                 //将typeId转换为type后赋值
-                leaveRequestVo.setType(leaveTypeService.selectById(leaves.get(tmp).getTypeId()).getName());
+                leaveRequestVo.setType(leaveTypeService.selectById(leaf.getTypeId()).getName());
                 //将status装换后赋值
                 leaveRequestVo.setStatus(leaveType.toString());
                 //在集合中添加
