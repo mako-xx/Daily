@@ -1,4 +1,5 @@
 package com.travelthree.daily.mapper;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public interface AttendanceMapper {
 
     List<Attendance> selectAllByEmployeeId(String id);
 
-    List<Attendance> selectByDate(AttendanceParam attendanceParam);
+    List<Attendance> selectByDate(LocalDate startDate, LocalDate endDate);
 
     int updateByPrimaryKeySelective(Attendance record);
 

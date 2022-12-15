@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 @SpringBootTest
 @Import(BCryptPasswordEncoder.class)
 class DailyApplicationTests {
@@ -14,9 +17,17 @@ class DailyApplicationTests {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    private Executor executor = Executors.newSingleThreadExecutor();
+
     @Test
     void contextLoads() {
-        System.out.println(passwordEncoder.encode("123456"));
+        executor.execute(() -> {
+            try {
+                throw new Exception();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
 }
