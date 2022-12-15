@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -129,22 +130,31 @@
                                 <div class="form-group">
                                     <label>选择部门</label>
                                     <div class="card-lists row">
-                                        <div class="card col-md-3 clickable">
-                                            <img src="/image/department1.png" class="card-img img-circle" alt="部门1">
-                                            <p>部门1</p>
-                                        </div>
-                                        <div class="card col-md-3 clickable">
-                                            <img src="/image/department2.png" class="card-img img-circle" alt="部门2">
-                                            <p>部门2</p>
-                                        </div>
-                                        <div class="card col-md-3 clickable">
-                                            <img src="/image/department3.png" class="card-img img-circle" alt="部门3">
-                                            <p>部门3</p>
-                                        </div>
-                                        <div class="card col-md-3 clickable">
-                                            <img src="/image/department4.png" class="card-img img-circle" alt="部门4">
-                                            <p>部门4</p>
-                                        </div>
+                                        <jsp:useBean id="map" class="java.util.HashMap" scope="request" />
+                                        <c:set target="${map}" property="/image/department1.png" value="部门1" />
+                                        <c:set target="${map}" property="/image/department2.png" value="部门2" />
+                                        <c:forEach var="item" items="${map}">
+                                            <div class="card col-md-3 clickable">
+                                                <img src="${item.key}" class="card-img img-circle" alt="${item.value}">
+                                                <p>${item.value}</p>
+                                            </div>
+                                        </c:forEach>
+<%--                                        <div class="card col-md-3 clickable">--%>
+<%--                                            <img src="/image/department1.png" class="card-img img-circle" alt="部门1">--%>
+<%--                                            <p>部门1</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="card col-md-3 clickable">--%>
+<%--                                            <img src="/image/department2.png" class="card-img img-circle" alt="部门2">--%>
+<%--                                            <p>部门2</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="card col-md-3 clickable">--%>
+<%--                                            <img src="/image/department3.png" class="card-img img-circle" alt="部门3">--%>
+<%--                                            <p>部门3</p>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="card col-md-3 clickable">--%>
+<%--                                            <img src="/image/department4.png" class="card-img img-circle" alt="部门4">--%>
+<%--                                            <p>部门4</p>--%>
+<%--                                        </div>--%>
                                     </div>
                                 </div>
                             </form>
