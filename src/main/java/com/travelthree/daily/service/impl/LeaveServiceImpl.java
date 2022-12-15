@@ -1,21 +1,27 @@
 package com.travelthree.daily.service.impl;
 
+import cn.hutool.core.lang.UUID;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.travelthree.daily.domain.Leave;
-import com.travelthree.daily.dto.PageParam;
-import com.travelthree.daily.mapper.LeaveMapper;
-import cn.hutool.core.lang.UUID;
+import com.travelthree.daily.constant.LeaveCheckStatus;
 import com.travelthree.daily.constant.ResultCodeEnum;
+import com.travelthree.daily.domain.Employee;
+import com.travelthree.daily.domain.Leave;
 import com.travelthree.daily.dto.AskForLeaveParam;
+import com.travelthree.daily.dto.PageParam;
 import com.travelthree.daily.exception.BusinessException;
+import com.travelthree.daily.mapper.EmployeeMapper;
+import com.travelthree.daily.mapper.LeaveMapper;
+import com.travelthree.daily.mapper.LeaveTypeMapper;
 import com.travelthree.daily.service.LeaveService;
+import com.travelthree.daily.vo.LeaveVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 import java.sql.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
 * @author faust
@@ -28,6 +34,12 @@ public class LeaveServiceImpl implements LeaveService {
     @Autowired
     private LeaveMapper leaveMapper;
 
+    @Autowired
+    private EmployeeMapper employeeMapper;
+
+    @Autowired
+    private LeaveTypeMapper leaveTypeMapper;
+
     @Override
     public Leave getById(String id) {
         return leaveMapper.selectByPrimaryKey(id);
@@ -39,12 +51,34 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public PageInfo queryLeave(PageParam pageParam, Integer status) {
+    public PageInfo<LeaveVo> queryLeave(PageParam pageParam, LeaveCheckStatus status) {
         PageHelper.startPage(pageParam.getPage(), pageParam.getPageSize());
-        List<Leave> leaves = leaveMapper.queryLeave(status);
-        PageInfo pageInfo = new PageInfo(leaves);
-        pageInfo.setPageSize(pageParam.getPageSize());
-        return pageInfo;
+        List<Leave> leaveList = leaveMapper.queryLeave(status.ordinal());
+        PageInfo<Leave> pageInfo = new PageInfo<>(leaveList);
+        //取出pageInfo里面的List<Leave>
+        List<Leave> leaves = pageInfo.getList();
+        //初始化接口要求的视图对象集合
+        List<LeaveVo> leaveRequestVos= new LinkedList<>();
+        for (Leave leaf : leaves) {
+            //每次都创建新的视图对象
+            LeaveVo leaveRequestVo = new LeaveVo();
+            //拷贝属性
+            BeanUtils.copyProperties(leaf, leaveRequestVo);
+            //通过leave的员工ID调用员工服务类查询员工名称并赋值
+            String employeeId = leaf.getEmployeeId();
+            Employee employee = employeeMapper.selectByPrimaryKey(employeeId);
+            leaveRequestVo.setName(employee.getName());
+            //将typeId转换为type后赋值
+            leaveRequestVo.setType(leaveTypeMapper.selectByPrimaryKey(leaf.getTypeId()).getName());
+            //将status装换后赋值
+            leaveRequestVo.setStatus(status.toString());
+            //在集合中添加
+            leaveRequestVos.add(leaveRequestVo);
+        }
+        PageInfo<LeaveVo> page = new PageInfo<>(leaveRequestVos);
+        BeanUtils.copyProperties(pageInfo, page);
+        page.setList(leaveRequestVos);
+        return page;
     }
 
     public List<Leave> getLeavesByEmployeeId(String employeeId) {

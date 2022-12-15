@@ -208,7 +208,7 @@ public class AdminController {
     @GetMapping("/leave")
     @ResponseBody
     public PageInfo getLeaveRequest(@Valid PageParam pageParam, LeaveCheckStatus leaveType) {
-            PageInfo pageInfo = leaveService.queryLeave(pageParam, leaveType.ordinal());
+            PageInfo pageInfo = leaveService.queryLeave(pageParam, leaveType);
             if(pageParam.getPage() != null) {
                 pageInfo.setPageNum(pageParam.getPage());
             }
@@ -218,10 +218,10 @@ public class AdminController {
             //取出pageInfo里面的List<Leave>
             List<Leave> leaves = pageInfo.getList();
             //初始化接口要求的视图对象集合
-            List<LeaveRequestVo> leaveRequestVos= new LinkedList<>();
+            List<LeaveVo> leaveRequestVos= new LinkedList<>();
             for (Leave leaf : leaves) {
                 //每次都创建新的视图对象
-                LeaveRequestVo leaveRequestVo = new LeaveRequestVo();
+                LeaveVo leaveRequestVo = new LeaveVo();
                 //拷贝属性
                 BeanUtils.copyProperties(leaf, leaveRequestVo);
                 //通过leave的员工ID调用员工服务类查询员工名称并赋值

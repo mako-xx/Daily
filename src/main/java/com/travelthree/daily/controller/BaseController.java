@@ -21,13 +21,18 @@ import javax.validation.Valid;
  * @description
  */
 @Controller
-@RequestMapping("/api")
+@RequestMapping
 public class BaseController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @PostMapping("/login")
+    @GetMapping({"", "/index", "/login"})
+    public String login() {
+        return "index";
+    }
+
+    @PostMapping("/api/login")
     @ResponseBody
     public CommonResult login(@RequestBody @Valid LoginParam param, HttpServletRequest request, HttpServletResponse response) {
         TaleUtil.logout(request, response);
@@ -39,7 +44,7 @@ public class BaseController {
         return CommonResult.success();
     }
 
-    @PostMapping("/logout")
+    @PostMapping("/api/logout")
     @ResponseBody
     public CommonResult logout(HttpServletRequest request, HttpServletResponse response) {
 

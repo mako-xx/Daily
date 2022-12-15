@@ -16,6 +16,7 @@ import com.travelthree.daily.mapper.AttendanceMapper;
 import com.travelthree.daily.mapper.DepartmentMapper;
 import com.travelthree.daily.mapper.EmployeeMapper;
 import com.travelthree.daily.service.EmployeeService;
+import com.travelthree.daily.vo.EmployeeVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -136,12 +138,33 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public PageInfo queryEmployeeByPage(PageParam pageParam){
+    public PageInfo<EmployeeVo> queryEmployeeByPage(PageParam pageParam){
         PageHelper.startPage(pageParam.getPage(), pageParam.getPageSize());
-        List<Employee> employees = employeeMapper.queryEmployeeByPage();
-        PageInfo pageInfo = new PageInfo(employees);
-        pageInfo.setPageSize(pageParam.getPageSize());
-        return pageInfo;
+        List<Employee> employeeList = employeeMapper.queryEmployeeByPage();
+        PageInfo<Employee> pageInfo = new PageInfo<>(employeeList);
+        //取出pageInfo里面的List<Employee>
+        List<Employee> employees = pageInfo.getList();
+        //初始化接口要求的视图对象集合
+        List<EmployeeVo> employeeVos = new LinkedList<>();
+        for (Employee employee : employees) {
+            //每次都创建新的视图对象
+            EmployeeVo employeeVo = new EmployeeVo();
+            //拷贝属性
+            BeanUtils.copyProperties(employee, employeeVo);
+            //变更role的类型后拷贝
+            employeeVo.setRole(RoleEnum.getRoleFromOrdinal(employee.getRole()));
+            //通过employee的部门ID调用部门服务类查询部门名称并赋值
+            String tmpDepartmentId = employee.getDepartmentId();
+            Department department = departmentMapper.selectByPrimaryKey(tmpDepartmentId);
+            employeeVo.setDepartment(department.getName());
+            //在集合中添加
+            employeeVos.add(employeeVo);
+        }
+        //将集合赋回pageInfo
+        PageInfo<EmployeeVo> page = new PageInfo<>();
+        BeanUtils.copyProperties(pageInfo, page);
+        page.setList(employeeVos);
+        return page;
     }
 
     @Override

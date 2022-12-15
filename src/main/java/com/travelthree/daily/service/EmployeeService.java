@@ -3,6 +3,7 @@ package com.travelthree.daily.service;
 import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.domain.Employee;
 import com.travelthree.daily.dto.*;
+import com.travelthree.daily.vo.EmployeeVo;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ public interface EmployeeService {
      * @param pageParam
      * @return
      */
-    PageInfo queryEmployeeByPage(PageParam pageParam);
+    PageInfo<EmployeeVo> queryEmployeeByPage(PageParam pageParam);
 
     /**
      * 根据id删除用户
