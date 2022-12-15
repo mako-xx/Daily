@@ -19,5 +19,5 @@ public class PageParam {
     /** 每页数据量 */
     @NotNull
     @Min(value = 1)
-    private Integer pageSize = 20;
+    private Integer pageSize = 5;
 }
