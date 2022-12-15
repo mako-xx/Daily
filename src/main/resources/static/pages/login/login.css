@@ -47,6 +47,57 @@ input:focus {
     border-color: transparent !important;
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #dddddd;
+    color: white;
+    text-align: center;
+}
+
+.footer .social-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.footer .btn-social {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.footer .btn-social:hover {
+    background: white;
+}
+
+.footer .fa-github {
+    color :#fff;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.footer .fa-github:hover {
+    color :#000;
+}
+
+.footer .fa-user-circle {
+    color :#fff;
+    font-size: 25px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.footer .fa-user-circle:hover {
+    color :#000;
+}
+
 .container {
     max-width: 1000px;
     margin: 0 auto;
