@@ -1,0 +1,282 @@
+/* Path: login.css */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+p {
+    color: rgb(87, 87, 87);
+    font-size: 14px;
+}
+
+body {
+    height: 100%;
+    background-color: rgb(87, 87, 87);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    font-family: Microsoft YaHei;
+}
+
+ul,
+li {
+    margin: 0px;
+    list-style-type: none;
+    color: rgb(255, 255, 255, 0.8)
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+textarea {
+    outline: none;
+    border: none;
+}
+
+textarea:focus,
+input:focus {
+    border-color: transparent !important;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.dot li {
+    width: 10px;
+    height: 5px;
+    border: 1px solid transparent;
+    background-color: #717171;
+    border-radius: 2px;
+}
+
+.dot .active {
+
+    background-color: rgb(255, 255, 255, 0.7);
+
+}
+
+.card-left {
+    background: black;
+    padding: 20px;
+    /* 左上和左下圆角 */
+    border-radius: 10px 0 0 10px;
+}
+
+.card-right {
+    background: rgb(255, 255, 255, 0.95);
+    /* 右上和右下圆角 */
+    border-radius: 0 10px 10px 0;
+    height: 640px;
+    padding: 50px;
+}
+
+.title {
+    line-height: 80px;
+    font-size: xx-large;
+}
+
+.project_logo {
+    width: 200px;
+    height: 200px;
+}
+
+.head {
+    border-radius: 50%;
+    margin-top: 40px;
+    padding: 10px;
+    width: 90px;
+    height: 90px;
+}
+
+#email {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .15);
+    padding-left: 1em;
+    width: 15em;
+    height: 2em;
+    font-size: small;
+}
+
+#message {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .15);
+    padding-left: 1em;
+    width: 15em;
+    height: 3em;
+    vertical-align: middle;
+    font-size: small;
+}
+
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.links-and-contact {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.item {
+    width: 100%;
+    height: 600px;
+}
+
+.bg1 {
+    background: url("./image/code.png") no-repeat center fixed;
+    background-size: cover;
+}
+
+.bg2 {
+    background: url("./image/github.png") no-repeat center fixed;
+    background-size: cover;
+}
+
+.bg3 {
+    background: url("./image/head.jpg") no-repeat center fixed;
+    background-size: cover;
+}
+
+.login {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.login-border {
+    flex: 1;
+    margin: 30px auto;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.wrap-input {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+
+.input {
+    font-size: 16px;
+    font-family: Microsoft YaHei;
+    line-height: 1.5;
+    color: #666666;
+    display: block;
+    width: 100%;
+    background: rgb(255, 255, 255, 0);
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px 0 68px;
+    border-color: transparent;
+
+}
+
+.focus-input {
+    display: block;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 0px 0px;
+    color: #96B4D6
+}
+
+.symbol-input {
+    font-size: 16px;
+    font-family: Microsoft YaHei;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 35px;
+    pointer-events: none;
+    color: #666666;
+    transition: all 0.4s;
+}
+
+.input:focus+.focus-input+.symbol-input {
+    color: #175986;
+    padding-left: 28px;
+}
+
+.container-login-form-btn {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+    margin: 0 auto;
+    margin-left: 20%;
+    margin-right: 20%;
+
+}
+
+#login-form-btn {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #fff;
+    text-transform: uppercase;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background: #d7ccbe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    transition: all 0.4s;
+    border-color: transparent;
+}
+
+.login-form-btn:hover {
+    background: #333333;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 992px) {
+
+    .card-left {
+        display: none !important;
+    }
+
+    .card-right {
+        border-radius: 10px 10px 10px 10px;
+    }
+}

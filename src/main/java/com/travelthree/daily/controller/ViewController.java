@@ -12,9 +12,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/view")
 public class ViewController {
-
-    @GetMapping("/test")
+    @GetMapping("/test1")
     public String test() {
         return "index";
+    }
+
+    @GetMapping("/test2")
+    public String test2() {
+        return "employee/checkin";
+    }
+
+    @GetMapping("/test3")
+    public String test3() {
+        return "employee/leave";
+    }
+
+    @GetMapping("/test4")
+    public String test4() {
+        return "admin/employees";
+    }
+
+    @GetMapping("/test5")
+    public String test5() {
+        return "admin/departments";
+    }
+
+    @GetMapping("/test6")
+    public String test6() {
+        return "admin/leavetypes";
     }
 }
