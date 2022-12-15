@@ -30,11 +30,10 @@ public class RetryAspect {
                 try {
                     return joinPoint.proceed();
                 } catch (BusinessException e) {
-                    log.info("重试操作出现业务异常，{}", e.getMessage());
+                    throw e;
                 } catch (Throwable e) {
                     throw new Exception(e);
                 }
-                return null;
             }
         };
         retryTemplate.setRetryCount(retry.count());

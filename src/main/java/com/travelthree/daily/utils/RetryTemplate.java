@@ -1,5 +1,6 @@
 package com.travelthree.daily.utils;
 
+import com.travelthree.daily.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutorService;
@@ -45,6 +46,9 @@ public abstract class RetryTemplate {
         for (int i = 0; i < retryCount; i++) {
             try {
                 return task();
+            } catch (BusinessException e) {
+                log.info("重试出现业务异常，退出重试，错误原因：{}", e.getMessage());
+                return null;
             } catch (Exception e) {
                 Thread.sleep(interval);
             }

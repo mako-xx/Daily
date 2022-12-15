@@ -1,7 +1,6 @@
 package com.travelthree.daily.cron;
 
 import com.travelthree.daily.aspect.Retry;
-import com.travelthree.daily.exception.BusinessException;
 import com.travelthree.daily.service.AttendanceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +20,10 @@ public class AttendanceSchedule {
 
     private AtomicBoolean enabled = new AtomicBoolean(false);
 
-    private Executor executor = Executors.newSingleThreadExecutor();
-
     /**
      * 每天早上8点定时开启考勤
      * */
-    @Scheduled(cron = "0 0 8 * * * ")
+    @Scheduled(cron = "0/10 * * * * * ")
     @Retry(async = true)
     public void openAttendance() {
         if (enabled.get()) {
