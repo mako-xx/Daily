@@ -7,7 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Bootstrap -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/css-hamburgers/hamburgers.min.css" rel="stylesheet" type="text/css">
     <link href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/pages/login/login.css">
 </head>
@@ -42,7 +41,7 @@
         <!--右侧-->
         <div class="col-md-6 col-sm-12 col-xs-12 text-center" style="margin-top: 8%;">
             <div class="card-right row">
-                <img src="/image/head.jpg" class="head" />
+                <img src="/image/head.jpg" class="head"/>
                 <h2>Hello Again!</h2>
                 <form class="login-form validate-form">
                     <div class="login-border">
@@ -73,6 +72,25 @@
             </div>
         </div>
     </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="social-area pull-right">
+
+                <div class="btn-social  btn-pinterest btn-simple">
+                    <a href="https://github.com/mako-xx/Daily" data-toggle="tooltip" data-placement="left" title="项目地址">
+                        <div class="fa fa-github"></div>
+                    </a>
+                </div>
+                <div class="btn-social  btn-pinterest btn-simple">
+                    <a href="https://faustpromaxpx.github.io" data-toggle="tooltip" data-placement="left" title="开发者个人网站">
+                        <div class="fa fa-user-circle"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </div>
 <!-- jquery -->
 <script src="/jquery/jquery-3.2.1.min.js"></script>

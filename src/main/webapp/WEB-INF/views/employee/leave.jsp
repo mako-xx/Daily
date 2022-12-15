@@ -7,7 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Bootstrap -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/css-hamburgers/hamburgers.min.css" rel="stylesheet" type="text/css">
     <link href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/pages/employee/leave/leave.css">
 </head>
@@ -22,6 +21,7 @@
                 <div class="card-left row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <i class="fa fa-dot-circle-o fa-2x icon" aria-hidden="true"></i>
+                        <p>Welcome</p>
                         <p>员工</p>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 row">
@@ -31,11 +31,11 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
                         <ul class="nav sidebar-nav" style="margin:0 auto;">
                             <li>
-                                <a class="list-group-item" href="#"><i
+                                <a class="list-group-item" href="/view/test2"><i
                                         class="fa fa-fw fa-id-card-o my-list-group-icon"></i>考 勤</a>
                             </li>
                             <li>
-                                <a class="list-group-item" href="#"><i
+                                <a class="list-group-item" href="/view/test3"><i
                                         class="fa fa-fw fa-book my-list-group-icon"></i>请 假</a>
                             </li>
                         </ul>
@@ -265,6 +265,25 @@
             </div>
         </div>
     </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="social-area pull-right">
+
+                    <div class="btn-social  btn-pinterest btn-simple">
+                        <a href="https://github.com/mako-xx/Daily" data-toggle="tooltip" data-placement="left" title="项目地址">
+                            <div class="fa fa-github"></div>
+                        </a>
+                    </div>
+                    <div class="btn-social  btn-pinterest btn-simple">
+                        <a href="https://faustpromaxpx.github.io" data-toggle="tooltip" data-placement="left" title="开发者个人网站">
+                            <div class="fa fa-user-circle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </div>
     <!-- jquery -->
     <script src="/jquery/jquery-3.2.1.min.js"></script>

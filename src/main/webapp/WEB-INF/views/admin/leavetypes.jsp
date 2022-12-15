@@ -7,7 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Bootstrap -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/css-hamburgers/hamburgers.min.css" rel="stylesheet" type="text/css">
     <link href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/pages/admin/leavetypes/leavetypes.css">
 </head>
@@ -22,7 +21,8 @@
                 <div class="card-left row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <i class="fa fa-dot-circle-o fa-2x icon" aria-hidden="true"></i>
-                        <p>员工</p>
+                        <p>Welcome</p>
+                        <p>管理员</p>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 row">
                         <img src="/image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
@@ -31,15 +31,15 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
                         <ul class="nav sidebar-nav" style="margin:0 auto;">
                             <li>
-                                <a class="list-group-item" href="#"><i
+                                <a class="list-group-item" href="/view/test4"><i
                                         class="fa fa-fw fa-address-book my-list-group-icon"></i>员 工</a>
                             </li>
                             <li>
-                                <a class="list-group-item" href="#"><i
+                                <a class="list-group-item" href="/view/test5"><i
                                         class="fa fa-fw fa-handshake-o my-list-group-icon"></i>部 门</a>
                             </li>
                             <li>
-                                <a class="list-group-item" href="#"><i
+                                <a class="list-group-item" href="/view/test7"><i
                                         class="fa fa-fw fa-id-card-o my-list-group-icon"></i>考 勤</a>
                             </li>
                             <li class="dropdown">
@@ -47,8 +47,8 @@
                                         class="fa fa-fw fa-book my-list-group-icon"></i>请 假
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#"><i class="fa fa-fw fa-sitemap my-list-group-icon"></i>请假类型</a></li>
-                                    <li><a href="#"><i class="fa fa-fw fa-check my-list-group-icon"></i>请假审批</a></li>
+                                    <li><a href="/view/test6"><i class="fa fa-fw fa-sitemap my-list-group-icon"></i>请假类型</a></li>
+                                    <li><a href="/view/test8"><i class="fa fa-fw fa-check my-list-group-icon"></i>请假审批</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -222,6 +222,25 @@
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="social-area pull-right">
+
+                    <div class="btn-social  btn-pinterest btn-simple">
+                        <a href="https://github.com/mako-xx/Daily" data-toggle="tooltip" data-placement="left" title="项目地址">
+                            <div class="fa fa-github"></div>
+                        </a>
+                    </div>
+                    <div class="btn-social  btn-pinterest btn-simple">
+                        <a href="https://faustpromaxpx.github.io" data-toggle="tooltip" data-placement="left" title="开发者个人网站">
+                            <div class="fa fa-user-circle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </div>
     <!-- jquery -->
     <script src="/jquery/jquery-3.2.1.min.js"></script>
