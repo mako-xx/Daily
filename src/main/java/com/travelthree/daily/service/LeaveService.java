@@ -1,15 +1,13 @@
 package com.travelthree.daily.service;
 
 import com.github.pagehelper.PageInfo;
-import com.travelthree.daily.domain.Leave;
-import com.travelthree.daily.dto.PageParam;
-
-import java.util.List;
-
-import com.github.pagehelper.PageInfo;
+import com.travelthree.daily.constant.LeaveCheckStatus;
 import com.travelthree.daily.domain.Leave;
 import com.travelthree.daily.dto.AskForLeaveParam;
 import com.travelthree.daily.dto.PageParam;
+import com.travelthree.daily.vo.LeaveVo;
+
+import java.util.List;
 
 
 /**
@@ -23,7 +21,7 @@ public interface LeaveService {
 
     void updateLeaveStatus(Leave leave);
 
-    PageInfo queryLeave(PageParam pageParam, Integer status);
+    PageInfo<LeaveVo> queryLeave(PageParam pageParam, LeaveCheckStatus status);
 
     List<Leave> getLeavesByEmployeeId(String employeeId);
 
