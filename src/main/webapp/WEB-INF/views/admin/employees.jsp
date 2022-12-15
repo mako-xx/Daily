@@ -9,7 +9,6 @@
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/css-hamburgers/hamburgers.min.css" rel="stylesheet" type="text/css">
     <link href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    </select>
     <link rel="stylesheet" href="/pages/admin/employees/employees.css">
 </head>
 
@@ -26,7 +25,7 @@
                         <p>员工</p>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 row">
-                        <img src="./image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
+                        <img src="/image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
                         <p class="col-md-12 col-sm-12 col-xs-12 name">Mako</p>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
@@ -169,8 +168,8 @@
                         <div class="col-md-7 col-sm-7 col-xs-7">
                             <div class="card">
                                 <div class="card-header row">
-                                    <h4 class="card-title col-md-4 col-sm-4 col-xs-4 col-md-offset-4">员工信息</h4>
-                                    <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-2">
+                                    <h4 class="card-title col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">员工信息</h4>
+                                    <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-22">
                                         <div class="delete">
                                             <a href="#" data-toggle="tooltip" data-placement="right" title="删除此员工">
                                                 <i class="fa fa-trash fa-lg delete-icon"></i>

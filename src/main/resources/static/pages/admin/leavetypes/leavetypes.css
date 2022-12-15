@@ -11,6 +11,7 @@ p {
 }
 
 body {
+    min-width: 800px;
     height: 100%;
     background-color: rgb(147, 147, 145);
     background-repeat: no-repeat;
@@ -694,6 +695,10 @@ hr {
         display: none !important;
     }
 
+    .sidebar {
+        display: none !important;
+    }
+
     #toggle-sidebar {
         display: none !important;
     }
@@ -705,11 +710,5 @@ hr {
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
         flex: 1;
         width: 100%;
-    }
-}
-
-@media (min-width: 800px) {
-    body {
-        min-width: 800px;
     }
 }

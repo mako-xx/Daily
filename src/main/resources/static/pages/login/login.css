@@ -140,17 +140,17 @@ input:focus {
 }
 
 .bg1 {
-    background: url("./image/code.png") no-repeat center fixed;
+    background: url("/image/code.png") no-repeat center fixed;
     background-size: cover;
 }
 
 .bg2 {
-    background: url("./image/github.png") no-repeat center fixed;
+    background: url("/image/github.png") no-repeat center fixed;
     background-size: cover;
 }
 
 .bg3 {
-    background: url("./image/head.jpg") no-repeat center fixed;
+    background: url("/image/head.jpg") no-repeat center fixed;
     background-size: cover;
 }
 
@@ -260,7 +260,7 @@ input:focus {
     border-color: transparent;
 }
 
-.login-form-btn:hover {
+#login-form-btn:hover {
     background: #333333;
 }
 
