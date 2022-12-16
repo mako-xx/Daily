@@ -16,11 +16,6 @@ $(document).ready(function () {
     $(this).addClass("choosen");
   });
 
-  $("#checkin-apply").click(function () {
-      $("#checkinSuccess").modal("show");
-      $("#checkinSuccess .modal-body p").text("打卡成功");
-  });
-
   let run = () => {
     let date = new Date();
     let h = date.getHours();
