@@ -36,14 +36,15 @@ public class BaseController {
 
     @PostMapping("/api/login")
     public String login(@RequestParam @Valid @NotBlank String username,
-                              @RequestParam @Valid @NotBlank String password,
-                              @RequestParam(required = false) boolean remember,
-                              HttpServletRequest request,
-                              HttpServletResponse response) {
+                        @RequestParam @Valid @NotBlank String password,
+                        @RequestParam(required = false) boolean remember,
+                        HttpServletRequest request,
+                        HttpServletResponse response) {
         TaleUtil.logout(request, response);
         try {
             EmployeeDTO employeeDTO = employeeService.login(username, password);
             request.getSession().setAttribute(WebConstant.LOGIN_SESSION_KEY, employeeDTO);
+            request.getSession().setAttribute(WebConstant.LOGIN_USER_ROLE, employeeDTO.getRole());
             if (remember) {
                 response.addCookie(new Cookie(WebConstant.REMEMBER_COOKIE_KEY, employeeDTO.getId()));
             }
@@ -61,5 +62,10 @@ public class BaseController {
 
         TaleUtil.logout(request, response);
         return CommonResult.success();
+    }
+
+    @GetMapping("/welcome")
+    public String welcome() {
+        return "welcome";
     }
 }

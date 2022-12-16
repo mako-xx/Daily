@@ -33,15 +33,15 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
                         <ul class="nav sidebar-nav" style="margin:0 auto;">
                             <li>
-                                <a class="list-group-item" href="/view/test4"><i
+                                <a class="list-group-item" href="/admin/employees"><i
                                         class="fa fa-fw fa-address-book my-list-group-icon"></i>员 工</a>
                             </li>
                             <li>
-                                <a class="list-group-item" href="/view/test5"><i
+                                <a class="list-group-item" href="/admin/departments"><i
                                         class="fa fa-fw fa-handshake-o my-list-group-icon"></i>部 门</a>
                             </li>
                             <li>
-                                <a class="list-group-item" href="/view/test7"><i
+                                <a class="list-group-item" href="/admin/checkins"><i
                                         class="fa fa-fw fa-id-card-o my-list-group-icon"></i>考 勤</a>
                             </li>
                             <li class="dropdown">
@@ -49,8 +49,8 @@
                                         class="fa fa-fw fa-book my-list-group-icon"></i>请 假
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="/view/test6"><i class="fa fa-fw fa-sitemap my-list-group-icon"></i>请假类型</a></li>
-                                    <li><a href="/view/test8"><i class="fa fa-fw fa-check my-list-group-icon"></i>请假审批</a></li>
+                                    <li><a href="/admin/leavetypes"><i class="fa fa-fw fa-sitemap my-list-group-icon"></i>请假类型</a></li>
+                                    <li><a href="/admin/checkleaves"><i class="fa fa-fw fa-check my-list-group-icon"></i>请假审批</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -127,42 +127,6 @@
                                                         class="fa fa-user" aria-hidden="true"
                                                         style="float:left; margin-top:10px;"></i>${item.name}</a>
                                             </c:forEach>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
 
                                         </div>
                                     </div>
@@ -193,6 +157,9 @@
                                     <div class="form-group row">
                                         <!-- 修改员工信息 -->
                                         <div class="employee-edit" style="display:none;">
+                                            <c:if test="${employee != null}">
+                                                <input hidden="hidden" type="text" value="${employee.id}" id="xxx">
+                                            </c:if>
                                             <label for="employee-name-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">姓名</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -208,10 +175,10 @@
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">电话</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <c:if test="${employee != null}">
-                                                    <input type="text" class="form-control" id="employee-name-edit" placeholder="电话" value="${employee.telephone}">
+                                                    <input type="text" class="form-control" id="employee-phone-edit" placeholder="电话" value="${employee.telephone}">
                                                 </c:if>
                                                 <c:if test="${employee == null}">
-                                                    <input type="text" class="form-control" id="employee-name-edit" placeholder="电话" value="${employee.telephone}">
+                                                    <input type="text" class="form-control" id="employee-phone-edit" placeholder="电话" value="${employee.telephone}">
                                                 </c:if>
                                             </div>
                                             <!-- 部门id -->
@@ -219,7 +186,7 @@
                                             <label for="employee-department-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">部门</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <select class="form-control" id="department">
+                                                <select class="form-control" id="employee-department-edit">
                                                     <c:forEach var="item" items="${departments}">
                                                         <option>${item.name}</option>
                                                     </c:forEach>
@@ -306,5 +273,4 @@
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/bootstrap/js/popper.js"></script>
 </body>
-
 </html>
