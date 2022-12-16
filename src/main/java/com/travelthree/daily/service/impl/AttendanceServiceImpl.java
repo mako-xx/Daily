@@ -1,28 +1,31 @@
 package com.travelthree.daily.service.impl;
 
 import cn.hutool.core.lang.UUID;
-import cn.hutool.core.util.ObjectUtil;
-import com.travelthree.daily.constant.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.travelthree.daily.constant.*;
 import com.travelthree.daily.domain.Attendance;
 import com.travelthree.daily.domain.Employee;
 import com.travelthree.daily.domain.Leave;
 import com.travelthree.daily.dto.AttendanceParam;
+import com.travelthree.daily.dto.EmployeeDTO;
 import com.travelthree.daily.dto.PageParam;
 import com.travelthree.daily.exception.BusinessException;
 import com.travelthree.daily.mapper.AttendanceMapper;
 import com.travelthree.daily.mapper.EmployeeMapper;
 import com.travelthree.daily.mapper.LeaveMapper;
 import com.travelthree.daily.service.AttendanceService;
+import com.travelthree.daily.service.EmployeeService;
+import com.travelthree.daily.vo.AttendanceVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -43,6 +46,9 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Autowired
     private LeaveMapper leaveMapper;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @Override
     public void attend(String uid) {
@@ -84,15 +90,36 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public PageInfo queryAttendanceByDate(AttendanceParam attendanceParam, PageParam pageParam) {
+    public PageInfo<AttendanceVo> queryAttendanceByDate(AttendanceParam attendanceParam, PageParam pageParam) {
         PageHelper.startPage(pageParam.getPage(), pageParam.getPageSize());
         if (attendanceParam.getStartDate().isAfter(attendanceParam.getEndDate())) {
             throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "开始日期应该晚于截止日期");
         }
         List<Attendance> attendances = attendanceMapper.selectByDate(attendanceParam.getStartDate(), attendanceParam.getEndDate());
-        PageInfo pageInfo = new PageInfo(attendances);
-        pageInfo.setPageSize(pageParam.getPageSize());
-        return pageInfo;
+        PageInfo<Attendance> pageInfo = new PageInfo<>(attendances);
+        //取出pageInfo里面的List<Employee>
+        List<Attendance> attendanceList = pageInfo.getList();
+        //初始化接口要求的视图对象集合
+        List<AttendanceVo> attendanceVos= new LinkedList<>();
+        for (Attendance attendance : attendanceList) {
+            //每次都创建新的视图对象
+            AttendanceVo attendanceVo = new AttendanceVo();
+            //拷贝属性
+            BeanUtils.copyProperties(attendance, attendanceVo);
+            //变更Status和LocalDate的类型后拷贝
+            attendanceVo.setStatus(attendance.getStatus().toString());
+            attendanceVo.setDate(attendance.getDate().toString());
+            //通过Attendance的员工ID调用员工服务类查询员工名称并赋值
+            String employeeId = attendance.getEmployeeId();
+            EmployeeDTO employeeDTO = employeeService.getEmployeeById(employeeId);
+            attendanceVo.setEmployeeName(employeeDTO.getName());
+            //在集合中添加
+            attendanceVos.add(attendanceVo);
+        }
+        PageInfo<AttendanceVo> page = new PageInfo<>();
+        BeanUtils.copyProperties(pageInfo, page);
+        page.setList(attendanceVos);
+        return page;
     }
 
     @Override
