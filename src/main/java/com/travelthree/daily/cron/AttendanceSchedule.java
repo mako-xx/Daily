@@ -18,12 +18,12 @@ public class AttendanceSchedule {
     @Autowired
     private AttendanceService attendanceService;
 
-    private AtomicBoolean enabled = new AtomicBoolean(false);
+    private AtomicBoolean enabled = new AtomicBoolean(true);
 
     /**
      * 每天早上8点定时开启考勤
      * */
-    @Scheduled(cron = "0/10 * * * * * ")
+    @Scheduled(cron = "* * 0/8 * * *")
     @Retry(async = true)
     public void openAttendance() {
         if (enabled.get()) {
