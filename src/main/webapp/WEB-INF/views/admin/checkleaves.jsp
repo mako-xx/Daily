@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="/WEB-INF/custom.tld" prefix="cu"%>
 <!DOCTYPE html>
 <html>
 
@@ -275,6 +276,7 @@
                 </div>
             </div>
         </footer>
+        <cu:footer/>
 
     </div>
     <!-- jquery -->
