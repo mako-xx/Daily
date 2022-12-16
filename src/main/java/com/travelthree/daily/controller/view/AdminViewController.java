@@ -87,7 +87,7 @@ public class AdminViewController {
         return "admin/checkins";
     }
 
-    @GetMapping("/leaves")
+    @GetMapping("/checkleaves")
     public String showLeaves(HttpServletRequest request,
                              @RequestParam(defaultValue = "WAITING") LeaveCheckStatus leaveStatus,
                              @RequestParam(required = false) String id) {
