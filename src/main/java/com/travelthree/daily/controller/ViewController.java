@@ -58,4 +58,9 @@ public class ViewController {
     // 请假申请（分页）
     @GetMapping("/test8")
     public String test8() { return "admin/checkleaves";}
+
+    @GetMapping("/test9")
+    public String test9() {
+        return "test";
+    }
 }

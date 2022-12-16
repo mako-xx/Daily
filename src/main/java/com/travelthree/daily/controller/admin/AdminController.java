@@ -55,6 +55,7 @@ public class AdminController {
 
     @GetMapping("/employee")
     @ResponseBody
+    @Deprecated
     public PageInfo queryEmployee(@Valid PageParam pageParam) {
         PageInfo pageInfo = employeeService.queryEmployeeByPage(pageParam);
         pageInfo.setPageSize(pageParam.getPageSize());
@@ -146,6 +147,7 @@ public class AdminController {
 
     @GetMapping("/attendance")
     @ResponseBody
+    @Deprecated
     public PageInfo getAttendance(@Valid AttendanceParam attendanceParam,@Valid PageParam pageParam) {
         PageInfo pageInfo = attendanceService.queryAttendanceByDate(attendanceParam, pageParam);
 
@@ -207,6 +209,7 @@ public class AdminController {
 
     @GetMapping("/leave")
     @ResponseBody
+    @Deprecated
     public PageInfo getLeaveRequest(@Valid PageParam pageParam, LeaveCheckStatus leaveType) {
             PageInfo pageInfo = leaveService.queryLeave(pageParam, leaveType);
             if(pageParam.getPage() != null) {

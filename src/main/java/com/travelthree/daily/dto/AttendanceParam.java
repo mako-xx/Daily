@@ -8,7 +8,8 @@ import java.time.LocalDate;
 
 @Data
 public class AttendanceParam {
-    private LocalDate startDate;
-
-    private LocalDate endDate;
+    @NotNull
+    private LocalDate startDate = LocalDate.now();
+    @NotNull
+    private LocalDate endDate = LocalDate.now();
 }

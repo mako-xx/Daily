@@ -4,11 +4,10 @@ import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.constant.LeaveCheckStatus;
 import com.travelthree.daily.domain.Department;
 import com.travelthree.daily.domain.LeaveType;
+import com.travelthree.daily.dto.AttendanceParam;
 import com.travelthree.daily.dto.PageParam;
-import com.travelthree.daily.service.DepartmentService;
-import com.travelthree.daily.service.EmployeeService;
-import com.travelthree.daily.service.LeaveService;
-import com.travelthree.daily.service.LeaveTypeService;
+import com.travelthree.daily.service.*;
+import com.travelthree.daily.vo.AttendanceVo;
 import com.travelthree.daily.vo.DepartmentVo;
 import com.travelthree.daily.vo.EmployeeVo;
 import com.travelthree.daily.vo.LeaveVo;
@@ -37,6 +36,9 @@ public class AdminViewController {
 
     @Autowired
     private LeaveService leaveService;
+
+    @Autowired
+    private AttendanceService attendanceService;
 
     @GetMapping("/employees")
     public String showEmployees(HttpServletRequest request, @Valid PageParam pageParam) {
@@ -68,7 +70,9 @@ public class AdminViewController {
     }
 
     @GetMapping("/checkins")
-    public String showCheckIn() {
+    public String showCheckIn(HttpServletRequest request, @Valid AttendanceParam attendanceParam, @Valid PageParam pageParam) {
+        PageInfo<AttendanceVo> pageInfo = attendanceService.queryAttendanceByDate(attendanceParam, pageParam);
+        request.setAttribute("page", pageInfo);
         return "admin/checkins";
     }
 
