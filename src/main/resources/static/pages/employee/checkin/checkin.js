@@ -64,8 +64,12 @@ $(".btn-save").click(()=>{
     ),
   }).then(response => response.json()).then((res) => {
     console.log(res);
-    // $("#employee-name-edit").val("123" + res.statusText);
-  })
+    if (res.status === 200) {
+        alert("修改成功");
+    }else{
+        alert("修改失败");
+    }
+  });
 })
 
 
@@ -85,7 +89,11 @@ $("#checkin-apply").click(()=>{
     ),
   }).then(response => response.json()).then((res) => {
     console.log(res);
-    // $("#employee-name-edit").val("123" + res.statusText);
+    if (res.status === 200) {
+        alert("打卡成功");
+    }else{
+        alert("打卡失败");
+    }
   })
 })
 

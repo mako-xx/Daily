@@ -161,7 +161,7 @@
                                             <input hidden="hidden" value="${employee.id}" id="employee-id">
                                         </c:if>
                                         <label for="employee-username-edit"
-                                               class="col-md-2 col-sm-2 col-xs-2 col-form-label">用户名</label>
+                                               class="col-md-2 col-sm-2 col-xs-2 col-form-label" id="employee-username-edit-label">用户名</label>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <c:if test="${employee != null}">
                                                 <input type="text" class="form-control" id="employee-username-edit" placeholder="用户名" value="${employee.username}">
@@ -171,7 +171,7 @@
                                             </c:if>
                                         </div>
                                         <label for="employee-name-edit"
-                                               class="col-md-2 col-sm-2 col-xs-2 col-form-label">密码</label>
+                                               class="col-md-2 col-sm-2 col-xs-2 col-form-label" id="employee-password-edit-label">密码</label>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <input type="text" class="form-control" id="employee-password-edit" placeholder="密码">
                                         </div>
@@ -217,24 +217,6 @@
                                             </select>
                                         </div>
 
-                                        <%--                                            <label for="employee-username-edit"--%>
-                                        <%--                                                   class="col-md-2 col-sm-2 col-xs-2 col-form-label">用户名</label>--%>
-                                        <%--                                            <div class="col-md-12 col-sm-12 col-xs-12">--%>
-                                        <%--                                                <c:if test="${employee != null}">--%>
-                                        <%--                                                    <input type="text" class="form-control" id="employee-username-edit" placeholder="用户名" value="${employee.username}">--%>
-                                        <%--                                                </c:if>--%>
-                                        <%--                                                <c:if test="${employee == null}">--%>
-                                        <%--                                                    <input type="text" class="form-control" id="employee-username-edit" placeholder="用户名">--%>
-                                        <%--                                                </c:if>--%>
-                                        <%--                                            </div>--%>
-
-                                        <%--                                            <label for="employee-password-edit"--%>
-                                        <%--                                                   class="col-md-2 col-sm-2 col-xs-2 col-form-label">密码</label>--%>
-                                        <%--                                            <div class="col-md-12 col-sm-12 col-xs-12">--%>
-                                        <%--                                                <input type="text" class="form-control" id="employee-password-edit" placeholder="密码">--%>
-                                        <%--                                            </div>--%>
-
-
                                     </div>
 
                                     <!-- 查看员工信息 -->
@@ -277,7 +259,7 @@
                                         </div>
 
                                         <label for="employee-username-show"
-                                               class="col-md-2 col-sm-2 col-xs-2 col-form-label">用户名</label>
+                                               class="col-md-2 col-sm-2 col-xs-2 col-form-label" id="employee-username-show-label">用户名</label>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <div class="form-control" id="employee-username-show">
                                                 <c:out value="${employee.username}"/>
