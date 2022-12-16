@@ -41,7 +41,7 @@ public class BaseController {
         if (param.getRemember()) {
             response.addCookie(new Cookie(WebConstant.REMEMBER_COOKIE_KEY, employeeDTO.getId()));
         }
-        return CommonResult.success();
+        return CommonResult.success(request.getSession().getId());
     }
 
     @PostMapping("/api/logout")
