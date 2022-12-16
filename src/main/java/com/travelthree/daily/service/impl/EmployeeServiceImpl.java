@@ -15,6 +15,7 @@ import com.travelthree.daily.exception.BusinessException;
 import com.travelthree.daily.mapper.AttendanceMapper;
 import com.travelthree.daily.mapper.DepartmentMapper;
 import com.travelthree.daily.mapper.EmployeeMapper;
+import com.travelthree.daily.mapper.LeaveMapper;
 import com.travelthree.daily.service.EmployeeService;
 import com.travelthree.daily.vo.EmployeeVo;
 import org.springframework.beans.BeanUtils;
@@ -46,6 +47,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private DepartmentMapper departmentMapper;
+
+    @Autowired
+    private LeaveMapper leaveMapper;
 
     @Autowired
     private AttendanceMapper attendanceMapper;
@@ -174,6 +178,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employee == null) {
             throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "该用户id不存在");
         }
+        attendanceMapper.deleteByEmployeeId(id);
+        leaveMapper.deleteByPrimaryKey(id);
         employeeMapper.deleteByPrimaryKey(id);
     }
 

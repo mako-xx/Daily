@@ -140,4 +140,9 @@
         where
         type_id = #{typeId,jdbcType=NUMERIC}
     </select>
+    <delete id="deleteByEmployeeId">
+        delete
+        from leave
+        where employee_id = #{employeeId,jdbcType=VARCHAR}
+    </delete>
 </mapper>

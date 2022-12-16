@@ -127,4 +127,9 @@
         </set>
         where employee_id = #{employeeId} and date = #{date}
     </update>
+    <delete id="deleteByEmployeeId">
+        delete
+        from attendance
+        where employee_id = #{employeeId,jdbcType=VARCHAR}
+    </delete>
 </mapper>
