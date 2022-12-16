@@ -15,9 +15,9 @@ import java.time.LocalDate;
 public class AskForLeaveParam {
 
     @NotBlank
-    private String startDate;
+    private LocalDate startDate;
     @NotBlank
-    private String endDate;
+    private LocalDate endDate;
     @NotNull
     private Integer type;
     @NotBlank

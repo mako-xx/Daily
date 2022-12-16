@@ -28,7 +28,7 @@ public class LeaveListContentTag extends SimpleTagSupport {
     public void doTag() throws IOException {
         StringBuilder builder = new StringBuilder();
         for (LeaveVo leaveVo : list) {
-            builder.append(String.format(contentTemplate, leaveVo.getId(), leaveVo.getName())).append("\n");
+            builder.append(String.format(contentTemplate, "/admin/checkleaves?id=" + leaveVo.getId(), leaveVo.getName())).append("\n");
         }
         JspWriter out = getJspContext().getOut();
         out.write(builder.toString());

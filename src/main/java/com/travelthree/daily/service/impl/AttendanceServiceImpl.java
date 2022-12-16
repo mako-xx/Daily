@@ -159,7 +159,8 @@ public class AttendanceServiceImpl implements AttendanceService {
                 .map(attendance -> new SelfAttendanceVo(
                         attendance.getId(),
                         attendance.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
-                        attendance.getStatus().toString())).collect(Collectors.toList());
+                        AttendanceStatus.getStatusFromOrdinal(attendance.getStatus()).toString()))
+                .collect(Collectors.toList());
     }
 
 //    @Override

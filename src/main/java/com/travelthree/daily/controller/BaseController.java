@@ -44,6 +44,7 @@ public class BaseController {
         try {
             EmployeeDTO employeeDTO = employeeService.login(username, password);
             request.getSession().setAttribute(WebConstant.LOGIN_SESSION_KEY, employeeDTO);
+            request.getSession().setAttribute(WebConstant.LOGIN_USER_ROLE, employeeDTO.getRole());
             if (remember) {
                 response.addCookie(new Cookie(WebConstant.REMEMBER_COOKIE_KEY, employeeDTO.getId()));
             }
