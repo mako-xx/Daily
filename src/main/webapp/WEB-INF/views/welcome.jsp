@@ -37,7 +37,7 @@
         if (role === 'ADMIN') {
             window.location.href='/admin/employees'
         } else {
-            window.location.href='/employee/check'
+            window.location.href='/employee/checkin'
         }
     }
 
