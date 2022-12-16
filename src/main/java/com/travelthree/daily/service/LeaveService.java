@@ -19,6 +19,8 @@ public interface LeaveService {
 
     Leave getById(String id);
 
+    LeaveVo getVoById(String id);
+
     void updateLeaveStatus(Leave leave);
 
     PageInfo<LeaveVo> queryLeave(PageParam pageParam, LeaveCheckStatus status);
