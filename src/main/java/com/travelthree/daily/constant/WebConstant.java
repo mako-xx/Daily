@@ -8,6 +8,8 @@ package com.travelthree.daily.constant;
 public class WebConstant {
     // session中登录用户信息对应的键
     public static final String LOGIN_SESSION_KEY = "user_session";
+    // 登录用户的角色
+    public static final String LOGIN_USER_ROLE = "user_role";
     // cookie中登录用户id对应的键
     public static final String REMEMBER_COOKIE_KEY = "user_cookie";
     // 考勤开始时间
