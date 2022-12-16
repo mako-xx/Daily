@@ -23,4 +23,50 @@ $(document).ready(function () {
     $(".employee-edit").hide();
     $(".employee-show").show();
   });
+  
+  $("#leave-approve").click(function () {
+    let id = $("#leave-id").val();
+    let url = "/api/admin/leave/check/" + id
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status:"APPROVE"
+      })
+        // $("#employee-name-edit").val("123" + res.statusText);
+      }).then(response => response.json()).then((res) => {
+      console.log(res);
+      if (res.code === 200) {
+        alert("审核完成")
+        window.location.reload();
+      } else {
+        alert(res.msg)
+      }
+    })
+  })
+
+  $("#leave-refuse").click(function () {
+    let id = $("#leave-id").val();
+    let url = "/api/admin/leave/check/" + id
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status:"REFUSE"
+      })
+      // $("#employee-name-edit").val("123" + res.statusText);
+    }).then(response => response.json()).then((res) => {
+      console.log(res);
+      if (res.code === 200) {
+        alert("审核完成")
+        window.location.reload();
+      } else {
+        alert(res.msg)
+      }
+    })
+  })
 });

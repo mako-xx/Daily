@@ -144,6 +144,7 @@
                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">编号</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-control" id="name">
+                                                    <input id="leave-id" type="text" value="${leave.id}" hidden="hidden"/>
                                                     <c:if test="${leave != null}">
                                                         <c:out value="${leave.id}"/>
                                                     </c:if>
@@ -156,16 +157,6 @@
                                                 <div class="form-control" id="phone">
                                                     <c:if test="${leave != null}">
                                                         <c:out value="${leave.name}"/>
-                                                    </c:if>
-                                                </div>
-                                            </div>
-
-                                            <label for="department"
-                                                   class="col-md-4 col-sm-4 col-xs-4 col-form-label">工号</label>
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="department">
-                                                    <c:if test="${leave != null}">
-                                                        <c:out value="${leave.employeeId}"/>
                                                     </c:if>
                                                 </div>
                                             </div>
