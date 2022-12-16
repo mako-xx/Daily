@@ -43,3 +43,54 @@ $(document).ready(function () {
   };
   setInterval(run, 1000);
 });
+
+$(".btn-save").click(()=>{
+  let name = 'Mako';
+  let phone = $("#phoneInput").val();
+  let department = "1";
+  let url = "http://localhost:8080/api/employee/update"
+  console.log(phone)
+  fetch(url).then(response=>response.json()).then(data=>console.log(data))
+  fetch(`/api/employee/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+          name: name,
+          telephone: phone,
+          departmentId: department,
+        },
+    ),
+  }).then(response => response.json()).then((res) => {
+    console.log(res);
+    // $("#employee-name-edit").val("123" + res.statusText);
+  })
+})
+
+
+
+$("#checkin-apply").click(()=>{
+  let url = "http://localhost:8080/api/employee/attend"
+  console.log("aaa")
+  fetch(url).then(response=>response.json()).then(data=>console.log(data))
+  fetch(`/api/employee/attend`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+
+        },
+    ),
+  }).then(response => response.json()).then((res) => {
+    console.log(res);
+    // $("#employee-name-edit").val("123" + res.statusText);
+  })
+})
+
+
+
+
+
+

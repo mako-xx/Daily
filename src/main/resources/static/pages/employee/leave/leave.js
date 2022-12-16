@@ -62,5 +62,58 @@ $(document).ready(function () {
     }
 
   });
+
+  $(".btn-save").click(()=>{
+    let name = 'Mako';
+    let phone = $("#phoneInput").val();
+    let department = "1";
+    let url = "http://localhost:8080/api/employee/update"
+    console.log(phone)
+    fetch(url).then(response=>response.json()).then(data=>console.log(data))
+    fetch(`/api/employee/update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+            name: name,
+            telephone: phone,
+            departmentId: department,
+          },
+      ),
+    }).then(response => response.json()).then((res) => {
+      console.log(res);
+      // $("#employee-name-edit").val("123" + res.statusText);
+    })
+  })
   
 });
+$("#leave-apply").click(()=>{
+  let url = "http://localhost:8080/api/employee/leave"
+  console.log("aaa")
+  let date1 = $("#startDate").val()
+  let date2 = $("#endDate").val();
+  let select = Number($("#leaveTypeSelect").val());
+  let reason = $("#leaveReason").val();
+  console.log(date1)
+  console.log(date2)
+  console.log(select)
+  console.log(reason)
+  fetch(url).then(response=>response.json()).then(data=>console.log(data))
+  fetch(`/api/employee/leave`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+          startDate:date1,
+          endDate:date2,
+          type:select,
+          reason:reason
+        },
+    ),
+  }).then(response => response.json()).then((res) => {
+    console.log(res);
+    // $("#employee-name-edit").val("123" + res.statusText);
+  })
+})
