@@ -180,37 +180,35 @@
                             </div>
                         </div>
                         <!-- 右栏 -->
-                        <!-- 展示员工信息 -->
                         <div class="col-md-7 col-sm-7 col-xs-7">
                             <div class="card">
                                 <div class="card-header row">
                                     <h4 class="card-title col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">类型信息</h4>
                                     <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
                                         <div class="delete">
-                                            <a href="#" data-toggle="tooltip" data-placement="right" title="删除此员工">
+                                            <a href="#" data-toggle="tooltip" data-placement="right" title="删除此类型">
                                                 <i class="fa fa-trash fa-lg delete-icon"></i>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="scrollable" style="height: 280px;">
-                                    <!-- 姓名 -->
                                     <div class="form-group row">
-                                        <!-- 修改部门信息 -->
+                                        <!-- 修改 -->
                                         <div class="department-edit" style="display:none;">
-                                            <label for="name"
+                                            <label for="leavetype-name-edit"
                                                 class="col-md-3 col-sm-3 col-xs-3 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" class="form-control" id="name" placeholder="请输入请假类型">
+                                                <input type="text" class="form-control" id="leavetype-name-edit" placeholder="请输入请假类型">
                                             </div>
                                         </div>
 
-                                        <!-- 查看部门信息 -->
+                                        <!-- 查看 -->
                                         <div class="department-show">
-                                            <label for="name"
+                                            <label for="leavetype-name-show"
                                                 class="col-md-6 col-sm-6 col-xs-6 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="name"></div>
+                                                <div class="form-control" id="leavetype-name-show"></div>
                                             </div>
                                         </div>
 

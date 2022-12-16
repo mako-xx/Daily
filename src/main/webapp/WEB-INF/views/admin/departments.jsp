@@ -189,36 +189,35 @@
                             </div>
                         </div>
                         <!-- 右栏 -->
-                        <!-- 展示员工信息 -->
+                        <!-- 展示部门信息 -->
                         <div class="col-md-7 col-sm-7 col-xs-7">
                             <div class="card">
                                 <div class="card-header row">
                                     <h4 class="card-title col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">部门信息</h4>
                                     <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
                                         <div class="delete">
-                                            <a href="#" data-toggle="tooltip" data-placement="right" title="删除此员工">
+                                            <a href="#" data-toggle="tooltip" data-placement="right" title="删除此部门">
                                                 <i class="fa fa-trash fa-lg delete-icon"></i>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="scrollable" style="height: 280px;">
-                                    <!-- 姓名 -->
                                     <div class="form-group row">
                                         <!-- 修改部门信息 -->
                                         <div class="department-edit" style="display:none;">
-                                            <label for="name"
+                                            <label for="department-name-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" class="form-control" id="name" placeholder="部门名称">
+                                                <input type="text" class="form-control" id="department-name-edit" placeholder="部门名称">
                                             </div>
 
                                             <!-- 部门id -->
                                             <!-- 使用选择框 -->
-                                            <label for="department"
+                                            <label for="department-father-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">父级</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <select class="form-control" id="department">
+                                                <select class="form-control" id="department-father-edit">
                                                     <option>部门1</option>
                                                     <option>部门2</option>
                                                     <option>部门3</option>
@@ -236,19 +235,19 @@
 
                                         <!-- 查看部门信息 -->
                                         <div class="department-show">
-                                            <label for="name"
+                                            <label for="department-name-show"
                                                 class="col-md-3 col-sm-3 col-xs-3 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="name" placeholder="部门名称"></div>
+                                                <div class="form-control" id="department-name-show" placeholder="部门名称"></div>
                                             </div>
 
                                             <!-- 部门id -->
                                             <!-- 使用选择框 -->
-                                            <label for="department"
+                                            <label for="department-father-show"
                                                 class="col-md-3 col-sm-3 col-xs-3 col-form-label">父级</label>
 
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="department">
+                                                <div class="form-control" id="department-father-show">
                                                     <div>部门1</div>
                                                 </div>
                                             </div>

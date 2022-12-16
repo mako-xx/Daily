@@ -23,4 +23,19 @@ $(document).ready(function () {
     $(".employee-edit").hide();
     $(".employee-show").show();
   });
+
+  $("#save-apply").click(()=>{
+    let test = $("#employee-name-edit").val();
+    console.log(document.getElementById("employee-name-edit"));
+    console.log("save-apply",test);
+    fetch("/api/admin/leave-status",{
+      method:"POST",
+      body:JSON.stringify({
+        name: "yxx",
+      })
+    }).then((res)=>{
+      console.log(res);
+      $("#employee-name-edit").val("123"+res.statusText);
+    })
+  })
 });
