@@ -47,7 +47,7 @@
                 <form class="login-form validate-form">
                     <div class="login-border">
                         <div class="wrap-input">
-                            <input class="input" type="text" name="email" placeholder="用户名 / Name">
+                            <input class="input" type="text" id="username" placeholder="用户名 / Name">
                             <span class="focus-input"></span>
                             <span class="symbol-input">
                                     <i class="fa fa-user" aria-hidden="true"></i>
@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="wrap-input validate-input">
-                            <input class="input" type="password" name="pass" placeholder="密码 / Password">
+                            <input class="input" type="password" id="password" placeholder="密码 / Password">
                             <span class="focus-input"></span>
                             <span class="symbol-input">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
