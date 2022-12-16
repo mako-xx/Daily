@@ -63,6 +63,12 @@
                     </div>
 
                     <div class="container-login-form-btn">
+                        <button id="auto-login-form-btn">
+                            自动登录
+                        </button>
+                    </div>
+
+                    <div class="container-login-form-btn">
                         <button id="login-form-btn">
                             登录 / sign in
                         </button>
@@ -73,24 +79,28 @@
         </div>
     </div>
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="social-area pull-right">
+    <div>
+        <div style="height: 50px;"></div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="social-area pull-right">
 
-                <div class="btn-social  btn-pinterest btn-simple">
-                    <a href="https://github.com/mako-xx/Daily" data-toggle="tooltip" data-placement="left" title="项目地址">
-                        <div class="fa fa-github"></div>
-                    </a>
-                </div>
-                <div class="btn-social  btn-pinterest btn-simple">
-                    <a href="https://faustpromaxpx.github.io" data-toggle="tooltip" data-placement="left" title="开发者个人网站">
-                        <div class="fa fa-user-circle"></div>
-                    </a>
+                    <div class="btn-social  btn-pinterest btn-simple">
+                        <a href="https://github.com/mako-xx/Daily" data-toggle="tooltip" data-placement="left"
+                           title="项目地址">
+                            <div class="fa fa-github"></div>
+                        </a>
+                    </div>
+                    <div class="btn-social  btn-pinterest btn-simple">
+                        <a href="https://faustpromaxpx.github.io" data-toggle="tooltip" data-placement="left"
+                           title="开发者个人网站">
+                            <div class="fa fa-user-circle"></div>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
-
+        </footer>
+    </div>
 </div>
 <!-- jquery -->
 <script src="/jquery/jquery-3.2.1.min.js"></script>
