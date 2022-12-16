@@ -120,7 +120,7 @@
                                     <div class="scrollable" style="height: 280px;">
                                         <div class="list1-group row">
                                             <!-- jstl -->
-                                          
+
                                             <c:forEach var="item" items="${list}">
                                                 <a href="${'/admin/employees?id='.concat(item.id)}"
                                                    class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
@@ -201,6 +201,25 @@
                                                     <option>ADMIN</option>
                                                 </select>
                                             </div>
+
+<%--                                            <label for="employee-username-edit"--%>
+<%--                                                   class="col-md-2 col-sm-2 col-xs-2 col-form-label">用户名</label>--%>
+<%--                                            <div class="col-md-12 col-sm-12 col-xs-12">--%>
+<%--                                                <c:if test="${employee != null}">--%>
+<%--                                                    <input type="text" class="form-control" id="employee-username-edit" placeholder="用户名" value="${employee.username}">--%>
+<%--                                                </c:if>--%>
+<%--                                                <c:if test="${employee == null}">--%>
+<%--                                                    <input type="text" class="form-control" id="employee-username-edit" placeholder="用户名">--%>
+<%--                                                </c:if>--%>
+<%--                                            </div>--%>
+
+<%--                                            <label for="employee-password-edit"--%>
+<%--                                                   class="col-md-2 col-sm-2 col-xs-2 col-form-label">密码</label>--%>
+<%--                                            <div class="col-md-12 col-sm-12 col-xs-12">--%>
+<%--                                                <input type="text" class="form-control" id="employee-password-edit" placeholder="密码">--%>
+<%--                                            </div>--%>
+
+
                                         </div>
 
                                         <!-- 查看员工信息 -->
@@ -241,11 +260,24 @@
                                                     <c:out value="${employee.role}"/>
                                                 </div>
                                             </div>
+
+                                            <label for="employee-username-show"
+                                                   class="col-md-2 col-sm-2 col-xs-2 col-form-label">用户名</label>
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-control" id="employee-username-show">
+                                                    <c:out value="${employee.username}"/>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div id="save-apply" style="display:none;">
+                                    <a href="#" data-toggle="tooltip" data-placement="right" title="保存修改">
+                                        <div class="fa fa fa-floppy-o" aria-hidden="true"></div>
+                                    </a>
+                                </div>
+                                <div id="add-save-apply" style="display:none;">
                                     <a href="#" data-toggle="tooltip" data-placement="right" title="保存修改">
                                         <div class="fa fa fa-floppy-o" aria-hidden="true"></div>
                                     </a>

@@ -130,54 +130,6 @@
                                                         class="fa fa-users" aria-hidden="true"
                                                         style="float:left; margin-top:10px;"></i>${item.name}</a>
                                             </c:forEach>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-users" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-users" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-users" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-users" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-users" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-users" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-users" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-users" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-users" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-users" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +147,7 @@
                                 <div class="card-header row">
                                     <h4 class="card-title col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">部门信息</h4>
                                     <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-                                        <div class="delete">
+                                        <div id="delete-apply">
                                             <a href="#" data-toggle="tooltip" data-placement="right" title="删除此员工">
                                                 <i class="fa fa-trash fa-lg delete-icon"></i>
                                             </a>
@@ -207,25 +159,28 @@
                                     <div class="form-group row">
                                         <!-- 修改部门信息 -->
                                         <div class="department-edit" style="display:none;">
-                                            <label for="name"
+                                            <c:if test="${department != null}">
+                                                <input hidden="hidden" value="${department.id}" id="department-id">
+                                            </c:if>
+                                            <label for="department-name-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <c:if test="${department != null}">
-                                                    <input type="text" class="form-control" id="name" placeholder="部门名称" value="${department.name}">
+                                                    <input type="text" class="form-control" id="department-name-edit" placeholder="部门名称" value="${department.name}">
                                                 </c:if>
                                                 <c:if test="${department == null}">
-                                                    <input type="text" class="form-control" id="name" placeholder="部门名称">
+                                                    <input type="text" class="form-control" id="department-name-edit" placeholder="部门名称">
                                                 </c:if>
                                             </div>
 
                                             <!-- 部门id -->
                                             <!-- 使用选择框 -->
-                                            <label for="department"
+                                            <label for="department-father-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">父级</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <select class="form-control" id="department">
+                                                <select class="form-control" id="department-father-edit">
                                                     <c:forEach var="item" items="${departments}">
-                                                        <option>${item.name}</option>
+                                                        <option>${item.id}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -234,10 +189,10 @@
 
                                         <!-- 查看部门信息 -->
                                         <div class="department-show">
-                                            <label for="name"
+                                            <label for="department-name-show"
                                                 class="col-md-3 col-sm-3 col-xs-3 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="name" placeholder="部门名称">
+                                                <div class="form-control" id="department-name-show" placeholder="部门名称">
                                                     <c:if test="${department != null}">
                                                         <c:out value="${department.name}"/>
                                                     </c:if>
@@ -246,11 +201,11 @@
 
                                             <!-- 部门id -->
                                             <!-- 使用选择框 -->
-                                            <label for="department"
+                                            <label for="department-father-show"
                                                 class="col-md-3 col-sm-3 col-xs-3 col-form-label">父级</label>
 
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="department">
+                                                <div class="form-control" id="department-father-show">
                                                     <div><c:out value="${department.superior}"/></div>
                                                 </div>
                                             </div>
@@ -264,6 +219,13 @@
                                         <div class="fa fa fa-floppy-o" aria-hidden="true"></div>
                                     </a>
                                 </div>
+
+                                <div id="add-save-apply" style="display:none;">
+                                    <a href="#" data-toggle="tooltip" data-placement="right" title="保存修改">
+                                        <div class="fa fa fa-floppy-o" aria-hidden="true"></div>
+                                    </a>
+                                </div>
+
                                 <div id="edit-apply">
                                     <a href="#" data-toggle="tooltip" data-placement="right" title="修改信息">
                                         <div class="fa fa fa-pencil" aria-hidden="true"></div>

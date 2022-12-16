@@ -13,15 +13,23 @@ $(document).ready(function () {
     $("#edit-apply").click(function () {
         $("#edit-apply").hide();
         $("#save-apply").show();
+        $("#add-save-apply").hide();
         $(".employee-edit").show();
         $(".employee-show").hide();
+        // $("#employee-password-edit").hide();
+        // $("#employee-username-show").hide();
+        // $("#employee-username-edit").hide();
     });
 
     $("#save-apply").click(function () {
         $("#edit-apply").show();
         $("#save-apply").hide();
+        $("#add-save-apply").hide();
         $(".employee-edit").hide();
         $(".employee-show").show();
+        // $("#employee-password-edit").hide();
+        // $("#employee-username-show").show();
+        // $("#employee-username-edit").hide();
     });
 
     $("#save-apply").click(() => {
@@ -72,14 +80,20 @@ $(document).ready(function () {
     });
 
     $("#add-apply").click(() => {
-        $("#save-apply").show();
-        $(".employee-edit").show();
-        let name = $("#employee-name-add").val();
-        let phone = $("#employee-phone-add").val();
-        let department = $("#employee-department-add").val();
-        let job = $("#employee-job-add").val();
+        $("#edit-apply").hide();
+        $("#save-apply").hide();
+        $("#add-save-apply").show();
+        $(".department-edit").show();
+        $(".department-show").hide();
+    });
+
+    $("#add-save-apply").click(() => {
+        let name = $("#employee-name-edit").val();
+        let phone = $("#employee-phone-edit").val();
+        let department = $("#employee-department-edit").val();
+        let job = $("#employee-job-edit").val();
         console.log(name, phone, department, job);
-        fetch(`/api/admin/employee`, {
+        fetch(`/api/admin/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

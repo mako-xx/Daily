@@ -74,7 +74,7 @@ public class AdminViewController {
             BeanUtils.copyProperties(department, departmentVo);
             Department parent = departmentService.selectByPrimaryKey(department.getSuperiorId());
             if (parent != null) {
-                departmentVo.setSuperior(parent.toString());
+                departmentVo.setSuperior(parent.getName());
             }
         }
         request.setAttribute("departments", departmentList);
