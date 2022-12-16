@@ -83,8 +83,8 @@ $(document).ready(function () {
         $("#edit-apply").hide();
         $("#save-apply").hide();
         $("#add-save-apply").show();
-        $(".department-edit").show();
-        $(".department-show").hide();
+        $(".employee-edit").show();
+        $(".employee-show").hide();
     });
 
     $("#add-save-apply").click(() => {

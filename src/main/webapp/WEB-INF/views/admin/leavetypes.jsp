@@ -56,50 +56,6 @@
                         </ul>
                     </div>
                 </div>
-            </div>daily
-
-            <!-- Modal -->
-            <!-- 用于显示请假办理提交成功 -->
-            <div class="modal fade" id="submitSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document" style="width: 500px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-dismiss="modal">返回</button>
-                            <h5 class="modal-title" id="myModalLabel">请假办理成功</h5>
-                            <div type="button" class="btn-save"></div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <p style="color: #e0b756; font-size: 20px;"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <!-- 用于显示请假办理提交失败 -->
-            <div class="modal fade" id="submitFail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document" style="width: 500px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-dismiss="modal">返回</button>
-                            <h5 class="modal-title" id="myModalLabel">请假办理失败</h5>
-                            <div type="button" class="btn-save"></div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <p style="color: #b55043; font-size: 20px;"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- 右侧 -->
