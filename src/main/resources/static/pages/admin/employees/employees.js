@@ -49,7 +49,7 @@ $(document).ready(function () {
                     telephone: phone.toString(),
                     departmentId: department.toString(),
                     role: job.toString()
-            },
+                },
             ),
         }).then((response) => {
             console.log(response);
@@ -83,11 +83,13 @@ $(document).ready(function () {
         $("#edit-apply").hide();
         $("#save-apply").hide();
         $("#add-save-apply").show();
-        $(".department-edit").show();
-        $(".department-show").hide();
+        $(".employee-edit").show();
+        $(".employee-show").hide();
     });
 
     $("#add-save-apply").click(() => {
+        let username = $("#employee-username-edit").val();
+        let password = $("#employee-password-edit").val();
         let name = $("#employee-name-edit").val();
         let phone = $("#employee-phone-edit").val();
         let department = $("#employee-department-edit").val();
@@ -99,6 +101,8 @@ $(document).ready(function () {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                    username: username.toString(),
+                    password: password.toString(),
                     name: name.toString(),
                     telephone: phone.toString(),
                     departmentId: department.toString(),
@@ -115,4 +119,3 @@ $(document).ready(function () {
         });
     });
 });
-
