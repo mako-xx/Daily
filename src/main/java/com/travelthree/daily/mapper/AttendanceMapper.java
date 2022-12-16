@@ -40,4 +40,6 @@ public interface AttendanceMapper {
     int insertBatch(@Param("attendanceCollection") Collection<Attendance> attendanceCollection);
 
     int updateSelectiveByIdAndTime(Attendance attendance);
+
+    int deleteByEmployeeId(@Param("employeeId") String employeeId);
 }

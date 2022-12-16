@@ -38,4 +38,6 @@ public interface LeaveMapper {
     List<Leave> selectAllByEmployeeId(String employeeId);
 
     List<Leave> selectByTypeId(@Param("typeId") Integer typeId);
+
+    int deleteByEmployeeId(@Param("employeeId") String employeeId);
 }
