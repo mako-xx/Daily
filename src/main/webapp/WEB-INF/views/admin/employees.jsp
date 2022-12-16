@@ -120,7 +120,7 @@
                                     <div class="scrollable" style="height: 280px;">
                                         <div class="list1-group row">
                                             <!-- jstl -->
-
+                                          
                                             <c:forEach var="item" items="${list}">
                                                 <a href="${'/admin/employees?id='.concat(item.id)}"
                                                    class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
@@ -145,7 +145,7 @@
                                 <div class="card-header row">
                                     <h4 class="card-title col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">员工信息</h4>
                                     <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-22">
-                                        <div id="delete-apply">
+                                        <div class="delete">
                                             <a href="#" data-toggle="tooltip" data-placement="right" title="删除此员工">
                                                 <i class="fa fa-trash fa-lg delete-icon"></i>
                                             </a>
@@ -158,8 +158,23 @@
                                         <!-- 修改员工信息 -->
                                         <div class="employee-edit" style="display:none;">
                                             <c:if test="${employee != null}">
-                                                <input hidden="hidden" value="${employee.id}" id="employee-id">
+                                                <input hidden="hidden" type="text" value="${employee.id}" id="xxx">
                                             </c:if>
+                                            <label for="employee-name-edit"
+                                                   class="col-md-2 col-sm-2 col-xs-2 col-form-label">用户名</label>
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <c:if test="${employee != null}">
+                                                    <input type="text" class="form-control" id="employee-name-edit" placeholder="用户名" value="${employee.username}">
+                                                </c:if>
+                                                <c:if test="${employee == null}">
+                                                    <input type="text" class="form-control" id="employee-name-edit" placeholder="用户名">
+                                                </c:if>
+                                            </div>
+                                            <label for="employee-name-edit"
+                                                   class="col-md-2 col-sm-2 col-xs-2 col-form-label">密码</label>
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <input type="text" class="form-control" id="employee-name-edit" placeholder="密码">
+                                            </div>
                                             <label for="employee-name-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">姓名</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -187,8 +202,11 @@
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">部门</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <select class="form-control" id="employee-department-edit">
+                                                    <option value=""></option>
                                                     <c:forEach var="item" items="${departments}">
-                                                        <option>${item.id}</option>
+                                                        <c:if test="${item.id != department.id}">
+                                                            <option value="${item.id}">${item.name}</option>
+                                                        </c:if>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -197,29 +215,10 @@
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">职务</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <select class="form-control" id="employee-job-edit">
-                                                    <option>STAFF</option>
-                                                    <option>ADMIN</option>
+                                                    <option>员工</option>
+                                                    <option>管理员</option>
                                                 </select>
                                             </div>
-
-<%--                                            <label for="employee-username-edit"--%>
-<%--                                                   class="col-md-2 col-sm-2 col-xs-2 col-form-label">用户名</label>--%>
-<%--                                            <div class="col-md-12 col-sm-12 col-xs-12">--%>
-<%--                                                <c:if test="${employee != null}">--%>
-<%--                                                    <input type="text" class="form-control" id="employee-username-edit" placeholder="用户名" value="${employee.username}">--%>
-<%--                                                </c:if>--%>
-<%--                                                <c:if test="${employee == null}">--%>
-<%--                                                    <input type="text" class="form-control" id="employee-username-edit" placeholder="用户名">--%>
-<%--                                                </c:if>--%>
-<%--                                            </div>--%>
-
-<%--                                            <label for="employee-password-edit"--%>
-<%--                                                   class="col-md-2 col-sm-2 col-xs-2 col-form-label">密码</label>--%>
-<%--                                            <div class="col-md-12 col-sm-12 col-xs-12">--%>
-<%--                                                <input type="text" class="form-control" id="employee-password-edit" placeholder="密码">--%>
-<%--                                            </div>--%>
-
-
                                         </div>
 
                                         <!-- 查看员工信息 -->
@@ -260,24 +259,11 @@
                                                     <c:out value="${employee.role}"/>
                                                 </div>
                                             </div>
-
-                                            <label for="employee-username-show"
-                                                   class="col-md-2 col-sm-2 col-xs-2 col-form-label">用户名</label>
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="employee-username-show">
-                                                    <c:out value="${employee.username}"/>
-                                                </div>
-                                            </div>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div id="save-apply" style="display:none;">
-                                    <a href="#" data-toggle="tooltip" data-placement="right" title="保存修改">
-                                        <div class="fa fa fa-floppy-o" aria-hidden="true"></div>
-                                    </a>
-                                </div>
-                                <div id="add-save-apply" style="display:none;">
                                     <a href="#" data-toggle="tooltip" data-placement="right" title="保存修改">
                                         <div class="fa fa fa-floppy-o" aria-hidden="true"></div>
                                     </a>
