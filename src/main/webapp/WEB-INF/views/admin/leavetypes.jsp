@@ -82,46 +82,7 @@
                                                         class="fa fa-bars" aria-hidden="true"
                                                         style="float:left; margin-top:10px;"></i>${item.name}</a>
                                             </c:forEach>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-bars" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>部门1</a>--%>
+
 
                                         </div>
                                     </div>
@@ -149,7 +110,10 @@
                                 <div class="scrollable" style="height: 280px;">
                                     <div class="form-group row">
                                         <!-- 修改 -->
-                                        <div class="department-edit" style="display:none;">
+                                        <div class="type-edit" style="display:none;">
+                                            <c:if test="${leave != null}">
+                                                <input hidden="hidden" value="${leave.id}" id="leave-id">
+                                            </c:if>
                                             <label for="leavetype-name-edit"
                                                 class="col-md-3 col-sm-3 col-xs-3 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -158,7 +122,7 @@
                                         </div>
 
                                         <!-- 查看 -->
-                                        <div class="department-show">
+                                        <div class="type-show">
                                             <label for="leavetype-name-show"
                                                 class="col-md-6 col-sm-6 col-xs-6 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -174,6 +138,11 @@
                                     </div>
                                 </div>
                                 <div id="save-apply" style="display:none;">
+                                    <a href="#" data-toggle="tooltip" data-placement="right" title="保存修改">
+                                        <div class="fa fa fa-floppy-o" aria-hidden="true"></div>
+                                    </a>
+                                </div>
+                                <div id="add-save-apply" style="display:none;">
                                     <a href="#" data-toggle="tooltip" data-placement="right" title="保存修改">
                                         <div class="fa fa fa-floppy-o" aria-hidden="true"></div>
                                     </a>

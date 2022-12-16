@@ -133,8 +133,8 @@
                                     <label>选择部门</label>
                                     <div class="card-lists row">
                                         <jsp:useBean id="map" class="java.util.HashMap" scope="request" />
-                                        <c:set target="${map}" property="/image/department1.png" value="部门1" />
-                                        <c:set target="${map}" property="/image/department2.png" value="部门2" />
+                                        <c:set target="${map}" property="/image/department1.jpg" value="部门1" />
+                                        <c:set target="${map}" property="/image/department2.jpg" value="部门2" />
                                         <c:forEach var="item" items="${map}">
                                             <div class="card col-md-3 clickable">
                                                 <img src="${item.key}" class="card-img img-circle" alt="${item.value}">

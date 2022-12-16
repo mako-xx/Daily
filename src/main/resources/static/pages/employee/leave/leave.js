@@ -83,7 +83,11 @@ $(document).ready(function () {
       ),
     }).then(response => response.json()).then((res) => {
       console.log(res);
-      // $("#employee-name-edit").val("123" + res.statusText);
+      if(res.code == 200){
+        alert("修改成功");
+      }else{
+        alert("修改失败");
+      }
     })
   })
   
@@ -114,6 +118,10 @@ $("#leave-apply").click(()=>{
     ),
   }).then(response => response.json()).then((res) => {
     console.log(res);
-    // $("#employee-name-edit").val("123" + res.statusText);
+    if (res.status == 200) {
+      alert("请假申请成功");
+    }else{
+      alert("请假申请失败");
+    }
   })
 })

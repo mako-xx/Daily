@@ -16,9 +16,12 @@ $(document).ready(function () {
         $("#add-save-apply").hide();
         $(".employee-edit").show();
         $(".employee-show").hide();
-        // $("#employee-password-edit").hide();
-        // $("#employee-username-show").hide();
-        // $("#employee-username-edit").hide();
+        $("#employee-password-edit").hide();
+        $("#employee-username-show").hide();
+        $("#employee-username-edit").hide();
+        $("#employee-password-edit-label").hide();
+        $("#employee-username-show-label").hide();
+        $("#employee-username-edit-label").hide();
     });
 
     $("#save-apply").click(function () {
@@ -27,9 +30,12 @@ $(document).ready(function () {
         $("#add-save-apply").hide();
         $(".employee-edit").hide();
         $(".employee-show").show();
-        // $("#employee-password-edit").hide();
-        // $("#employee-username-show").show();
-        // $("#employee-username-edit").hide();
+        $("#employee-password-edit").hide();
+        $("#employee-username-show").show();
+        $("#employee-username-edit").hide();
+        $("#employee-password-edit-label").hide();
+        $("#employee-username-show-label").show();
+        $("#employee-username-edit-label").hide();
     });
 
     $("#save-apply").click(() => {
@@ -57,6 +63,8 @@ $(document).ready(function () {
                 console.log(response.msg);
                 alert("修改成功");
                 window.location.reload();
+            } else {
+                alert("修改失败");
             }
         });
     });
@@ -75,6 +83,8 @@ $(document).ready(function () {
                 console.log(response.msg);
                 alert("删除成功");
                 window.location.reload();
+            } else {
+                alert("删除失败");
             }
         });
     });
@@ -85,6 +95,20 @@ $(document).ready(function () {
         $("#add-save-apply").show();
         $(".employee-edit").show();
         $(".employee-show").hide();
+        $("#employee-password-edit").show();
+        $("#employee-username-show").hide();
+        $("#employee-username-edit").show();
+        $("#employee-password-edit-label").show();
+        $("#employee-username-show-label").hide();
+        $("#employee-username-edit-label").show();
+        // 清除输入框内容
+        $("#employee-id").val("");
+        $("#employee-name-edit").val("");
+        $("#employee-phone-edit").val("");
+        $("#employee-department-edit").val("");
+        $("#employee-job-edit").val("");
+        $("#employee-password-edit").val("");
+        $("#employee-username-edit").val("");
     });
 
     $("#add-save-apply").click(() => {
@@ -115,6 +139,8 @@ $(document).ready(function () {
                 console.log(response.msg);
                 alert("添加成功");
                 window.location.reload();
+            } else {
+                alert("添加失败");
             }
         });
     });

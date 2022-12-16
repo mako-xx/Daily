@@ -46,6 +46,8 @@ $(document).ready(function () {
                 console.log(response.msg);
                 alert("修改成功");
                 window.location.reload();
+            }else{
+                alert("修改失败");
             }
         });
     });
@@ -64,6 +66,8 @@ $(document).ready(function () {
                 console.log(response.msg);
                 alert("删除成功");
                 window.location.reload();
+            }else{
+                alert("删除失败");
             }
         });
     });
@@ -74,6 +78,8 @@ $(document).ready(function () {
         $("#add-save-apply").show();
         $(".department-edit").show();
         $(".department-show").hide();
+        $("#department-name-edit").val("");
+        $("#department-father-edit").val("");
     });
 
     $("#add-save-apply").click(() => {
@@ -96,6 +102,8 @@ $(document).ready(function () {
                 console.log(response.msg);
                 alert("添加成功");
                 window.location.reload();
+            }else{
+                alert("添加失败");
             }
         });
     });
