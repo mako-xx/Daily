@@ -48,6 +48,17 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
+    public LeaveVo getVoById(String id) {
+        Leave leave = leaveMapper.selectByPrimaryKey(id);
+        LeaveVo leaveVo = new LeaveVo();
+        BeanUtils.copyProperties(leave, leaveVo);
+        Employee employee = employeeMapper.selectByPrimaryKey(leave.getEmployeeId());
+        leaveVo.setName(employee.getName());
+        leaveVo.setType(leaveTypeMapper.selectByPrimaryKey(leave.getTypeId()).getName());
+        return leaveVo;
+    }
+
+    @Override
     public void updateLeaveStatus(Leave leave) {
         leaveMapper.updateByPrimaryKeySelective(leave);
     }
