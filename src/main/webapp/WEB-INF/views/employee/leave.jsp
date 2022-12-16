@@ -33,11 +33,11 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
                         <ul class="nav sidebar-nav" style="margin:0 auto;">
                             <li>
-                                <a class="list-group-item" href="/view/test2"><i
+                                <a class="list-group-item" href="/employee/checkin"><i
                                         class="fa fa-fw fa-id-card-o my-list-group-icon"></i>考 勤</a>
                             </li>
                             <li>
-                                <a class="list-group-item" href="/view/test3"><i
+                                <a class="list-group-item" href="/employee/leave"><i
                                         class="fa fa-fw fa-book my-list-group-icon"></i>请 假</a>
                             </li>
                         </ul>

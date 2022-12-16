@@ -32,15 +32,15 @@
                 <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
                     <ul class="nav sidebar-nav" style="margin:0 auto;">
                         <li>
-                            <a class="list-group-item" href="/view/test4"><i
+                            <a class="list-group-item" href="/admin/employees"><i
                                     class="fa fa-fw fa-address-book my-list-group-icon"></i>员 工</a>
                         </li>
                         <li>
-                            <a class="list-group-item" href="/view/test5"><i
+                            <a class="list-group-item" href="/admin/departments"><i
                                     class="fa fa-fw fa-handshake-o my-list-group-icon"></i>部 门</a>
                         </li>
                         <li>
-                            <a class="list-group-item" href="/view/test7"><i
+                            <a class="list-group-item" href="/admin/checkins"><i
                                     class="fa fa-fw fa-id-card-o my-list-group-icon"></i>考 勤</a>
                         </li>
                         <li class="dropdown">
@@ -48,8 +48,8 @@
                                     class="fa fa-fw fa-book my-list-group-icon"></i>请 假
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/view/test6"><i class="fa fa-fw fa-sitemap my-list-group-icon"></i>请假类型</a></li>
-                                <li><a href="/view/test8"><i class="fa fa-fw fa-check my-list-group-icon"></i>请假审批</a></li>
+                                <li><a href="/admin/leavetypes"><i class="fa fa-fw fa-sitemap my-list-group-icon"></i>请假类型</a></li>
+                                <li><a href="/admin/checkleaves"><i class="fa fa-fw fa-check my-list-group-icon"></i>请假审批</a></li>
                             </ul>
                         </li>
                     </ul>
