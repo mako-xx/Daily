@@ -20,8 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.text.DateFormat;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
 * @author faust
@@ -81,9 +83,46 @@ public class LeaveServiceImpl implements LeaveService {
         return page;
     }
 
+    @Override
+    public List<LeaveVo> queryLeaveList(LeaveCheckStatus status) {
+        List<Leave> leaveList = leaveMapper.queryLeave(status.ordinal());
+        return leaveList.stream()
+                .map(leave -> {
+                    //每次都创建新的视图对象
+                    LeaveVo leaveRequestVo = new LeaveVo();
+                    //拷贝属性
+                    BeanUtils.copyProperties(leave, leaveRequestVo);
+                    //通过leave的员工ID调用员工服务类查询员工名称并赋值
+                    String employeeId = leave.getEmployeeId();
+                    Employee employee = employeeMapper.selectByPrimaryKey(employeeId);
+                    leaveRequestVo.setName(employee.getName());
+                    //将typeId转换为type后赋值
+                    leaveRequestVo.setType(leaveTypeMapper.selectByPrimaryKey(leave.getTypeId()).getName());
+                    //将status装换后赋值
+                    leaveRequestVo.setStatus(status.toString());
+                    return leaveRequestVo;
+                }).toList();
+    }
+
     public List<Leave> getLeavesByEmployeeId(String employeeId) {
 
         return leaveMapper.selectAllByEmployeeId(employeeId);
+    }
+
+    @Override
+    public List<LeaveVo> getEmployeeLeaves(String employeeId, String username) {
+        List<Leave> leaves = leaveMapper.selectAllByEmployeeId(employeeId);
+        return leaves.stream()
+                .map(leave -> new LeaveVo(
+                        leave.getId(),
+                        DateFormat.getDateInstance().format(leave.getStartdate()),
+                        DateFormat.getDateInstance().format(leave.getEnddate()),
+                        leave.getStatus().toString(),
+                        leaveTypeMapper.selectByPrimaryKey(leave.getTypeId()).getName(),
+                        leave.getReason(),
+                        leave.getEmployeeId(),
+                        username
+                )).collect(Collectors.toList());
     }
 
     @Override

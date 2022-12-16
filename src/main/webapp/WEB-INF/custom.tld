@@ -12,5 +12,16 @@
         <tag-class>com.travelthree.daily.tag.FooterTag</tag-class>
         <body-content>empty</body-content>
     </tag>
+    
+    <tag>
+        <name>page</name>
+        <tag-class>com.travelthree.daily.tag.LeaveListContentTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>list</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 
 </taglib>

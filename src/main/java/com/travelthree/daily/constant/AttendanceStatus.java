@@ -18,7 +18,7 @@ public enum AttendanceStatus {
     @JsonProperty("LEAVE")
     LEAVE;
 
-    public static AttendanceStatus getRoleFromOrdinal(int ordinal) {
+    public static AttendanceStatus getStatusFromOrdinal(int ordinal) {
         for (AttendanceStatus value : AttendanceStatus.values()) {
             if (value.ordinal() == ordinal) {
                 return value;

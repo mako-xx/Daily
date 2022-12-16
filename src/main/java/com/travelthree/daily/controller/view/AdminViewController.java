@@ -1,6 +1,5 @@
 package com.travelthree.daily.controller.view;
 
-import com.github.pagehelper.PageInfo;
 import com.travelthree.daily.constant.LeaveCheckStatus;
 import com.travelthree.daily.domain.Department;
 import com.travelthree.daily.domain.LeaveType;
@@ -42,9 +41,9 @@ public class AdminViewController {
 
     @GetMapping("/employees")
     public String showEmployees(HttpServletRequest request, @Valid PageParam pageParam) {
-        PageInfo<EmployeeVo> pageInfo = employeeService.queryEmployeeByPage(pageParam);
+        List<EmployeeVo> list = employeeService.getAllEmployee();
         List<Department> departments = departmentService.selectAllDepartments();
-        request.setAttribute("page", pageInfo);
+        request.setAttribute("list", list);
         request.setAttribute("departments", departments);
         return "admin/employees";
     }
@@ -70,18 +69,17 @@ public class AdminViewController {
     }
 
     @GetMapping("/checkins")
-    public String showCheckIn(HttpServletRequest request, @Valid AttendanceParam attendanceParam, @Valid PageParam pageParam) {
-        PageInfo<AttendanceVo> pageInfo = attendanceService.queryAttendanceByDate(attendanceParam, pageParam);
-        request.setAttribute("page", pageInfo);
+    public String showCheckIn(HttpServletRequest request, @Valid AttendanceParam attendanceParam) {
+        List<AttendanceVo> list = attendanceService.getAttendanceList(attendanceParam);
+        request.setAttribute("list", list);
         return "admin/checkins";
     }
 
     @GetMapping("/leaves")
     public String showLeaves(HttpServletRequest request,
-                             @Valid PageParam pageParam,
                              @RequestParam(defaultValue = "WAITING") LeaveCheckStatus leaveStatus) {
-        PageInfo<LeaveVo> pageInfo = leaveService.queryLeave(pageParam, leaveStatus);
-        request.setAttribute("page", pageInfo);
+        List<LeaveVo> list = leaveService.queryLeaveList(leaveStatus);
+        request.setAttribute("list", list);
         return "admin/checkleaves";
     }
 }

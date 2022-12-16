@@ -17,6 +17,7 @@ import com.travelthree.daily.mapper.LeaveMapper;
 import com.travelthree.daily.service.AttendanceService;
 import com.travelthree.daily.service.EmployeeService;
 import com.travelthree.daily.vo.AttendanceVo;
+import com.travelthree.daily.vo.SelfAttendanceVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -123,9 +125,41 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
+    public List<AttendanceVo> getAttendanceList(AttendanceParam attendanceParam) {
+        if (attendanceParam.getStartDate().isAfter(attendanceParam.getEndDate())) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "开始日期应该晚于截止日期");
+        }
+        List<Attendance> attendances = attendanceMapper.selectByDate(attendanceParam.getStartDate(), attendanceParam.getEndDate());
+        return attendances.stream().map(attendance -> {
+            //每次都创建新的视图对象
+            AttendanceVo attendanceVo = new AttendanceVo();
+            //拷贝属性
+            BeanUtils.copyProperties(attendance, attendanceVo);
+            //变更Status和LocalDate的类型后拷贝
+            attendanceVo.setStatus(AttendanceStatus.getStatusFromOrdinal(attendance.getStatus()).toString());
+            attendanceVo.setDate(attendance.getDate().toString());
+            //通过Attendance的员工ID调用员工服务类查询员工名称并赋值
+            String employeeId = attendance.getEmployeeId();
+            EmployeeDTO employeeDTO = employeeService.getEmployeeById(employeeId);
+            attendanceVo.setEmployeeName(employeeDTO.getName());
+            return attendanceVo;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
     public List<Attendance> getAttendancesByEmployeeId(String employeeId) {
 
         return attendanceMapper.selectAllByEmployeeId(employeeId);
+    }
+
+    @Override
+    public List<SelfAttendanceVo> getEmployeeAttendance(String id) {
+        List<Attendance> list = getAttendancesByEmployeeId(id);
+        return list.stream()
+                .map(attendance -> new SelfAttendanceVo(
+                        attendance.getId(),
+                        attendance.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
+                        attendance.getStatus().toString())).collect(Collectors.toList());
     }
 
 //    @Override
