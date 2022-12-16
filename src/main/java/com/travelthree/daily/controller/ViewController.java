@@ -1,8 +1,14 @@
 package com.travelthree.daily.controller;
 
+import com.travelthree.daily.service.EmployeeService;
+import com.travelthree.daily.vo.EmployeeVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author 陈宣辰
@@ -12,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/view")
 public class ViewController {
+
+    @Autowired
+    private EmployeeService employeeService;
+
     @GetMapping("/test1")
     public String test() {
         return "index";
@@ -60,7 +70,9 @@ public class ViewController {
     public String test8() { return "admin/checkleaves";}
 
     @GetMapping("/test9")
-    public String test9() {
+    public String test9(HttpServletRequest request) {
+        List<EmployeeVo> list = employeeService.getAllEmployee();
+        request.setAttribute("list", list);
         return "test";
     }
 }

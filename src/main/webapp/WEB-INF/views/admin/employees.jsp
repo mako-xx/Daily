@@ -157,6 +157,9 @@
                                     <div class="form-group row">
                                         <!-- 修改员工信息 -->
                                         <div class="employee-edit" style="display:none;">
+                                            <c:if test="${employee != null}">
+                                                <input hidden="hidden" type="text" value="${employee.id}" id="xxx">
+                                            </c:if>
                                             <label for="employee-name-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">姓名</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -270,5 +273,4 @@
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/bootstrap/js/popper.js"></script>
 </body>
-
 </html>

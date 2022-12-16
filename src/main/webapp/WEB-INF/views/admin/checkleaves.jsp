@@ -143,50 +143,82 @@
                                             <label for="name"
                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">编号</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="name"></div>
+                                                <div class="form-control" id="name">
+                                                    <c:if test="${leave != null}">
+                                                        <c:out value="${leave.id}"/>
+                                                    </c:if>
+                                                </div>
                                             </div>
 
                                             <label for="phone"
                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">姓名</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="phone"></div>
+                                                <div class="form-control" id="phone">
+                                                    <c:if test="${leave != null}">
+                                                        <c:out value="${leave.name}"/>
+                                                    </c:if>
+                                                </div>
                                             </div>
 
                                             <label for="department"
                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">工号</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="department"></div>
+                                                <div class="form-control" id="department">
+                                                    <c:if test="${leave != null}">
+                                                        <c:out value="${leave.employeeId}"/>
+                                                    </c:if>
+                                                </div>
                                             </div>
 
                                             <label for="department"
                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">理由</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="department"></div>
+                                                <div class="form-control" id="department">
+                                                    <c:if test="${leave != null}">
+                                                        <c:out value="${leave.reason}"/>
+                                                    </c:if>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <label for="name"
-                                                   class="col-md-5 col-sm-5 col-xs-5 col-form-label"">开始时间</label>
+                                                   class="col-md-5 col-sm-5 col-xs-5 col-form-label">开始时间</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="name"></div>
+                                                <div class="form-control" id="name">
+                                                    <c:if test="${leave != null}">
+                                                        <c:out value="${leave.startDate}"/>
+                                                    </c:if>
+                                                </div>
                                             </div>
 
                                             <label for="phone"
                                                    class="col-md-5 col-sm-5 col-xs-5 col-form-label">结束时间</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="phone"></div>
+                                                <div class="form-control" id="phone">
+                                                    <c:if test="${leave != null}">
+                                                        <c:out value="${leave.endDate}"/>
+                                                    </c:if>
+                                                </div>
                                             </div>
 
                                             <label for="department"
                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">类型</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="department"></div>
+                                                <div class="form-control" id="department">
+                                                    <c:if test="${leave != null}">
+                                                        <c:out value="${leave.type}"/>
+                                                    </c:if>
+                                                </div>
                                             </div>
 
                                             <label for="department"
                                                    class="col-md-4 col-sm-4 col-xs-4 col-form-label">状态</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="department"></div>
+                                                <div class="form-control" id="department">
+                                                    <c:if test="${leave != null}">
+                                                        <c:out value="${leave.status}"/>
+                                                    </c:if>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -198,14 +230,14 @@
                                 <div class="col-md-3 col-sm-3 col-xs-3"></div>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                     <div id="leave-approve">
-                                        <a href="#" data-toggle="tooltip" data-placement="right" title="保存修改">
+                                        <a href="#" data-toggle="tooltip" data-placement="right" title="批准">
                                             <div class="fa fa fa-check" aria-hidden="true"></div>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                     <div id="leave-refuse">
-                                        <a href="#" data-toggle="tooltip" data-placement="right" title="修改信息">
+                                        <a href="#" data-toggle="tooltip" data-placement="right" title="不批准">
                                             <div class="fa fa fa-times" aria-hidden="true"></div>
                                         </a>
                                     </div>

@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,6 +54,8 @@ public class LeaveServiceImpl implements LeaveService {
         LeaveVo leaveVo = new LeaveVo();
         BeanUtils.copyProperties(leave, leaveVo);
         Employee employee = employeeMapper.selectByPrimaryKey(leave.getEmployeeId());
+        leaveVo.setStartDate(leave.getStartdate().toString());
+        leaveVo.setEndDate(leave.getEnddate().toString());
         leaveVo.setName(employee.getName());
         leaveVo.setType(leaveTypeMapper.selectByPrimaryKey(leave.getTypeId()).getName());
         return leaveVo;
@@ -126,8 +129,8 @@ public class LeaveServiceImpl implements LeaveService {
         return leaves.stream()
                 .map(leave -> new LeaveVo(
                         leave.getId(),
-                        DateFormat.getDateInstance().format(leave.getStartdate()),
-                        DateFormat.getDateInstance().format(leave.getEnddate()),
+                        leave.getStartdate().toString(),
+                        leave.getEnddate().toString(),
                         leave.getStatus().toString(),
                         leaveTypeMapper.selectByPrimaryKey(leave.getTypeId()).getName(),
                         leave.getReason(),
@@ -146,18 +149,18 @@ public class LeaveServiceImpl implements LeaveService {
     @Override
     public void addLeave(AskForLeaveParam param, String employeeId) {
 
-        Date start = Date.valueOf(param.getStartDate());
-        Date end = Date.valueOf(param.getEndDate());
-        if (start.after(end)) {
+        LocalDate start = param.getStartDate();
+        LocalDate end = param.getEndDate();
+        if (start.isAfter(end)) {
             throw new BusinessException(ResultCodeEnum.FORBIDDEN_OP, "起始时间不得晚于结束时间");
         }
 
         List<Leave> leaveList = leaveMapper.selectAllByEmployeeId(employeeId);
         if (leaveList.stream().anyMatch(leave ->
-                (start.before(leave.getStartdate())
-                        && end.after(leave.getStartdate()))
-                || (start.before(leave.getEnddate())
-                        && end.after(leave.getEnddate()))
+                (start.isBefore(leave.getStartdate())
+                        && end.isAfter(leave.getStartdate()))
+                || (start.isBefore(leave.getEnddate())
+                        && end.isAfter(leave.getEnddate()))
 
         )) {
             throw new BusinessException(ResultCodeEnum.FORBIDDEN_OP, "当前时段内用户已有请假");

@@ -1,6 +1,7 @@
 package com.travelthree.daily.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.Data;
 
@@ -23,12 +24,12 @@ public class Leave implements Serializable {
     /**
      * 请假起始时间
      */
-    private Date startdate;
+    private LocalDate startdate;
 
     /**
      * 请假结束时间
      */
-    private Date enddate;
+    private LocalDate enddate;
 
     /**
      * 请假审核状态：等待审核(0)，审核不通过(1)，审核通过(2)

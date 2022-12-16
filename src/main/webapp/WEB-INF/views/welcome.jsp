@@ -26,6 +26,22 @@
 <!-- Bootstrap -->
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/popper.js"></script>
+<script>
+    window.onload=function () {
+        setTimeout(getRoleAndMove, 3000)
+    }
+    function getRoleAndMove() {
+
+        var role = "<%=session.getAttribute("user_role")%>"
+        let target;
+        if (role === 'ADMIN') {
+            window.location.href='/admin/employees'
+        } else {
+            window.location.href='/employee/check'
+        }
+    }
+
+</script>
 </body>
 
 </html>
