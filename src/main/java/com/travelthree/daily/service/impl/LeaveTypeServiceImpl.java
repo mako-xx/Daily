@@ -2,8 +2,10 @@ package com.travelthree.daily.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.travelthree.daily.constant.ResultCodeEnum;
+import com.travelthree.daily.domain.Leave;
 import com.travelthree.daily.domain.LeaveType;
 import com.travelthree.daily.exception.BusinessException;
+import com.travelthree.daily.mapper.LeaveMapper;
 import com.travelthree.daily.mapper.LeaveTypeMapper;
 import com.travelthree.daily.service.LeaveTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class LeaveTypeServiceImpl implements LeaveTypeService {
 
     @Autowired
     LeaveTypeMapper leaveTypeMapper;
+
+    @Autowired
+    private LeaveMapper leaveMapper;
 
     /**
      * 获取所有请假类型
@@ -57,6 +62,10 @@ public class LeaveTypeServiceImpl implements LeaveTypeService {
     @Override
     public void deleteInfo(Integer id) {
         LeaveType lt = leaveTypeMapper.selectByPrimaryKey(id);
+        List<Leave> leaves = leaveMapper.selectByTypeId(id);
+        if (leaves.size() != 0) {
+            throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "当前请假类型正在被使用");
+        }
         if (ObjectUtil.isNull(lt)) {
             throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "当前请假类型id不存在");
         }

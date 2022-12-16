@@ -34,6 +34,8 @@ $("#delete-apply").click(()=>{
     console.log(res);
     if (res.code === 200) {
       window.location.reload();
+    } else {
+      alert(res.msg)
     }
     // $("#employee-name-edit").val("123" + res.statusText);
   })
@@ -61,6 +63,8 @@ $("#save-apply").click(()=>{
       console.log(res);
       if (res.code === 200) {
         window.location.reload();
+      } else {
+        alert(res.msg)
       }
       // $("#employee-name-edit").val("123" + res.statusText);
     })
@@ -78,6 +82,8 @@ $("#save-apply").click(()=>{
       console.log(res);
       if (res.code === 200) {
         window.location.reload();
+      } else {
+        alert(res.msg)
       }
       // $("#employee-name-edit").val("123" + res.statusText);
     })

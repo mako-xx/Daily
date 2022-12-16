@@ -133,4 +133,11 @@
         and startDate &lt;= #{time}
         and endDate &gt;= #{time}
     </select>
+    <select id="selectByTypeId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `leave`
+        where
+        type_id = #{typeId,jdbcType=NUMERIC}
+    </select>
 </mapper>
