@@ -252,17 +252,15 @@
                                                 <div class="employee-name-tag">员工姓名:</div>
                                                 <div class="employee-name-content">#1</div>
                                             </div> -->
+<%--                                        <div class="col-md-12 col-sm-12 col-xs-12">--%>
+<%--                                            <a href="#">--%>
+<%--                                                <div class="employee-tag">员工信息</div>--%>
+<%--                                                <i class="fa fa-angle-right" aria-hidden="true"></i>--%>
+<%--                                            </a>--%>
+<%--                                        </div>--%>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <a href="#">
-                                                <div class="employee-tag">员工信息</div>
-                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <a href="#">
-                                                <div class="reason-tag">请假理由</div>
-                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                            </a>
+                                            <div class="type-tag">请假理由:</div>
+                                            <div class="type-content">${item.reason}</div>
                                         </div>
                                     </div>
                                 </c:forEach>

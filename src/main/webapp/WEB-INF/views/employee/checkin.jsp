@@ -210,10 +210,6 @@
                                                 <div class="state">${item.status}</div>
                                             </div>
                                             <hr width="100%">
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="id-tag">编号:</div>
-                                                <div class="id-content">${item.id}</div>
-                                            </div>
                                         </div>
                                     </c:forEach>
 

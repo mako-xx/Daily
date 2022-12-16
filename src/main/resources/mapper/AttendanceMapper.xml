@@ -33,6 +33,7 @@
         <include refid="Base_Column_List" />
         from attendance
         where  employee_id = #{employeeId,jdbcType=VARCHAR}
+        order by `date` desc
     </select>
 
     <select id="selectByDate"  resultMap="BaseResultMap">

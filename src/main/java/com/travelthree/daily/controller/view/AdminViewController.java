@@ -9,10 +9,7 @@ import com.travelthree.daily.dto.AttendanceParam;
 import com.travelthree.daily.dto.EmployeeDTO;
 import com.travelthree.daily.dto.PageParam;
 import com.travelthree.daily.service.*;
-import com.travelthree.daily.vo.AttendanceVo;
-import com.travelthree.daily.vo.DepartmentVo;
-import com.travelthree.daily.vo.EmployeeVo;
-import com.travelthree.daily.vo.LeaveVo;
+import com.travelthree.daily.vo.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,8 +45,10 @@ public class AdminViewController {
     public String showEmployees(HttpServletRequest request, @RequestParam(required = false) String id) {
         EmployeeDTO employee = employeeService.getEmployeeById(id);
         EmployeeVo employeeVo = new EmployeeVo();
-        BeanUtils.copyProperties(employee, employeeVo);
-        employeeVo.setDepartment(departmentService.selectByPrimaryKey(employee.getDepartmentId()).getName());
+        if (employee != null) {
+            BeanUtils.copyProperties(employee, employeeVo);
+            employeeVo.setDepartment(departmentService.selectByPrimaryKey(employee.getDepartmentId()).getName());
+        }
         List<EmployeeVo> list = employeeService.getAllEmployee();
         List<Department> departments = departmentService.selectAllDepartments();
         request.setAttribute("list", list);
@@ -59,7 +58,7 @@ public class AdminViewController {
     }
 
     @GetMapping("/departments")
-    public String showDepartments(HttpServletRequest request) {
+    public String showDepartments(HttpServletRequest request, @RequestParam(required = false) String id) {
         List<Department> departments = departmentService.selectAllDepartments();
         List<DepartmentVo> departmentList = departments.stream()
                 .map(d -> new DepartmentVo(
@@ -67,14 +66,26 @@ public class AdminViewController {
                         d.getName(),
                         departmentService.getSuperiorName(d)
                 )).toList();
+        Department department = departmentService.selectByPrimaryKey(id);
+        DepartmentVo departmentVo = new DepartmentVo();
+        if (department != null) {
+            BeanUtils.copyProperties(department, departmentVo);
+            Department parent = departmentService.selectByPrimaryKey(department.getSuperiorId());
+            if (parent != null) {
+                departmentVo.setSuperior(parent.toString());
+            }
+        }
         request.setAttribute("departments", departmentList);
+        request.setAttribute("department", departmentVo);
         return "admin/departments";
     }
 
     @GetMapping("/leavetypes")
-    public String showLeaveType(HttpServletRequest request) {
+    public String showLeaveType(HttpServletRequest request, @RequestParam(required = false) Integer id) {
+        LeaveType leaveType = leaveTypeService.selectById(id);
         List<LeaveType> leaveTypes = leaveTypeService.getAllLeaveTypes();
         request.setAttribute("leaveTypes", leaveTypes);
+        request.setAttribute("leavetype", leaveType);
         return "admin/leavetypes";
     }
 

@@ -125,7 +125,7 @@
                                             <jsp:useBean id="map" class="java.util.HashMap" scope="request" />
                                             <c:set target="${map}" property="#" value="部门1" />
                                             <c:forEach var="item" items="${departments}">
-                                                <a href="${item.id}"
+                                                <a href="${'/admin/departments?id='.concat(item.id)}"
                                                    class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
                                                         class="fa fa-users" aria-hidden="true"
                                                         style="float:left; margin-top:10px;"></i>${item.name}</a>
@@ -210,7 +210,12 @@
                                             <label for="name"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" class="form-control" id="name" placeholder="部门名称">
+                                                <c:if test="${department != null}">
+                                                    <input type="text" class="form-control" id="name" placeholder="部门名称" value="${department.name}">
+                                                </c:if>
+                                                <c:if test="${department == null}">
+                                                    <input type="text" class="form-control" id="name" placeholder="部门名称">
+                                                </c:if>
                                             </div>
 
                                             <!-- 部门id -->
@@ -232,7 +237,11 @@
                                             <label for="name"
                                                 class="col-md-3 col-sm-3 col-xs-3 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="name" placeholder="部门名称"></div>
+                                                <div class="form-control" id="name" placeholder="部门名称">
+                                                    <c:if test="${department != null}">
+                                                        <c:out value="${department.name}"/>
+                                                    </c:if>
+                                                </div>
                                             </div>
 
                                             <!-- 部门id -->
@@ -242,7 +251,7 @@
 
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-control" id="department">
-                                                    <div>部门1</div>
+                                                    <div><c:out value="${department.superior}"/></div>
                                                 </div>
                                             </div>
 

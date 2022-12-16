@@ -33,7 +33,7 @@ public class EmployeeViewController {
     @GetMapping("/check")
     public String check(HttpServletRequest request) {
         EmployeeDTO currentLoginUser = TaleUtil.getCurrentLoginUser(request);
-        List<SelfAttendanceVo> list = attendanceService.getEmployeeAttendance(currentLoginUser.getId());
+        List<SelfAttendanceVo> list = attendanceService.getEmployeeAttendance("0");
         request.setAttribute("list", list);
         return "employee/checkin";
     }
@@ -41,7 +41,7 @@ public class EmployeeViewController {
     @GetMapping("/leave")
     public String leave(HttpServletRequest request) {
         EmployeeDTO currentLoginUser = TaleUtil.getCurrentLoginUser(request);
-        List<LeaveVo> list = leaveService.getEmployeeLeaves(currentLoginUser.getId(), currentLoginUser.getName());
+        List<LeaveVo> list = leaveService.getEmployeeLeaves("0", "staff");
         List<LeaveType> leaveTypes = leaveTypeService.getAllLeaveTypes();
         request.setAttribute("list", list);
         request.setAttribute("leaveTypes", leaveTypes);

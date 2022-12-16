@@ -44,38 +44,60 @@
             <div class="card-right row">
                 <img src="/image/head.jpg" class="head"/>
                 <h2>Hello Again!</h2>
-                <form class="login-form validate-form">
-                    <div class="login-border">
-                        <div class="wrap-input">
-                            <input class="input" type="text" name="email" placeholder="用户名 / Name">
-                            <span class="focus-input"></span>
-                            <span class="symbol-input">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                </span>
+                <form class="form-horizontal m-t-20" action="/api/login" method="post">
+                    <div class="form-group">
+                        <input class="form-control" type="text" required=""
+                               onkeyup="value=value.replace(/[^a-zA-Z\d-]/g,'')" placeholder="User ID" name="username">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" required="" placeholder="Password" name="password">
+                    </div>
+                    <%--<div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Remember me</label>
                         </div>
-
-                        <div class="wrap-input validate-input">
-                            <input class="input" type="password" name="pass" placeholder="密码 / Password">
-                            <span class="focus-input"></span>
-                            <span class="symbol-input">
-                                    <i class="fa fa-lock" aria-hidden="true"></i>
-                                </span>
-                        </div>
+                    </div>--%>
+                    <div class="form-group text-center m-t-20">
+                        <button class="btn btn-common btn-block" type="submit">Log In</button>
                     </div>
 
-                    <div class="container-login-form-btn">
-                        <button id="auto-login-form-btn">
-                            自动登录
-                        </button>
-                    </div>
-
-                    <div class="container-login-form-btn">
-                        <button id="login-form-btn">
-                            登录 / sign in
-                        </button>
-                    </div>
-
+                    <c:if test="${!(msg eq null)}">
+                        <label for="username" style="color: #e22a6f">${msg}</label>
+                    </c:if>
                 </form>
+<%--                <form class="login-form validate-form">--%>
+<%--                    <div class="login-border">--%>
+<%--                        <div class="wrap-input">--%>
+<%--                            <input class="input" type="text" name="email" placeholder="用户名 / Name">--%>
+<%--                            <span class="focus-input"></span>--%>
+<%--                            <span class="symbol-input">--%>
+<%--                                    <i class="fa fa-user" aria-hidden="true"></i>--%>
+<%--                                </span>--%>
+<%--                        </div>--%>
+
+<%--                        <div class="wrap-input validate-input">--%>
+<%--                            <input class="input" type="password" name="pass" placeholder="密码 / Password">--%>
+<%--                            <span class="focus-input"></span>--%>
+<%--                            <span class="symbol-input">--%>
+<%--                                    <i class="fa fa-lock" aria-hidden="true"></i>--%>
+<%--                                </span>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+
+<%--                    <div class="container-login-form-btn">--%>
+<%--                        <button id="auto-login-form-btn">--%>
+<%--                            自动登录--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+
+<%--                    <div class="container-login-form-btn">--%>
+<%--                        <button id="login-form-btn">--%>
+<%--                            登录 / sign in--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+
+<%--                </form>--%>
             </div>
         </div>
     </div>

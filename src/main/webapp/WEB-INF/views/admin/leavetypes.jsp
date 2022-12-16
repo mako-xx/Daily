@@ -121,7 +121,7 @@
                                         <div class="list1-group row">
                                             <!-- jstl -->
                                             <c:forEach var="item" items="${leaveTypes}">
-                                                <a href="${item.id}"
+                                                <a href="${'/admin/leavetypes?id='.concat(item.id)}"
                                                    class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
                                                         class="fa fa-bars" aria-hidden="true"
                                                         style="float:left; margin-top:10px;"></i>${item.name}</a>
@@ -206,7 +206,11 @@
                                             <label for="leavetype-name-show"
                                                 class="col-md-6 col-sm-6 col-xs-6 col-form-label">名称</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="leavetype-name-show"></div>
+                                                <div class="form-control" id="leavetype-name-show">
+                                                    <c:if test="${leavetype != null}">
+                                                        <c:out value="${leavetype.name}"/>
+                                                    </c:if>
+                                                </div>
                                             </div>
                                         </div>
 
