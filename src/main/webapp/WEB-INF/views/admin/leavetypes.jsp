@@ -208,7 +208,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-control" id="leavetype-name-show">
                                                     <c:if test="${leavetype != null}">
-                                                        <input hidden="hidden" type="number" value="${leaveType.id}" id="leavetype-id">
+                                                        <input hidden="hidden" type="text" value="${leavetype.id}" id="leavetype-id"/>
                                                         <c:out value="${leavetype.name}"/>
                                                     </c:if>
                                                 </div>
