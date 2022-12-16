@@ -83,6 +83,7 @@
     <cu:footer/>
 </div>
 <!-- jquery -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/jquery/jquery-3.2.1.min.js"></script>
 <script src="/pages/login/login.js"></script>
 <!-- Bootstrap -->
