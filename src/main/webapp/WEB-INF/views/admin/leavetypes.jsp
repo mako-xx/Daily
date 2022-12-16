@@ -56,7 +56,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div>daily
 
             <!-- Modal -->
             <!-- 用于显示请假办理提交成功 -->
@@ -183,7 +183,7 @@
                                 <div class="card-header row">
                                     <h4 class="card-title col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">类型信息</h4>
                                     <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-                                        <div class="delete">
+                                        <div id="delete-apply" class="delete">
                                             <a href="#" data-toggle="tooltip" data-placement="right" title="删除此类型">
                                                 <i class="fa fa-trash fa-lg delete-icon"></i>
                                             </a>
@@ -208,6 +208,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-control" id="leavetype-name-show">
                                                     <c:if test="${leavetype != null}">
+                                                        <input hidden="hidden" type="number" value="${leaveType.id}" id="leavetype-id">
                                                         <c:out value="${leavetype.name}"/>
                                                     </c:if>
                                                 </div>
