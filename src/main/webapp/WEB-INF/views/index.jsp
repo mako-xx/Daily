@@ -64,6 +64,12 @@
                     </div>
 
                     <div class="container-login-form-btn">
+                        <button id="auto-login-form-btn">
+                            自动登录
+                        </button>
+                    </div>
+
+                    <div class="container-login-form-btn">
                         <button id="login-form-btn">
                             登录 / sign in
                         </button>
@@ -75,7 +81,6 @@
     </div>
     <!-- Footer -->
     <cu:footer/>
-
 </div>
 <!-- jquery -->
 <script src="/jquery/jquery-3.2.1.min.js"></script>
