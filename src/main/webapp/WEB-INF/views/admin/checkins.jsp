@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                             <div id="search-apply">
-                                <a href="#" data-toggle="tooltip" data-placement="right" title="搜索">
+                                <a onclick="getCheckin()" data-toggle="tooltip" data-placement="right" title="搜索">
                                     <div class="fa fa-search" aria-hidden="true"></div>
                                 </a>
                             </div>
@@ -194,6 +194,17 @@
 <!-- Bootstrap -->
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap/js/popper.js"></script>
+<script>
+    function getCheckin() {
+        let startDate = $('#startDate').val();
+        let endDate = $('#endDate').val();
+        if (startDate == null || startDate == '' || endDate == null || endDate == '') {
+            alert("缺少必要参数");
+            return;
+        }
+        window.location.href = '/admin/checkins?startDate='+startDate+'&endDate='+endDate;
+    }
+</script>
 </body>
 
 </html>
