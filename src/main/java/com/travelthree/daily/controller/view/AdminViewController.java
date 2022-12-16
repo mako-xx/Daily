@@ -48,8 +48,10 @@ public class AdminViewController {
     public String showEmployees(HttpServletRequest request, @RequestParam(required = false) String id) {
         EmployeeDTO employee = employeeService.getEmployeeById(id);
         EmployeeVo employeeVo = new EmployeeVo();
-        BeanUtils.copyProperties(employee, employeeVo);
-        employeeVo.setDepartment(departmentService.selectByPrimaryKey(employee.getDepartmentId()).getName());
+        if (employee != null) {
+            BeanUtils.copyProperties(employee, employeeVo);
+            employeeVo.setDepartment(departmentService.selectByPrimaryKey(employee.getDepartmentId()).getName());
+        }
         List<EmployeeVo> list = employeeService.getAllEmployee();
         List<Department> departments = departmentService.selectAllDepartments();
         request.setAttribute("list", list);

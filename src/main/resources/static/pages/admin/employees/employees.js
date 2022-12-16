@@ -25,17 +25,22 @@ $(document).ready(function () {
     });
 
     $("#save-apply").click(() => {
-        let test = $("#employee-name-edit").val();
-        console.log(document.getElementById("employee-name-edit"));
-        console.log("save-apply", test);
-        fetch("/api/admin/leave-status", {
+        let name = $("#employee-name-edit").val();
+        let phone = $("#employee-phone-edit").val();
+        let department = $("#employee-department-edit").val();
+        let job = $("#employee-job-edit").val();
+        fetch(`/api/admin/employee/{id}`, {
             method: "POST",
             body: JSON.stringify({
-                name: "yxx",
-            })
+                name: name,
+                telephone: phone,
+                departmentId: department,
+                role: job
+            },
+            ),
         }).then(response => response.json()).then((res) => {
             console.log(res);
-            $("#employee-name-edit").val("123" + res.statusText);
+            // $("#employee-name-edit").val("123" + res.statusText);
         })
     })
 });

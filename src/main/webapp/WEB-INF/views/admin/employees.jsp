@@ -127,42 +127,6 @@
                                                         class="fa fa-user" aria-hidden="true"
                                                         style="float:left; margin-top:10px;"></i>${item.name}</a>
                                             </c:forEach>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
-<%--                                            <a href="#"--%>
-<%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
-<%--                                                    class="fa fa-user" aria-hidden="true"--%>
-<%--                                                    style="float:left; margin-top:10px;"></i>员工1</a>--%>
 
                                         </div>
                                     </div>
@@ -208,10 +172,10 @@
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">电话</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <c:if test="${employee != null}">
-                                                    <input type="text" class="form-control" id="employee-name-edit" placeholder="电话" value="${employee.telephone}">
+                                                    <input type="text" class="form-control" id="employee-phone-edit" placeholder="电话" value="${employee.telephone}">
                                                 </c:if>
                                                 <c:if test="${employee == null}">
-                                                    <input type="text" class="form-control" id="employee-name-edit" placeholder="电话" value="${employee.telephone}">
+                                                    <input type="text" class="form-control" id="employee-phone-edit" placeholder="电话" value="${employee.telephone}">
                                                 </c:if>
                                             </div>
                                             <!-- 部门id -->
@@ -219,7 +183,7 @@
                                             <label for="employee-department-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">部门</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <select class="form-control" id="department">
+                                                <select class="form-control" id="employee-department-edit">
                                                     <c:forEach var="item" items="${departments}">
                                                         <option>${item.name}</option>
                                                     </c:forEach>
