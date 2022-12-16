@@ -121,7 +121,7 @@
                                         <div class="list1-group row">
                                             <!-- jstl -->
                                             <jsp:useBean id="map" class="java.util.HashMap" scope="request" />
-                                            <c:set target="${map}" property="#" value="员工1" />
+                                            <c:set target="${map}" property="#" value="员工4" />
                                             <c:forEach var="item" items="${map}">
                                                 <a href="${item.key}"
                                                    class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
@@ -194,23 +194,23 @@
                                     <div class="form-group row">
                                         <!-- 修改员工信息 -->
                                         <div class="employee-edit" style="display:none;">
-                                            <label for="name"
+                                            <label for="employee-name-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">姓名</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" class="form-control" id="name" placeholder="姓名">
+                                                <input type="text" class="form-control" id="employee-name-edit" placeholder="姓名">
                                             </div>
                                             <!-- 电话 -->
-                                            <label for="phone"
+                                            <label for="employee-phone-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">电话</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" class="form-control" id="phone" placeholder="电话">
+                                                <input type="text" class="form-control" id="employee-phone-edit" placeholder="电话">
                                             </div>
                                             <!-- 部门id -->
                                             <!-- 使用选择框 -->
-                                            <label for="department"
+                                            <label for="employee-department-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">部门</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <select class="form-control" id="department">
+                                                <select class="form-control" id="employee-department-edit">
                                                     <option>部门1</option>
                                                     <option>部门2</option>
                                                     <option>部门3</option>
@@ -224,10 +224,10 @@
                                                 </select>
                                             </div>
                                             <!-- 职务，员工和管理员两种 -->
-                                            <label for="job"
+                                            <label for="employee-job-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">职务</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <select class="form-control" id="job">
+                                                <select class="form-control" id="employee-job-edit">
                                                     <option>员工</option>
                                                     <option>管理员</option>
                                                 </select>
@@ -236,32 +236,30 @@
 
                                         <!-- 查看员工信息 -->
                                         <div class="employee-show">
-                                            <label for="name"
+                                            <label for="employee-name-show"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">姓名</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="name" placeholder="姓名"></div>
+                                                <div class="form-control" id="employee-name-show"></div>
                                             </div>
                                             <!-- 电话 -->
-                                            <label for="phone"
+                                            <label for="employee-phone-show"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">电话</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="phone" placeholder="电话"></div>
+                                                <div class="form-control" id="employee-phone-show"></div>
                                             </div>
                                             <!-- 部门id -->
                                             <!-- 使用选择框 -->
-                                            <label for="department"
+                                            <label for="employee-department-show"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">部门</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="department">
-                                                    <div>部门1</div>
+                                                <div class="form-control" id="employee-department-show">
                                                 </div>
                                             </div>
                                             <!-- 职务，员工和管理员两种 -->
-                                            <label for="job"
+                                            <label for="employee-job-show"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">职务</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-control" id="job">
-                                                    <div>员工</div>
+                                                <div class="form-control" id="employee-job-show">
                                                 </div>
                                             </div>
                                         </div>

@@ -137,14 +137,14 @@
                                 </div>
                             </div>
                             <div id="search-apply">
-                                <a href="#" data-toggle="tooltip" data-placement="right" title="添加员工">
+                                <a href="#" data-toggle="tooltip" data-placement="right" title="搜索">
                                     <div class="fa fa-search" aria-hidden="true"></div>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <!-- 右栏 -->
-                    <!-- 展示员工信息 -->
+                    <!-- 展示考勤信息 -->
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <div class="card">
                             <div class="card-header">
