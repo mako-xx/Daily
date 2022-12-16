@@ -14,6 +14,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author 陈宣辰
@@ -33,15 +35,24 @@ public class BaseController {
     }
 
     @PostMapping("/api/login")
-    @ResponseBody
-    public CommonResult login(@RequestBody @Valid LoginParam param, HttpServletRequest request, HttpServletResponse response) {
+    public String login(@RequestParam @Valid @NotBlank String username,
+                        @RequestParam @Valid @NotBlank String password,
+                        @RequestParam(required = false) boolean remember,
+                        HttpServletRequest request,
+                        HttpServletResponse response) {
         TaleUtil.logout(request, response);
-        EmployeeDTO employeeDTO = employeeService.login(param.getUsername(), param.getPassword());
-        request.getSession().setAttribute(WebConstant.LOGIN_SESSION_KEY, employeeDTO);
-        if (param.getRemember()) {
-            response.addCookie(new Cookie(WebConstant.REMEMBER_COOKIE_KEY, employeeDTO.getId()));
+        try {
+            EmployeeDTO employeeDTO = employeeService.login(username, password);
+            request.getSession().setAttribute(WebConstant.LOGIN_SESSION_KEY, employeeDTO);
+            if (remember) {
+                response.addCookie(new Cookie(WebConstant.REMEMBER_COOKIE_KEY, employeeDTO.getId()));
+            }
+        } catch (Exception e) {
+            request.setAttribute("msg", "用户名或密码错误");
+            return "index";
         }
-        return CommonResult.success(request.getSession().getId());
+        // welcome界面url
+        return "redirect:/welcome";
     }
 
     @PostMapping("/api/logout")
@@ -50,5 +61,10 @@ public class BaseController {
 
         TaleUtil.logout(request, response);
         return CommonResult.success();
+    }
+
+    @GetMapping("/welcome")
+    public String welcome() {
+        return "welcome";
     }
 }
