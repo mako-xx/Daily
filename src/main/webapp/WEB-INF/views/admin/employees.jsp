@@ -122,11 +122,11 @@
                                             <!-- jstl -->
                                             <jsp:useBean id="map" class="java.util.HashMap" scope="request" />
                                             <c:set target="${map}" property="#" value="员工1" />
-                                            <c:forEach var="item" items="${map}">
-                                                <a href="${item.key}"
+                                            <c:forEach var="item" items="${list}">
+                                                <a href="${item.id}"
                                                    class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
                                                         class="fa fa-user" aria-hidden="true"
-                                                        style="float:left; margin-top:10px;"></i>${item.value}</a>
+                                                        style="float:left; margin-top:10px;"></i>${item.name}</a>
                                             </c:forEach>
 <%--                                            <a href="#"--%>
 <%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>
@@ -211,16 +211,9 @@
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">部门</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <select class="form-control" id="department">
-                                                    <option>部门1</option>
-                                                    <option>部门2</option>
-                                                    <option>部门3</option>
-                                                    <option>部门4</option>
-                                                    <option>部门5</option>
-                                                    <option>部门6</option>
-                                                    <option>部门7</option>
-                                                    <option>部门8</option>
-                                                    <option>部门9</option>
-                                                    <option>部门10</option>
+                                                    <c:forEach var="item" items="${departments}">
+                                                        <option>${item.name}</option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>
                                             <!-- 职务，员工和管理员两种 -->

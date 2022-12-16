@@ -5,6 +5,7 @@ import com.travelthree.daily.domain.Attendance;
 import com.travelthree.daily.dto.AttendanceParam;
 import com.travelthree.daily.dto.PageParam;
 import com.travelthree.daily.vo.AttendanceVo;
+import com.travelthree.daily.vo.SelfAttendanceVo;
 
 import java.util.List;
 
@@ -32,6 +33,9 @@ public interface AttendanceService {
      */
     PageInfo<AttendanceVo> queryAttendanceByDate(AttendanceParam attendanceParam, PageParam pageParam);
 
+    List<AttendanceVo> getAttendanceList(AttendanceParam attendanceParam);
+
     List<Attendance> getAttendancesByEmployeeId(String id);
 
+    List<SelfAttendanceVo> getEmployeeAttendance(String id);
 }

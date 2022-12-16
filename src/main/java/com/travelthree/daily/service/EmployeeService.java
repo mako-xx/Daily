@@ -57,4 +57,9 @@ public interface EmployeeService {
      * @param id
      */
     void deleteInfo(String id);
+
+    /**
+     * 获取所有的员工信息
+     * */
+    List<EmployeeVo> getAllEmployee();
 }

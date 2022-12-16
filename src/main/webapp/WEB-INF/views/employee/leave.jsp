@@ -196,14 +196,9 @@
                                         <label for="leaveTypeSelect" class="col-form-label">请假类型</label>
                                         <select class="custom-select col-md-12 col-sm-12 col-xs-12"
                                             id="leaveTypeSelect">
-                                            <option selected>事假</option>
-                                            <option value="1">病假</option>
-                                            <option value="2">婚假</option>
-                                            <option value="3">产假</option>
-                                            <option value="4">丧假</option>
-                                            <option value="5">年假</option>
-                                            <option value="6">调休</option>
-                                            <option value="7">其他</option>
+                                            <c:forEach var="item" items="${leaveTypes}">
+                                                <option value="${item.id}">${item.name}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                     <!-- 请假理由 -->
@@ -223,52 +218,55 @@
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <div class="scrollable">
                             <div class="card-history">
-                                <div class="row">
-                                    <div class="col-md-9 col-sm-9 col-xs-9">
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="date-tag">起始日:</div>
-                                                <div class="date-content">2022年10月1日</div>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="date-tag">结束日:</div>
-                                                <div class="date-content">2022年10月1日</div>
+                                <c:forEach var="item" items="${list}">
+                                    <div class="row">
+                                        <div class="col-md-9 col-sm-9 col-xs-9">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="date-tag">起始日:</div>
+                                                    <div class="date-content">${item.startDate}</div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="date-tag">结束日:</div>
+                                                    <div class="date-content">${item.endDate}</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3">
-                                        <div class="state">正常</div>
-                                    </div>
-                                    <hr width="100%">
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <div class="id-tag">编号:</div>
-                                        <div class="id-content">#1</div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <div class="type-tag">请假类型:</div>
-                                        <div class="type-content">#1</div>
-                                    </div>
-                                    <!-- <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="employee-id-tag">员工id:</div>
-                                            <div class="employee-id-content">#1</div>
+                                        <div class="col-md-3 col-sm-3 col-xs-3">
+                                            <div class="state">${item.status}</div>
+                                        </div>
+                                        <hr width="100%">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="id-tag">编号:</div>
+                                            <div class="id-content">${item.id}</div>
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="employee-name-tag">员工姓名:</div>
-                                            <div class="employee-name-content">#1</div>
-                                        </div> -->
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <a href="#">
-                                            <div class="employee-tag">员工信息</div>
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                        </a>
+                                            <div class="type-tag">请假类型:</div>
+                                            <div class="type-content">${item.type}</div>
+                                        </div>
+                                        <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="employee-id-tag">员工id:</div>
+                                                <div class="employee-id-content">#1</div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="employee-name-tag">员工姓名:</div>
+                                                <div class="employee-name-content">#1</div>
+                                            </div> -->
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <a href="#">
+                                                <div class="employee-tag">员工信息</div>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <a href="#">
+                                                <div class="reason-tag">请假理由</div>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <a href="#">
-                                            <div class="reason-tag">请假理由</div>
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                                </c:forEach>
+
                             </div>
                         </div>
                     </div>

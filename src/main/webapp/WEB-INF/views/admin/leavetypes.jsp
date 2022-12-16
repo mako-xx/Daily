@@ -120,13 +120,11 @@
                                     <div class="scrollable" style="height: 280px;">
                                         <div class="list1-group row">
                                             <!-- jstl -->
-                                            <jsp:useBean id="map" class="java.util.HashMap" scope="request" />
-                                            <c:set target="${map}" property="#" value="部门1" />
-                                            <c:forEach var="item" items="${map}">
-                                                <a href="${item.key}"
+                                            <c:forEach var="item" items="${leaveTypes}">
+                                                <a href="${item.id}"
                                                    class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i
                                                         class="fa fa-bars" aria-hidden="true"
-                                                        style="float:left; margin-top:10px;"></i>${item.value}</a>
+                                                        style="float:left; margin-top:10px;"></i>${item.name}</a>
                                             </c:forEach>
 <%--                                            <a href="#"--%>
 <%--                                                class="col-md-12 col-sm-12 col-xs-12 list1-group-item list1-group-item-action"><i--%>

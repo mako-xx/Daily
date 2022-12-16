@@ -28,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
 * @author faust
@@ -174,6 +175,25 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "该用户id不存在");
         }
         employeeMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<EmployeeVo> getAllEmployee() {
+        List<Employee> employees = employeeMapper.selectAllByRole(RoleEnum.STAFF.ordinal());
+        return employees.stream()
+                .map(employee -> {
+                    //每次都创建新的视图对象
+                    EmployeeVo employeeVo = new EmployeeVo();
+                    //拷贝属性
+                    BeanUtils.copyProperties(employee, employeeVo);
+                    //变更role的类型后拷贝
+                    employeeVo.setRole(RoleEnum.getRoleFromOrdinal(employee.getRole()));
+                    //通过employee的部门ID调用部门服务类查询部门名称并赋值
+                    String tmpDepartmentId = employee.getDepartmentId();
+                    Department department = departmentMapper.selectByPrimaryKey(tmpDepartmentId);
+                    employeeVo.setDepartment(department.getName());
+                    return employeeVo;
+                }).collect(Collectors.toList());
     }
 }
 

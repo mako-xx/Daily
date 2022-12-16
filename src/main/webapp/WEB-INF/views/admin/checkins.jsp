@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/WEB-INF/custom.tld" prefix="cu"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
 <head>
@@ -152,24 +153,27 @@
                             </div>
                             <div class="scrollable" style="height: 330px;">
                                 <div class="card-history">
-                                    <div class="row">
-                                        <div class="col-md-9 col-sm-9 col-xs-9">
-                                            <div class="name-tag">员工名称:</div>
-                                            <div class="name-content">Mako</div>
+                                    <c:forEach var="item" items="${list}">
+                                        <div class="row">
+                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                <div class="name-tag">员工名称:</div>
+                                                <div class="name-content">${item.employeeName}</div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                <div class="state">${item.status}</div>
+                                            </div>
+                                            <hr width="100%">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="id-tag">编号:</div>
+                                                <div class="id-content">${item.id}</div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="id-tag">考勤时间:</div>
+                                                <div class="id-content">${item.date}</div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-3 col-sm-3 col-xs-3">
-                                            <div class="state">正常</div>
-                                        </div>
-                                        <hr width="100%">
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="id-tag">编号:</div>
-                                            <div class="id-content">#1</div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="id-tag">考勤时间:</div>
-                                            <div class="id-content">#1</div>
-                                        </div>
-                                    </div>
+                                    </c:forEach>
+
                                 </div>
                             </div>
                         </div>
