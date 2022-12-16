@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .permitAll();
                 .antMatchers("/api/login", "/actuator/**")
                 .permitAll()
-                .antMatchers("/api/**") //所有/api接口需要验证
+                .antMatchers("/api/**", "/employee/**", "/admin/**") //所有/api接口需要验证
                 .authenticated()
                 .anyRequest()
                 .permitAll();
