@@ -25,11 +25,13 @@ public class DailyAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.setStatus(HttpStatus.OK.value());
         response.setContentType("application/json");
         if (authException.getMessage().contains("口令已过期")) {
-            response.getWriter().println(JSONUtil.parse(CommonResult.unauthorized(authException.getMessage())));
+//            response.getWriter().println(JSONUtil.parse(CommonResult.unauthorized(authException.getMessage())));
+            response.sendRedirect("/");
         }
         else {
-            response.getWriter().println(JSONUtil.parse(CommonResult.unauthorized("您当前未登录或通行证已失效")));
+//            response.getWriter().println(JSONUtil.parse(CommonResult.unauthorized("您当前未登录或通行证已失效")));
+            response.sendRedirect("/");
         }
-        response.getWriter().flush();
+//        response.getWriter().flush();
     }
 }
