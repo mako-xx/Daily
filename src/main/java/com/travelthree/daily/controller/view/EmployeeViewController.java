@@ -30,7 +30,7 @@ public class EmployeeViewController {
     private LeaveTypeService leaveTypeService;
 
     // 员工打卡记录页面
-    @GetMapping("/check")
+    @GetMapping("/checkin")
     public String check(HttpServletRequest request) {
         EmployeeDTO currentLoginUser = TaleUtil.getCurrentLoginUser(request);
         List<SelfAttendanceVo> list = attendanceService.getEmployeeAttendance("0");

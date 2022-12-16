@@ -145,7 +145,7 @@
                                 <div class="card-header row">
                                     <h4 class="card-title col-md-4 col-sm-4 col-xs-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">员工信息</h4>
                                     <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-22">
-                                        <div class="delete">
+                                        <div id="delete-apply">
                                             <a href="#" data-toggle="tooltip" data-placement="right" title="删除此员工">
                                                 <i class="fa fa-trash fa-lg delete-icon"></i>
                                             </a>
@@ -158,7 +158,7 @@
                                         <!-- 修改员工信息 -->
                                         <div class="employee-edit" style="display:none;">
                                             <c:if test="${employee != null}">
-                                                <input hidden="hidden" type="text" value="${employee.id}" id="xxx">
+                                                <input hidden="hidden" value="${employee.id}" id="employee-id">
                                             </c:if>
                                             <label for="employee-name-edit"
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">姓名</label>
@@ -188,7 +188,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <select class="form-control" id="employee-department-edit">
                                                     <c:forEach var="item" items="${departments}">
-                                                        <option>${item.name}</option>
+                                                        <option>${item.id}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -197,8 +197,8 @@
                                                 class="col-md-2 col-sm-2 col-xs-2 col-form-label">职务</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <select class="form-control" id="employee-job-edit">
-                                                    <option>员工</option>
-                                                    <option>管理员</option>
+                                                    <option>STAFF</option>
+                                                    <option>ADMIN</option>
                                                 </select>
                                             </div>
                                         </div>

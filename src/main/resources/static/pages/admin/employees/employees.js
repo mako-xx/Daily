@@ -25,22 +25,80 @@ $(document).ready(function () {
     });
 
     $("#save-apply").click(() => {
+        let id = document.getElementById("employee-id").value;
         let name = $("#employee-name-edit").val();
         let phone = $("#employee-phone-edit").val();
         let department = $("#employee-department-edit").val();
         let job = $("#employee-job-edit").val();
-        fetch(`/api/admin/employee/{id}`, {
-            method: "POST",
+        console.log(id, name, phone, department, job);
+        fetch(`/api/admin/employee/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({
-                name: name,
-                telephone: phone,
-                departmentId: department,
-                role: job
+                    name: name.toString(),
+                    telephone: phone.toString(),
+                    departmentId: department.toString(),
+                    role: job.toString()
             },
             ),
-        }).then(response => response.json()).then((res) => {
-            console.log(res);
-            // $("#employee-name-edit").val("123" + res.statusText);
-        })
-    })
+        }).then((response) => {
+            console.log(response);
+            if (response.status === 200) {
+                console.log(response.msg);
+                alert("修改成功");
+                window.location.reload();
+            }
+        });
+    });
+
+    $("#delete-apply").click(() => {
+        let id = document.getElementById("employee-id").value;
+        console.log(id);
+        fetch(`/api/admin/employee/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then((response) => {
+            console.log(response);
+            if (response.status === 200) {
+                console.log(response.msg);
+                alert("删除成功");
+                window.location.reload();
+            }
+        });
+    });
+
+    $("#add-apply").click(() => {
+        $("#save-apply").show();
+        $(".employee-edit").show();
+        let name = $("#employee-name-add").val();
+        let phone = $("#employee-phone-add").val();
+        let department = $("#employee-department-add").val();
+        let job = $("#employee-job-add").val();
+        console.log(name, phone, department, job);
+        fetch(`/api/admin/employee`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                    name: name.toString(),
+                    telephone: phone.toString(),
+                    departmentId: department.toString(),
+                    role: job.toString()
+                },
+            ),
+        }).then((response) => {
+            console.log(response);
+            if (response.status === 200) {
+                console.log(response.msg);
+                alert("添加成功");
+                window.location.reload();
+            }
+        });
+    });
 });
+
