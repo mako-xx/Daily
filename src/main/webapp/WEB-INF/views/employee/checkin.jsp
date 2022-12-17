@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 row">
                         <img src="/image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
-                        <p class="col-md-12 col-sm-12 col-xs-12 name">Mako</p>
+                        <p class="col-md-12 col-sm-12 col-xs-12 name"><c:out value="${sessionScope.user_session.username}"/></p>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
                         <ul class="nav sidebar-nav" style="margin:0 auto;">
@@ -112,7 +112,7 @@
                                     <img src="/image/head.jpg" class="head">
                                 </div>
                                 <div class="col-md-7 col-sm-7 col-xs-7">
-                                    <div class="name">Mako</div>
+                                    <div class="name"><c:out value="${sessionScope.user_session.username}"/></div>
                                     <div class="position">员工</div>
                                 </div>
                             </div>
@@ -127,36 +127,6 @@
                                             <option value="33">法国 +33</option>
                                         </select>
                                         <input type="tel" class="form-control" id="phoneInput" placeholder="请输入电话">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>选择部门</label>
-                                    <div class="card-lists row">
-                                        <jsp:useBean id="map" class="java.util.HashMap" scope="request" />
-                                        <c:set target="${map}" property="/image/department1.jpg" value="部门1" />
-                                        <c:set target="${map}" property="/image/department2.jpg" value="部门2" />
-                                        <c:forEach var="item" items="${map}">
-                                            <div class="card col-md-3 clickable">
-                                                <img src="${item.key}" class="card-img img-circle" alt="${item.value}">
-                                                <p>${item.value}</p>
-                                            </div>
-                                        </c:forEach>
-<%--                                        <div class="card col-md-3 clickable">--%>
-<%--                                            <img src="/image/department1.png" class="card-img img-circle" alt="部门1">--%>
-<%--                                            <p>部门1</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="card col-md-3 clickable">--%>
-<%--                                            <img src="/image/department2.png" class="card-img img-circle" alt="部门2">--%>
-<%--                                            <p>部门2</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="card col-md-3 clickable">--%>
-<%--                                            <img src="/image/department3.png" class="card-img img-circle" alt="部门3">--%>
-<%--                                            <p>部门3</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="card col-md-3 clickable">--%>
-<%--                                            <img src="/image/department4.png" class="card-img img-circle" alt="部门4">--%>
-<%--                                            <p>部门4</p>--%>
-<%--                                        </div>--%>
                                     </div>
                                 </div>
                             </form>

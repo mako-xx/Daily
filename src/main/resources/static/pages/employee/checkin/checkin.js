@@ -61,6 +61,7 @@ $(".btn-save").click(()=>{
     console.log(res);
     if (res.status === 200) {
         alert("修改成功");
+        $("#myModal").modal("hide");
     }else{
         alert("修改失败");
     }
@@ -90,6 +91,7 @@ $("#checkin-apply").click(()=>{
         alert("打卡失败");
     }
   })
+
 })
 
 
