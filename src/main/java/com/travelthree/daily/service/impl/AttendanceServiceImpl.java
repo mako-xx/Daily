@@ -57,9 +57,15 @@ public class AttendanceServiceImpl implements AttendanceService {
         if (!checkTimeBetween(WebConstant.ATTENDANCE_START_TIME, WebConstant.ATTENDANCE_END_TIME, LocalDateTime.now())) {
             throw new BusinessException(ResultCodeEnum.FORBIDDEN_OP, "当前不在考勤时间点内");
         }
+        Attendance attendance = attendanceMapper.selectOneByDateAndEmployeeId(LocalDate.now(), uid);
+        if (attendance == null) {
+            throw new BusinessException(ResultCodeEnum.FAILED_OP, "今日打卡暂未开启或无需打卡");
+        }
+        if (attendance.getStatus() == AttendanceStatus.WORK.ordinal()) {
+            throw new BusinessException(ResultCodeEnum.FAILED_OP, "您已完成今日打卡");
+        }
         // 更新当天的考勤状态
-        Attendance attendance = Attendance.builder()
-                .employeeId(uid).status(AttendanceStatus.WORK.ordinal()).date(LocalDate.now()).build();
+        attendance.setStatus(AttendanceStatus.WORK.ordinal());
         attendanceMapper.updateSelectiveByIdAndTime(attendance);
     }
 

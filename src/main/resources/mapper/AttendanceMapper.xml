@@ -132,4 +132,12 @@
         from attendance
         where employee_id = #{employeeId,jdbcType=VARCHAR}
     </delete>
+    <select id="selectOneByDateAndEmployeeId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from attendance
+        where
+        date = #{date}
+        AND employee_id = #{employeeId,jdbcType=VARCHAR}
+    </select>
 </mapper>

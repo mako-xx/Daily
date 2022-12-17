@@ -97,8 +97,8 @@ public class EmployeeController {
                 () -> leaveService.getLeavesByEmployeeId(currentLoginUser.getId()),
                 leave -> new LeaveVo(
                         leave.getId(),
-                        DateFormat.getDateInstance().format(leave.getStartdate()),
-                        DateFormat.getDateInstance().format(leave.getEnddate()),
+                        leave.getStartdate().toString(),
+                        leave.getEnddate().toString(),
                         leave.getStatus().toString(),
                         leaveTypeService.selectById(leave.getTypeId()).getName(),
                         leave.getReason(),
@@ -117,7 +117,7 @@ public class EmployeeController {
                 () -> attendanceService.getAttendancesByEmployeeId(currentLoginUser.getId()),
                 attendance -> new SelfAttendanceVo(
                         attendance.getId(),
-                        attendance.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
+                        attendance.getDate().toString(),
                         attendance.getStatus().toString()));
     }
 }
