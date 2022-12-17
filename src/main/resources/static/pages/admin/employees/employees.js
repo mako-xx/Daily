@@ -57,15 +57,10 @@ $(document).ready(function () {
                     role: job.toString()
                 },
             ),
-        }).then((response) => {
-            console.log(response);
-            if (response.status === 200) {
-                console.log(response.msg);
-                alert("修改成功");
-                window.location.reload();
-            } else {
-                alert("修改失败");
-            }
+        }).then(response => response.json()).then((res) => {
+            console.log(res);
+            alert(res.msg);
+            window.location.reload();
         });
     });
 
@@ -77,15 +72,10 @@ $(document).ready(function () {
             headers: {
                 "Content-Type": "application/json",
             }
-        }).then((response) => {
-            console.log(response);
-            if (response.status === 200) {
-                console.log(response.msg);
-                alert("删除成功");
-                window.location.reload();
-            } else {
-                alert("删除失败");
-            }
+        }).then(response => response.json()).then((res) => {
+            console.log(res);
+            alert(res.msg);
+            window.location.reload();
         });
     });
 
@@ -133,15 +123,10 @@ $(document).ready(function () {
                     role: job.toString()
                 },
             ),
-        }).then((response) => {
-            console.log(response);
-            if (response.status === 200) {
-                console.log(response.msg);
-                alert("添加成功");
-                window.location.reload();
-            } else {
-                alert("添加失败");
-            }
+        }).then(response => response.json()).then((res) => {
+            console.log(res);
+            alert(res.msg);
+            window.location.reload();
         });
     });
 });
