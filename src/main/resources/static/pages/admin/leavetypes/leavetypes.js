@@ -39,13 +39,10 @@ $(document).ready(function () {
                     name: name.toString(),
                 },
             ),
-        }).then((response) => {
-            if (response.ok) {
-                alert("修改成功");
-                window.location.reload();
-            } else {
-                alert("修改失败");
-            }
+        }).then(response => response.json()).then((res) => {
+            console.log(res);
+            alert(res.msg);
+            window.location.reload();
         });
     });
 
@@ -56,13 +53,9 @@ $(document).ready(function () {
             method: "DELETE",
         }).then(response => response.json()).then((res) => {
             console.log(res);
-            if (res.code === 200) {
-                window.location.reload();
-            } else {
-                alert(res.msg)
-            }
-            // $("#employee-name-edit").val("123" + res.statusText);
-        })
+            alert(res.msg);
+            window.location.reload();
+        });
     });
 
     $("#add-apply").click(() => {
@@ -84,13 +77,10 @@ $(document).ready(function () {
             body: JSON.stringify({
                 name: name.toString(),
             },),
-        }).then((response) => {
-            if (response.ok) {
-                alert("添加成功");
-                window.location.reload();
-            } else {
-                alert("添加失败");
-            }
+        }).then(response => response.json()).then((res) => {
+            console.log(res);
+            alert(res.msg);
+            window.location.reload();
         });
     });
 
