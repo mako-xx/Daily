@@ -16,11 +16,6 @@ $(document).ready(function () {
     $(this).addClass("choosen");
   });
 
-  $("#checkin-apply").click(function () {
-      $("#checkinSuccess").modal("show");
-      $("#checkinSuccess .modal-body p").text("打卡成功");
-  });
-
   let run = () => {
     let date = new Date();
     let h = date.getHours();
@@ -29,13 +24,13 @@ $(document).ready(function () {
     console.log(h, m, s);
     if (h > 12) {
       $("#hour").css(
-        "transform",
-        "translateY(-100%) rotate(" + 30 * (h % 12) + "deg)"
+          "transform",
+          "translateY(-100%) rotate(" + 30 * (h % 12) + "deg)"
       );
     } else {
       $("#hour").css(
-        "transform",
-        "translateY(-100%) rotate(" + 30 * h + "deg)"
+          "transform",
+          "translateY(-100%) rotate(" + 30 * h + "deg)"
       );
     }
     $("#minute").css("transform", "translateY(-100%) rotate(" + 6 * m + "deg)");
@@ -64,8 +59,13 @@ $(".btn-save").click(()=>{
     ),
   }).then(response => response.json()).then((res) => {
     console.log(res);
-    // $("#employee-name-edit").val("123" + res.statusText);
-  })
+    if (res.status === 200) {
+      alert("修改成功");
+      $("#myModal").modal("hide");
+    }else{
+      alert("修改失败");
+    }
+  });
 })
 
 
@@ -73,7 +73,6 @@ $(".btn-save").click(()=>{
 $("#checkin-apply").click(()=>{
   let url = "http://localhost:8080/api/employee/attend"
   console.log("aaa")
-  fetch(url).then(response=>response.json()).then(data=>console.log(data))
   fetch(`/api/employee/attend`, {
     method: "POST",
     headers: {
@@ -85,8 +84,15 @@ $("#checkin-apply").click(()=>{
     ),
   }).then(response => response.json()).then((res) => {
     console.log(res);
-    // $("#employee-name-edit").val("123" + res.statusText);
+    if (res.status === 200) {
+      alert("打卡成功");
+      window.location.reload();
+    }else{
+      alert(res.msg);
+      window.location.reload();
+    }
   })
+
 })
 
 
