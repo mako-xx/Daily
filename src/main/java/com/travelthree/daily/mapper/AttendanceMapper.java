@@ -42,4 +42,6 @@ public interface AttendanceMapper {
     int updateSelectiveByIdAndTime(Attendance attendance);
 
     int deleteByEmployeeId(@Param("employeeId") String employeeId);
+
+    Attendance selectOneByDateAndEmployeeId(@Param("date") LocalDate date, @Param("employeeId") String employeeId);
 }
