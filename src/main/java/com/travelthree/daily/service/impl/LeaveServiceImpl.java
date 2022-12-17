@@ -131,7 +131,7 @@ public class LeaveServiceImpl implements LeaveService {
                         leave.getId(),
                         leave.getStartdate().toString(),
                         leave.getEnddate().toString(),
-                        leave.getStatus().toString(),
+                        LeaveCheckStatus.getRoleFromOrdinal(leave.getStatus()).toString(),
                         leaveTypeMapper.selectByPrimaryKey(leave.getTypeId()).getName(),
                         leave.getReason(),
                         leave.getEmployeeId(),
