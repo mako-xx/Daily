@@ -40,7 +40,7 @@ $(document).ready(function () {
 });
 
 $(".btn-save").click(()=>{
-  let name = 'Mako';
+  let name = "staff";
   let phone = $("#phoneInput").val();
   let department = "1";
   let url = "http://localhost:8080/api/employee/update"
