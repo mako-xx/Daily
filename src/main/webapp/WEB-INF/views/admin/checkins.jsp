@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 row">
                     <img src="/image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
-                    <p class="col-md-12 col-sm-12 col-xs-12 name">Mako</p>
+                    <p class="col-md-12 col-sm-12 col-xs-12 name"><c:out value="${sessionScope.user_session.username}"/></p>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
                     <ul class="nav sidebar-nav" style="margin:0 auto;">
@@ -163,18 +163,13 @@
                                             <div class="col-md-3 col-sm-3 col-xs-3">
                                                 <div class="state">${item.status}</div>
                                             </div>
-
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="id-tag">编号:</div>
-                                                <div class="id-content">${item.id}</div>
-                                            </div>
+                                            <hr width="100%">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="id-tag">考勤时间:</div>
                                                 <div class="id-content">${item.date}</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr width="100%">
                                 </c:forEach>
 
                             </div>

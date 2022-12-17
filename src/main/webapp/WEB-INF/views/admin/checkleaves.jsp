@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 row">
                     <img src="/image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
-                    <p class="col-md-12 col-sm-12 col-xs-12 name">Mako</p>
+                    <p class="col-md-12 col-sm-12 col-xs-12 name"><c:out value="${sessionScope.user_session.username}"/></p>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
                     <ul class="nav sidebar-nav" style="margin:0 auto;">

@@ -38,6 +38,7 @@ $(document).ready(function () {
       console.log(res);
       if(res.code == 200){
         alert("修改成功");
+        $("#myModal").modal("hide");
       }else{
         alert("修改失败");
       }
