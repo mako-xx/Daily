@@ -75,7 +75,6 @@ CREATE TABLE `leave`(
                         reason VARCHAR(255) NOT NULL comment '请假理由',
                         auditorId VARCHAR(36) comment '审核人id',
                         PRIMARY KEY (id),
-                        FOREIGN KEY (employee_id) REFERENCES employee(id),
                         FOREIGN KEY (type_id) REFERENCES leave_type(id)
 );
 
