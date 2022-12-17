@@ -17,9 +17,10 @@ $(document).ready(function () {
   });
 
   $(".btn-save").click(()=>{
+    let name = 'staff';
     let phone = $("#phoneInput").val();
     let url = "http://localhost:8080/api/employee/update"
-    console.log(phone)
+
     fetch(url).then(response=>response.json()).then(data=>console.log(data))
     fetch(`/api/employee/update`, {
       method: "PUT",
