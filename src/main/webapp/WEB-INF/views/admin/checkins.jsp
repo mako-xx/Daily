@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 row">
                     <img src="/image/head.jpg" class="head col-md-12 col-sm-12 col-xs-12">
-                    <p class="col-md-12 col-sm-12 col-xs-12 name">Mako</p>
+                    <p class="col-md-12 col-sm-12 col-xs-12 name"><c:out value="${sessionScope.user_session.username}"/></p>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 list-group row">
                     <ul class="nav sidebar-nav" style="margin:0 auto;">
@@ -152,8 +152,9 @@
                                 <h4 class="card-title">考勤表</h4>
                             </div>
                             <div class="scrollable" style="height: 330px;">
-                                <div class="card-history">
-                                    <c:forEach var="item" items="${list}">
+                                <c:forEach var="item" items="${list}">
+                                    <div class="card-history">
+
                                         <div class="row">
                                             <div class="col-md-9 col-sm-9 col-xs-9">
                                                 <div class="name-tag">员工名称:</div>
@@ -164,17 +165,13 @@
                                             </div>
                                             <hr width="100%">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="id-tag">编号:</div>
-                                                <div class="id-content">${item.id}</div>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="id-tag">考勤时间:</div>
                                                 <div class="id-content">${item.date}</div>
                                             </div>
                                         </div>
-                                    </c:forEach>
+                                    </div>
+                                </c:forEach>
 
-                                </div>
                             </div>
                         </div>
                     </div>

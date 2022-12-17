@@ -179,7 +179,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new BusinessException(ResultCodeEnum.PARAM_VALIDATE_FAILED, "该用户id不存在");
         }
         attendanceMapper.deleteByEmployeeId(id);
-        leaveMapper.deleteByPrimaryKey(id);
+        leaveMapper.deleteByEmployeeId(id);
         employeeMapper.deleteByPrimaryKey(id);
     }
 
