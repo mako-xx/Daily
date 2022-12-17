@@ -19,7 +19,6 @@ $(document).ready(function () {
   $(".btn-save").click(()=>{
     let name = 'staff';
     let phone = $("#phoneInput").val();
-    let department = "1";
     let url = "http://localhost:8080/api/employee/update"
 
     fetch(url).then(response=>response.json()).then(data=>console.log(data))
@@ -39,8 +38,10 @@ $(document).ready(function () {
       if(res.code == 200){
         alert("修改成功");
         $("#myModal").modal("hide");
+        window.location.reload();
       }else{
         alert("修改失败");
+        window.location.reload();
       }
     })
   })
@@ -72,10 +73,12 @@ $("#leave-apply").click(()=>{
     ),
   }).then(response => response.json()).then((res) => {
     console.log(res);
-    if (res.status == 200) {
+    if (res.code == 200) {
       alert("请假申请成功");
+      window.location.reload();
     }else{
       alert("请假申请失败");
+      window.location.reload();
     }
   })
 })
