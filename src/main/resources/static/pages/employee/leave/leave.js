@@ -45,7 +45,7 @@ $(document).ready(function () {
       }
     })
   })
-  
+
 });
 $("#leave-apply").click(()=>{
   let url = "http://localhost:8080/api/employee/leave"
@@ -77,7 +77,7 @@ $("#leave-apply").click(()=>{
       alert("请假申请成功");
       window.location.reload();
     }else{
-      alert("请假申请失败");
+      alert(res.msg);
       window.location.reload();
     }
   })

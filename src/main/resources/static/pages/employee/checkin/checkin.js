@@ -45,7 +45,7 @@ $(".btn-save").click(() => {
     let department = "1";
     let url = "http://localhost:8080/api/employee/update"
     console.log(phone)
-    fetch(url).then(response => response.json()).then(data => console.log(data))
+    // fetch(url).then(response => response.json()).then(data => console.log(data))
     fetch(`/api/employee/update`, {
         method: "PUT",
         headers: {
