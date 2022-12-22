@@ -203,7 +203,7 @@
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <select class="form-control" id="employee-department-edit">
                                                 <c:forEach var="item" items="${departments}">
-                                                    <option>${item.id}</option>
+                                                    <option value="${item.id}">${item.name}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
